@@ -22,46 +22,46 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-lg border-b border-gray-100">
       <div className="container-normal py-4">
-        {/* Top Row: Logo & Icons */}
-        <div className="grid grid-cols-3 items-center w-full">
-          {/* Mobile/Tablet Hamburger */}
-          <div className="flex items-center">
+        {/* Main Header Row */}
+        <div className="grid grid-cols-3 items-center w-full relative">
+          {/* Left: Hamburger Button */}
+          <div className="flex items-center justify-start">
             <Button 
               variant="ghost" 
               size="icon" 
-              className="rounded-full hover:bg-black/5 text-foreground lg:hidden"
+              className="rounded-full hover:bg-black/5 text-foreground lg:hidden h-10 w-10"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
 
-          {/* Centered Logo */}
+          {/* Center: Logo */}
           <div className="flex justify-center">
             <Link href="/" className="flex items-center group">
-              <h2 className="text-foreground text-2xl lg:text-4xl font-display font-black leading-tight tracking-[0.2em] uppercase transition-colors group-hover:text-primary text-center">
+              <h2 className="text-foreground text-2xl lg:text-4xl font-display font-black leading-tight tracking-[0.1em] uppercase transition-colors group-hover:text-primary whitespace-nowrap">
                 Sumegha
               </h2>
             </Link>
           </div>
 
-          {/* Right Icons - Increased Size and Tighter Spacing */}
-          <div className="flex justify-end items-center gap-0.5">
+          {/* Right: Icons */}
+          <div className="flex justify-end items-center gap-1">
             <Link href="/wishlist">
-              <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 text-foreground relative h-12 w-12 transition-transform hover:scale-110">
-                <Heart className="h-9 w-9" />
+              <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 text-foreground relative h-10 w-10 sm:h-12 sm:w-12 transition-transform hover:scale-110">
+                <Heart className="h-7 w-7 sm:h-9 sm:w-9" />
                 {wishlist.length > 0 && (
-                  <span className="absolute top-2 right-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[8px] font-bold text-white border-2 border-white">
+                  <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[8px] font-bold text-white border-2 border-white">
                     {wishlist.length}
                   </span>
                 )}
               </Button>
             </Link>
             <Link href="/cart">
-              <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 text-foreground relative h-12 w-12 transition-transform hover:scale-110">
-                <ShoppingBag className="h-9 w-9" />
+              <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 text-foreground relative h-10 w-10 sm:h-12 sm:w-12 transition-transform hover:scale-110">
+                <ShoppingBag className="h-7 w-7 sm:h-9 sm:w-9" />
                 {cart.length > 0 && (
-                  <span className="absolute top-2 right-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[8px] font-bold text-white border-2 border-white">
+                  <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[8px] font-bold text-white border-2 border-white">
                     {cart.length}
                   </span>
                 )}
@@ -70,7 +70,7 @@ export function Header() {
           </div>
         </div>
 
-        {/* Desktop Bottom Row: Centered Menu */}
+        {/* Desktop Navigation: Centered Below Logo */}
         <nav className="hidden lg:flex items-center justify-center space-x-12 mt-6 pt-4 border-t border-gray-50">
           {navLinks.map((link) => (
             <Link 

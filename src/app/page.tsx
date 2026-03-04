@@ -86,8 +86,7 @@ export default function Home() {
     { id: "lippan-1", name: "Vibrant Lippan Art", description: "Traditional mirror work handcrafted.", price: 1299, originalPrice: 1999, imageUrl: "https://picsum.photos/seed/art1/600/600", category: "Art", tags: ['Bestseller'] },
     { id: "nameplate-1", name: "Custom Nameplates", description: "Elegant personalized ceramic nameplates.", price: 1599, originalPrice: 2200, imageUrl: "https://picsum.photos/seed/name1/600/600", category: "Decor" },
     { id: "folk-art-1", name: "Indian Folk Art", description: "Authentic traditional patterns.", price: 899, originalPrice: 1200, imageUrl: "https://picsum.photos/seed/folk1/600/600", category: "Art", tags: ['Bestseller'] },
-    { id: "festive-decor-1", name: "Festive Decor", description: "Handcrafted ornaments for every occasion.", price: 650, originalPrice: 950, imageUrl: "https://picsum.photos/seed/decor1/600/600", category: "Decor" },
-    { id: "jewelry-1", name: "Artisanal Jewelry", description: "Handcrafted pieces that tell a story.", price: 450, originalPrice: 799, imageUrl: "https://picsum.photos/seed/jewel1/600/600", category: "Jewelry" }
+    { id: "festive-decor-1", name: "Festive Decor", description: "Handcrafted ornaments for every occasion.", price: 650, originalPrice: 950, imageUrl: "https://picsum.photos/seed/decor1/600/600", category: "Decor" }
   ];
 
   const categories = [
@@ -214,7 +213,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Works Grid - Adjusted for larger cards */}
+      {/* Featured Works Grid - Adjusted for larger cards and tighter gaps */}
       <section className="py-20">
         <div className="container-normal">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
@@ -227,7 +226,7 @@ export default function Home() {
             </Link>
           </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -254,7 +253,7 @@ export default function Home() {
       <section className="py-24">
         <div className="container-normal">
           <h4 className="text-[14px] font-bold text-center mb-16 uppercase tracking-[0.5em] text-primary">The Experience</h4>
-          <div className="grid grid-cols-3 gap-6 lg:gap-24">
+          <div className="grid grid-cols-3 gap-4 lg:gap-24">
             {[
               { title: "CURATE", desc: "Select from our gallery of artisan creations.", icon: MousePointer2 },
               { title: "CONNECT", desc: "Direct consultation via WhatsApp.", icon: WhatsAppIcon },
@@ -263,39 +262,17 @@ export default function Home() {
               const Icon = step.icon;
               return (
                 <div key={idx} className="flex flex-col items-center text-center space-y-6 group">
-                  <div className="w-20 h-20 md:w-32 md:h-32 rounded-[2rem] bg-white shadow-xl shadow-primary/5 border border-primary/5 flex items-center justify-center transition-all duration-500 group-hover:shadow-2xl group-hover:scale-105">
-                    {typeof Icon === 'string' ? Icon : <Icon className="h-10 w-10 md:h-14 md:w-14 text-primary stroke-[1.5px]" />}
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-32 md:h-32 rounded-[1.5rem] sm:rounded-[2rem] bg-white shadow-xl shadow-primary/5 border border-primary/5 flex items-center justify-center transition-all duration-500 group-hover:shadow-2xl group-hover:scale-105">
+                    {typeof Icon === 'string' ? Icon : <Icon className="h-6 w-6 sm:h-10 sm:h-10 md:h-14 md:w-14 text-primary stroke-[1.5px]" />}
                   </div>
                   <div className="space-y-2">
-                    <h5 className="font-black text-base md:text-xl uppercase tracking-[0.1em] text-foreground">{step.title}</h5>
-                    <p className="text-foreground/50 text-[10px] md:text-xs font-light leading-relaxed max-w-[150px] mx-auto">{step.desc}</p>
+                    <h5 className="font-black text-xs sm:text-base md:text-xl uppercase tracking-[0.1em] text-foreground">{step.title}</h5>
+                    <p className="text-foreground/50 text-[8px] sm:text-[10px] md:text-xs font-light leading-relaxed max-w-[150px] mx-auto">{step.desc}</p>
                   </div>
                 </div>
               );
             })}
           </div>
-        </div>
-      </section>
-
-      {/* Trending Slider Section */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container-normal">
-          <div className="text-center mb-16 space-y-2">
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">Popular Choices</h4>
-            <h2 className="text-3xl lg:text-4xl font-black uppercase tracking-tight text-foreground">Most Loved Pieces</h2>
-          </div>
-          <Carousel 
-            opts={{ align: "start", loop: true }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-6">
-              {featuredProducts.concat(featuredProducts).map((product, index) => (
-                <CarouselItem key={`${product.id}-${index}`} className="pl-6 basis-1/2 sm:basis-1/3 lg:basis-1/4">
-                  <ProductCard product={product} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
         </div>
       </section>
 
