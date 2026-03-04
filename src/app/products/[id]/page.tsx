@@ -181,7 +181,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 
                 <div className="flex items-center gap-2">
                   <Button size="icon" variant="outline" className={cn("h-10 w-10 rounded-full border-primary/10 transition-all", wishlisted ? 'bg-primary/10 text-primary border-primary/20' : 'bg-white hover:bg-primary/5')} onClick={() => wishlisted ? removeFromWishlist(product.id) : addToWishlist(product)}>
-                    <Heart className={cn("h-4 w-4", wishlisted && "fill-primary")} />
+                    <Heart className={cn("h-4 w-4", wishlisted && "fill-primary text-primary")} />
                   </Button>
                   <Button size="icon" variant="outline" className="h-10 w-10 rounded-full border-primary/10 bg-white hover:bg-primary/5 transition-all" onClick={handleShare}>
                     <Share2 className="h-4 w-4" />
@@ -195,7 +195,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
               <div className="flex items-center gap-4">
                 <p className="text-3xl lg:text-5xl font-black font-headline text-primary">₹{product.price}</p>
-                <p className="text-xl lg:text-2xl text-muted-foreground line-through decoration-primary/60 font-black">₹{product.originalPrice}</p>
+                <p className="text-xl lg:text-2xl text-muted-foreground line-through decoration-primary/20 font-black">₹{product.originalPrice}</p>
               </div>
 
               <div className="flex flex-wrap gap-4 pt-2">

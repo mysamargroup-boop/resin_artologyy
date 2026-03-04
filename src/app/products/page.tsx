@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useSearchParams } from 'next/navigation';
@@ -73,7 +72,6 @@ export default function ProductsPage() {
               />
             </div>
 
-            {/* Category Filter matching provided image */}
             <div className="relative w-full">
               <div className="flex items-center gap-3 overflow-x-auto pb-4 scrollbar-hide px-2">
                 {categories.map(cat => {
@@ -95,7 +93,6 @@ export default function ProductsPage() {
                   );
                 })}
               </div>
-              {/* Fade out effect on the right side */}
               <div className="absolute top-0 right-0 h-[44px] w-12 bg-gradient-to-l from-background to-transparent pointer-events-none" />
             </div>
           </div>
