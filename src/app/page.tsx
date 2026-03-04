@@ -57,16 +57,16 @@ export default function Home() {
 
   const productsByCategory: Record<string, any[]> = {
     "Custom Name Plates": [
-      { id: "name-1", name: "Floral Name Plate", price: 1599, originalPrice: 2200, imageUrl: "https://picsum.photos/seed/name1/600/600", category: "Name Plates", tags: ["Bestseller"], rating: 5 },
-      { id: "name-2", name: "Resin Door Sign", price: 1899, originalPrice: 2500, imageUrl: "https://picsum.photos/seed/name2/600/600", category: "Name Plates", tags: ["New Arrival"], rating: 4 },
-      { id: "name-3", name: "Couple Name Plaque", price: 1299, originalPrice: 1800, imageUrl: "https://picsum.photos/seed/name3/600/600", category: "Name Plates", tags: ["Top Selling"], rating: 5 },
-      { id: "name-4", name: "Modern Ceramic Nameplate", price: 2100, originalPrice: 3000, imageUrl: "https://picsum.photos/seed/name4/600/600", category: "Name Plates", tags: ["Luxury"], rating: 5 },
+      { id: "name-1", name: "Floral Name Plate", price: 1599, originalPrice: 2200, imageUrl: "https://picsum.photos/seed/name1/600/600", category: "Custom Name Plates", tags: ["Bestseller"], rating: 5 },
+      { id: "name-2", name: "Resin Door Sign", price: 1899, originalPrice: 2500, imageUrl: "https://picsum.photos/seed/name2/600/600", category: "Custom Name Plates", tags: ["New Arrival"], rating: 4 },
+      { id: "name-3", name: "Couple Name Plaque", price: 1299, originalPrice: 1800, imageUrl: "https://picsum.photos/seed/name3/600/600", category: "Custom Name Plates", tags: ["Top Selling"], rating: 5 },
+      { id: "name-4", name: "Modern Ceramic Nameplate", price: 2100, originalPrice: 3000, imageUrl: "https://picsum.photos/seed/name4/600/600", category: "Custom Name Plates", tags: ["Luxury"], rating: 5 },
     ],
     "Decorative Hangings": [
-      { id: "hang-1", name: "Artisanal Wall Charm", price: 899, originalPrice: 1200, imageUrl: "https://picsum.photos/seed/hang1/600/600", category: "Hangings", tags: ["Bestseller"], rating: 5 },
-      { id: "hang-2", name: "Nazar Battu Hanging", price: 550, originalPrice: 750, imageUrl: "https://picsum.photos/seed/hang2/600/600", category: "Evil Eye Decor", tags: ["Protection"], rating: 4 },
-      { id: "hang-3", name: "Boho Macrame Tassel", price: 699, originalPrice: 950, imageUrl: "https://picsum.photos/seed/hang3/600/600", category: "Hangings", tags: ["Boho"], rating: 5 },
-      { id: "hang-4", name: "Mirror Work Toran", price: 1299, originalPrice: 1800, imageUrl: "https://picsum.photos/seed/hang4/600/600", category: "Hangings", tags: ["Traditional"], rating: 5 },
+      { id: "hang-1", name: "Artisanal Wall Charm", price: 899, originalPrice: 1200, imageUrl: "https://picsum.photos/seed/hang1/600/600", category: "Decorative Hangings", tags: ["Bestseller"], rating: 5 },
+      { id: "hang-2", name: "Nazar Battu Hanging", price: 550, originalPrice: 750, imageUrl: "https://picsum.photos/seed/hang2/600/600", category: "Evil Eye Protection Decor", tags: ["Protection"], rating: 4 },
+      { id: "hang-3", name: "Boho Macrame Tassel", price: 699, originalPrice: 950, imageUrl: "https://picsum.photos/seed/hang3/600/600", category: "Decorative Hangings", tags: ["Boho"], rating: 5 },
+      { id: "hang-4", name: "Mirror Work Toran", price: 1299, originalPrice: 1800, imageUrl: "https://picsum.photos/seed/hang4/600/600", category: "Decorative Hangings", tags: ["Traditional"], rating: 5 },
     ]
   };
 
@@ -102,24 +102,27 @@ export default function Home() {
 
   const heroSlides = [
     {
-      badge: "HANDMADE ELEGANCE",
-      title: "BESPOKE",
-      highlight: "ARTISTRY",
-      desc: "Experience contemporary design through bespoke handmade elegance. Every piece is a testament to sophisticated simplicity.",
+      badge: "EXCLUSIVE COLLECTION",
+      title: "CUSTOM",
+      highlight: "NAME PLATES",
+      categoryName: "Custom Name Plates",
+      desc: "Artisanal door decor personalized for your beautiful home. Experience contemporary design through bespoke handmade elegance.",
       image: "https://picsum.photos/seed/art-bg/1920/1080",
     },
     {
-      badge: "PERSONALIZED FOR YOU",
-      title: "HANDMADE",
-      highlight: "TREASURES",
-      desc: "Each piece is meticulously handcrafted, ensuring no two items are exactly alike.",
+      badge: "TRADITIONAL MOTIFS",
+      title: "SHUBH",
+      highlight: "SYMBOLS",
+      categoryName: "Shubh Symbols",
+      desc: "Traditional auspicious motifs to bring positive energy. Each piece is meticulously handcrafted with love.",
       image: "https://picsum.photos/seed/jewelry-bg/1920/1080",
     },
     {
-      badge: "NEW COLLECTION",
-      title: "FESTIVE",
-      highlight: "SPIRIT",
-      desc: "Celebrate traditions with our vibrant new range of festive home decor and unique gifts.",
+      badge: "VERTICAL TREASURES",
+      title: "DECORATIVE",
+      highlight: "HANGINGS",
+      categoryName: "Decorative Hangings",
+      desc: "Bespoke ensembles for your vertical spaces. Celebrate traditions with our vibrant range of festive decor.",
       image: "https://picsum.photos/seed/festive-bg/1920/1080",
     }
   ];
@@ -170,7 +173,7 @@ export default function Home() {
                       <p className="text-sm sm:text-xl text-white/90 font-medium leading-relaxed max-w-lg drop-shadow-md">
                         {slide.desc}
                       </p>
-                      <Link href="/products" className="pt-4">
+                      <Link href={`/products?category=${encodeURIComponent(slide.categoryName)}`} className="pt-4">
                         <Button className="h-14 px-12 rounded-xl text-[10px] font-bold uppercase tracking-widest gradient-primary border-none shadow-xl shadow-primary/40 active:scale-95 transition-all">
                           Shop Now
                         </Button>
