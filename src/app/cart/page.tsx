@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Trash2, Plus, Minus, ShoppingBag, ArrowRight } from 'lucide-react';
+import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, Sparkles } from 'lucide-react';
 import { useStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
 import { WhatsAppCheckout } from '@/components/WhatsAppCheckout';
@@ -13,7 +13,9 @@ export default function CartPage() {
   const { cart, removeFromCart, updateCartQuantity, clearCart } = useStore();
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
-  const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const totalOriginal = cart.reduce((sum, item) => sum + ((item.originalPrice || item.price) * item.quantity), 0);
+  const totalSavings = totalOriginal - subtotal;
 
   if (cart.length === 0) {
     return (
@@ -21,83 +23,128 @@ export default function CartPage() {
         <div className="w-24 h-24 bg-secondary rounded-full flex items-center justify-center mx-auto mb-8">
           <ShoppingBag className="h-12 w-12 text-primary" />
         </div>
-        <h1 className="text-4xl font-headline font-black mb-4 text-center">Your cart is empty</h1>
-        <p className="text-muted-foreground mb-8 max-w-md mx-auto">Looks like you haven't added any handmade treasures yet. Let's find something beautiful!</p>
+        <h1 className="text-3xl lg:text-6xl font-headline font-black mb-4 uppercase tracking-tight">Your cart is empty</h1>
+        <p className="text-muted-foreground mb-8 max-w-md mx-auto font-light">Looks like you haven't added any handmade treasures yet. Let's find something beautiful!</p>
         <Link href="/products">
-          <Button size="lg" className="rounded-full gradient-primary px-10">Start Shopping</Button>
+          <Button size="lg" className="rounded-full gradient-primary px-10 text-[10px] font-bold uppercase tracking-widest h-14">Start Shopping</Button>
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl lg:text-6xl font-black font-headline mb-12 text-center uppercase tracking-tight">Shopping Bag</h1>
+    <div className="container mx-auto px-4 py-12 pb-32">
+      <div className="text-center mb-12 space-y-2">
+        <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">Review Your Items</p>
+        <h1 className="text-3xl lg:text-6xl font-black font-headline uppercase tracking-tight">Shopping Bag</h1>
+      </div>
       
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
         <div className="lg:col-span-2 space-y-6">
           {cart.map((item) => (
-            <div key={item.id} className="flex flex-col sm:flex-row items-center gap-6 p-6 bg-white rounded-3xl shadow-sm border border-primary/5">
-              <div className="relative w-32 h-32 flex-shrink-0 rounded-2xl overflow-hidden shadow-md">
+            <div key={item.id} className="flex flex-col sm:flex-row items-center gap-6 p-6 bg-white rounded-[2.5rem] shadow-sm border border-primary/5 transition-all hover:shadow-md">
+              <div className="relative w-32 h-40 flex-shrink-0 rounded-2xl overflow-hidden shadow-lg border-2 border-white">
                 <Image src={item.imageUrl} alt={item.name} fill className="object-cover" />
               </div>
               
-              <div className="flex-grow text-center sm:text-left">
-                <h3 className="text-xl font-headline font-bold mb-1">{item.name}</h3>
-                <p className="text-primary font-bold mb-4">₹{item.price}</p>
-                <div className="flex items-center justify-center sm:justify-start space-x-4">
-                  <div className="flex items-center border rounded-full px-2 py-1">
-                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => updateCartQuantity(item.id, -1)}>
+              <div className="flex-grow text-center sm:text-left space-y-4">
+                <div>
+                  <h3 className="text-xl font-headline font-black uppercase tracking-tight text-foreground">{item.name}</h3>
+                  <div className="flex items-center justify-center sm:justify-start gap-2 mt-1">
+                    <p className="text-primary font-black text-lg">₹{item.price}</p>
+                    {item.originalPrice && (
+                      <p className="text-muted-foreground text-xs line-through decoration-primary/40 font-bold">₹{item.originalPrice}</p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center sm:justify-start space-x-6">
+                  <div className="flex items-center bg-primary/5 rounded-full p-1 border border-primary/10">
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="h-8 w-8 rounded-full hover:bg-white" 
+                      onClick={() => updateCartQuantity(item.id, -1)}
+                    >
                       <Minus className="h-3 w-3" />
                     </Button>
-                    <span className="w-8 text-center font-bold">{item.quantity}</span>
-                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={() => updateCartQuantity(item.id, 1)}>
+                    <span className="w-10 text-center font-black text-sm">{item.quantity}</span>
+                    <Button 
+                      variant="ghost" 
+                      size="icon" 
+                      className="h-8 w-8 rounded-full hover:bg-white" 
+                      onClick={() => updateCartQuantity(item.id, 1)}
+                    >
                       <Plus className="h-3 w-3" />
                     </Button>
                   </div>
-                  <Button variant="ghost" size="icon" className="text-destructive hover:bg-destructive/5 rounded-full" onClick={() => removeFromCart(item.id)}>
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="text-destructive hover:bg-destructive/5 rounded-full h-10 w-10" 
+                    onClick={() => removeFromCart(item.id)}
+                  >
                     <Trash2 className="h-5 w-5" />
                   </Button>
                 </div>
               </div>
               
               <div className="text-right hidden sm:block">
-                <p className="text-sm text-muted-foreground mb-1">Subtotal</p>
-                <p className="text-xl font-bold font-headline">₹{item.price * item.quantity}</p>
+                <p className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-1">Subtotal</p>
+                <p className="text-2xl font-black font-headline text-foreground">₹{item.price * item.quantity}</p>
               </div>
             </div>
           ))}
         </div>
 
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-[2rem] p-8 shadow-xl border border-primary/10 sticky top-24">
-            <h2 className="text-2xl font-headline font-black mb-6">Order Summary</h2>
-            <div className="space-y-4 mb-8">
-              <div className="flex justify-between text-muted-foreground">
-                <span>Items Subtotal</span>
-                <span>₹{total}</span>
+          <div className="bg-white rounded-[3rem] p-8 lg:p-10 shadow-2xl border border-primary/10 sticky top-24 space-y-8">
+            <h2 className="text-2xl font-headline font-black uppercase tracking-tight">Summary</h2>
+            
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">Subtotal</span>
+                <span className="font-bold">₹{subtotal}</span>
               </div>
-              <div className="flex justify-between text-muted-foreground">
-                <span>Shipping</span>
-                <span className="text-green-600 font-medium">FREE</span>
+              <div className="flex justify-between items-center">
+                <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">Shipping</span>
+                <span className="text-green-600 font-black text-[11px] uppercase tracking-widest">FREE</span>
               </div>
-              <div className="pt-4 border-t flex justify-between items-center">
-                <span className="text-xl font-bold font-headline">Grand Total</span>
-                <span className="text-2xl font-black font-headline text-primary">₹{total}</span>
+              
+              {totalSavings > 0 && (
+                <div className="flex justify-between items-center p-3 bg-green-50 rounded-xl border border-green-100">
+                  <span className="text-[10px] font-black text-green-700 uppercase tracking-widest flex items-center">
+                    <Sparkles className="h-3 w-3 mr-1.5" />
+                    You Saved
+                  </span>
+                  <span className="font-black text-green-700">₹{totalSavings}</span>
+                </div>
+              )}
+
+              <div className="pt-6 border-t border-primary/10 flex justify-between items-center">
+                <span className="text-xl font-black font-headline uppercase tracking-tight">Total</span>
+                <span className="text-3xl font-black font-headline text-primary">₹{subtotal}</span>
               </div>
             </div>
             
             <Button 
-              className="w-full h-16 rounded-full gradient-primary text-xl font-bold shadow-lg shadow-primary/20 group"
+              className="w-full h-16 rounded-2xl gradient-primary text-[11px] font-bold uppercase tracking-[0.2em] shadow-xl shadow-primary/20 group"
               onClick={() => setIsCheckoutOpen(true)}
             >
               Checkout on WhatsApp
-              <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             
-            <p className="mt-6 text-xs text-center text-muted-foreground leading-relaxed">
-              Secure checkout via WhatsApp. We will contact you for payment details (UPI/Bank Transfer/Cash on Delivery) once the artist confirms the order.
-            </p>
+            <div className="space-y-4">
+              <p className="text-[9px] text-center text-muted-foreground leading-relaxed uppercase tracking-widest font-bold">
+                Secure Checkout • Artist Confirmation • Easy Delivery
+              </p>
+              <div className="flex justify-center gap-4 opacity-30 grayscale">
+                <Image src="https://picsum.photos/seed/pay1/40/24" alt="UPI" width={40} height={24} className="rounded" />
+                <Image src="https://picsum.photos/seed/pay2/40/24" alt="Card" width={40} height={24} className="rounded" />
+                <Image src="https://picsum.photos/seed/pay3/40/24" alt="COD" width={40} height={24} className="rounded" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -106,10 +153,10 @@ export default function CartPage() {
         open={isCheckoutOpen} 
         onOpenChange={setIsCheckoutOpen} 
         items={cart} 
-        total={total} 
+        total={subtotal} 
         onSuccess={() => {
           clearCart();
-          toast({ title: "Order sent to WhatsApp!", description: "Check your phone to complete the chat." });
+          toast({ title: "Order sent!", description: "Check WhatsApp to finalize with the artist." });
         }}
       />
     </div>
