@@ -33,9 +33,14 @@ export function ProductCard({ product }: ProductCardProps) {
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) 
     : 0;
 
+  // Generate SEO friendly nested slug
+  const categorySlug = product.category.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  const subCategorySlug = "handcrafted"; // Default sub-category
+  const productUrl = `/collections/${categorySlug}/${subCategorySlug}/${product.id}`;
+
   return (
     <div className="group flex flex-col gap-3 bg-white p-2 rounded-xl shadow-sm hover:shadow-md hover:bg-primary/5 transition-all duration-300 border border-primary/5 w-full">
-      <Link href={`/products/${product.id}`} className="block">
+      <Link href={productUrl} className="block">
         <div className="relative w-full aspect-square bg-gray-50 rounded-lg overflow-hidden">
           <Image
             src={product.imageUrl}
@@ -91,7 +96,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <div className="flex items-center gap-2">
             <p className="text-primary text-[14px] font-black">₹{product.price}</p>
             {product.originalPrice && (
-              <p className="text-muted-foreground text-[10px] line-through decoration-primary/60 font-bold">₹{product.originalPrice}</p>
+              <p className="text-muted-foreground text-[10px] line-through decoration-primary/20 font-bold">₹{product.originalPrice}</p>
             )}
           </div>
         </div>

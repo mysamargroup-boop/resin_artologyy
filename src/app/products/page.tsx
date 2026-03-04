@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useSearchParams } from 'next/navigation';
@@ -5,7 +6,7 @@ import { useState, useMemo, useEffect, useRef } from 'react';
 import { ProductCard } from '@/components/ProductCard';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
-import { Search, Loader2 } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -20,7 +21,6 @@ export default function ProductsPage() {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    // Simulate loading state for aesthetic effect
     const timer = setTimeout(() => setIsLoading(false), 800);
     return () => clearTimeout(timer);
   }, []);
@@ -61,8 +61,8 @@ export default function ProductsPage() {
             <p className="text-muted-foreground text-sm lg:text-lg max-w-md mx-auto font-light">Hand-picked treasures waiting for a home.</p>
           </div>
           
-          <div className="flex flex-col gap-6 w-full max-w-2xl">
-            <div className="relative group">
+          <div className="flex flex-col gap-8 w-full max-w-3xl">
+            <div className="relative group max-w-2xl mx-auto w-full">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground transition-colors group-focus-within:text-primary" />
               <input 
                 ref={searchInputRef}
@@ -72,28 +72,37 @@ export default function ProductsPage() {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <div className="flex items-center gap-3 overflow-x-auto pb-4 scrollbar-hide">
-              {categories.map(cat => (
-                <Button 
-                  key={cat} 
-                  variant={selectedCategory === cat ? 'default' : 'outline'}
-                  className={cn(
-                    "rounded-full h-10 px-6 text-[10px] font-bold uppercase tracking-widest transition-all shrink-0",
-                    selectedCategory === cat 
-                      ? "gradient-primary border-none shadow-lg shadow-primary/20" 
-                      : "border-primary/10 bg-white/50 hover:bg-primary/5"
-                  )}
-                  onClick={() => setSelectedCategory(cat)}
-                >
-                  {cat}
-                </Button>
-              ))}
+
+            {/* Category Filter matching provided image */}
+            <div className="relative w-full">
+              <div className="flex items-center gap-3 overflow-x-auto pb-4 scrollbar-hide px-2">
+                {categories.map(cat => {
+                  const isActive = selectedCategory === cat;
+                  return (
+                    <Button 
+                      key={cat} 
+                      variant="ghost"
+                      className={cn(
+                        "rounded-full h-11 px-8 text-[10px] font-black uppercase tracking-widest transition-all shrink-0 border border-transparent",
+                        isActive 
+                          ? "bg-primary text-white shadow-lg shadow-primary/30" 
+                          : "bg-[#FDF6F9] text-foreground/80 hover:bg-primary/5"
+                      )}
+                      onClick={() => setSelectedCategory(cat)}
+                    >
+                      {cat}
+                    </Button>
+                  );
+                })}
+              </div>
+              {/* Fade out effect on the right side */}
+              <div className="absolute top-0 right-0 h-[44px] w-12 bg-gradient-to-l from-background to-transparent pointer-events-none" />
             </div>
           </div>
         </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="space-y-4 p-2 bg-white rounded-xl shadow-sm">
                 <Skeleton className="aspect-square w-full rounded-lg" />
@@ -105,7 +114,7 @@ export default function ProductsPage() {
             ))}
           </div>
         ) : filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {filteredProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
