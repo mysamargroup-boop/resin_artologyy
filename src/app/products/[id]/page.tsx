@@ -1,7 +1,7 @@
 
 "use client";
 
-import { use, useState, useMemo } from 'react';
+import { use, useState, useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart, ShoppingCart, Share2, Star, Sparkles, ChevronRight, Zap, ShieldCheck, Leaf, Medal, MessageSquareQuote } from 'lucide-react';
@@ -18,6 +18,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import {
   Accordion,
@@ -41,9 +42,17 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   const { id } = use(params);
   const { addToCart, addToWishlist, isWishlisted, removeFromWishlist } = useStore();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
   
   const product = useMemo(() => (productsData.products as Product[]).find(p => p.id === id), [id]);
   
+  useEffect(() => {
+    if (!api) return;
+    api.on("select", () => {
+      setCurrentSlide(api.selectedScrollSnap());
+    });
+  }, [api]);
+
   if (!product) {
     return (
       <div className="container mx-auto p-32 text-center space-y-6">
@@ -62,7 +71,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
   const wishlisted = isWishlisted(product.id);
 
-  // Basis for recommendations: Same category, excluding current product
   const recommendedProducts = useMemo(() => 
     (productsData.products as Product[])
       .filter(p => p.id !== id && p.category === product.category)
@@ -125,35 +133,61 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start mb-24">
-          <div className="space-y-4 w-full relative">
-            <Carousel className="w-full" onSelect={(api) => setCurrentSlide(api?.selectedScrollSnap() || 0)}>
-              <CarouselContent>
-                {galleryImages.map((img, idx) => (
-                  <CarouselItem key={idx}>
-                    <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border-2 border-white bg-white w-full">
-                      <Image src={img} alt={product.name} fill className="object-cover" priority={idx === 0} />
-                      {idx === 0 && (
-                        <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
-                          {discount > 0 && (
-                            <Badge className="bg-primary text-white border-none px-3 py-1 rounded-full uppercase tracking-widest text-[9px] font-black shadow-lg">
-                              {discount}% OFF
-                            </Badge>
-                          )}
-                          <Badge className="bg-black/50 backdrop-blur-md text-white border-none px-3 py-1 rounded-full uppercase tracking-widest text-[9px] font-black shadow-lg">
-                            BESTSELLER
-                          </Badge>
-                        </div>
-                      )}
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-            
-            <div className="flex justify-center gap-2">
-              {galleryImages.map((_, idx) => (
-                <div key={idx} className={cn("h-1.5 rounded-full transition-all duration-300", currentSlide === idx ? "w-6 bg-primary" : "w-1.5 bg-primary/20")} />
+          <div className="flex flex-col-reverse lg:flex-row gap-4 items-start w-full relative">
+            {/* Desktop Thumbnails */}
+            <div className="hidden lg:flex flex-col gap-3 w-20 shrink-0 sticky top-24">
+              {galleryImages.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => api?.scrollTo(idx)}
+                  className={cn(
+                    "relative aspect-[4/5] rounded-xl overflow-hidden border-2 transition-all duration-300",
+                    currentSlide === idx 
+                      ? "border-primary shadow-lg scale-105" 
+                      : "border-transparent opacity-60 hover:opacity-100"
+                  )}
+                >
+                  <Image 
+                    src={img} 
+                    alt={`${product.name} detail ${idx + 1}`} 
+                    fill 
+                    className="object-cover" 
+                  />
+                </button>
               ))}
+            </div>
+
+            {/* Main Carousel */}
+            <div className="flex-1 w-full relative group">
+              <Carousel setApi={setApi} className="w-full">
+                <CarouselContent>
+                  {galleryImages.map((img, idx) => (
+                    <CarouselItem key={idx}>
+                      <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl border-2 border-white bg-white w-full">
+                        <Image src={img} alt={product.name} fill className="object-cover" priority={idx === 0} />
+                        {idx === 0 && (
+                          <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                            {discount > 0 && (
+                              <Badge className="bg-primary text-white border-none px-3 py-1 rounded-full uppercase tracking-widest text-[9px] font-black shadow-lg">
+                                {discount}% OFF
+                              </Badge>
+                            )}
+                            <Badge className="bg-black/50 backdrop-blur-md text-white border-none px-3 py-1 rounded-full uppercase tracking-widest text-[9px] font-black shadow-lg">
+                              BESTSELLER
+                            </Badge>
+                          </div>
+                        )}
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+              
+              <div className="flex justify-center gap-2 mt-4 lg:hidden">
+                {galleryImages.map((_, idx) => (
+                  <div key={idx} className={cn("h-1.5 rounded-full transition-all duration-300", currentSlide === idx ? "w-6 bg-primary" : "w-1.5 bg-primary/20")} />
+                ))}
+              </div>
             </div>
           </div>
 
