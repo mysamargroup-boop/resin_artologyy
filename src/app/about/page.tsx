@@ -40,14 +40,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="relative min-h-screen py-10 px-4 sm:px-6 overflow-hidden">
-      {/* Background Overlays */}
-      <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-[10%] right-[-5%] w-[35%] h-[35%] bg-primary/10 rounded-full blur-[100px]" />
-        <div className="absolute top-[30%] right-[10%] w-[20%] h-[20%] bg-pink-200/20 rounded-full blur-[80px]" />
-      </div>
-
+    <div className="relative min-h-screen py-10 px-4 sm:px-6">
       <div className="container-normal mx-auto space-y-12 pb-16 relative">
         {/* Header */}
         <div className="relative flex items-center justify-center mb-8">
@@ -77,14 +70,16 @@ export default function AboutPage() {
             />
           </div>
           <div className="space-y-1">
-            <h2 className="text-5xl lg:text-7xl font-cursive text-primary lowercase tracking-tight">Sumegha</h2>
-            <p className="text-foreground/40 font-bold uppercase tracking-[0.3em] text-[10px]">Founder & Creative Soul</p>
+            <h2 className="text-6xl lg:text-8xl font-cursive text-primary lowercase tracking-tight drop-shadow-sm select-none">
+              Sumegha
+            </h2>
+            <p className="text-foreground/50 font-black uppercase tracking-[0.3em] text-[10px]">Founder & Creative Soul</p>
           </div>
           <div className="max-w-2xl space-y-6">
-            <p className="text-foreground/70 text-base lg:text-xl leading-relaxed italic font-light">
+            <p className="text-foreground/80 text-base lg:text-xl leading-relaxed italic font-light">
               "Sumegha Handmades is more than just a brand; it's a heartbeat. It started from a simple desire to preserve the warmth of human touch in an increasingly digital world. Every piece I craft carries a fragment of my soul and a whisper of tradition."
             </p>
-            <p className="text-foreground/60 text-sm lg:text-base leading-relaxed font-light">
+            <p className="text-foreground/70 text-sm lg:text-base leading-relaxed font-medium">
               We specialize in creating artifacts that aren't just decor, but anchors for your memories. From the rhythmic placement of mirrors in Lippan art to the personalized stroke of a nameplate, our work is a celebration of patience, precision, and the beautiful imperfections of the handmade process.
             </p>
           </div>
@@ -109,7 +104,7 @@ export default function AboutPage() {
                   <div className="space-y-1 pt-0.5">
                     <p className="text-primary font-black text-[10px] tracking-[0.2em]">{item.year}</p>
                     <h4 className="text-lg font-black text-foreground uppercase tracking-tight">{item.title}</h4>
-                    <p className="text-foreground/60 text-xs leading-relaxed font-light">{item.description}</p>
+                    <p className="text-foreground/70 text-xs leading-relaxed font-medium">{item.description}</p>
                   </div>
                 </div>
               );
@@ -118,16 +113,16 @@ export default function AboutPage() {
         </div>
 
         {/* Signature Creations */}
-        <div className="bg-white/50 backdrop-blur-md p-8 rounded-[2rem] border border-primary/5 shadow-sm space-y-6 max-w-4xl mx-auto">
+        <div className="bg-white/60 backdrop-blur-md p-8 rounded-[2rem] border border-primary/10 shadow-sm space-y-6 max-w-4xl mx-auto">
           <div className="flex items-center gap-3 text-primary">
             <Palette className="h-5 w-5" />
             <span className="text-[10px] font-black uppercase tracking-[0.4em]">Signature Creations</span>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {signatureCreations.map((item, i) => (
-              <div key={i} className="flex items-center gap-2 p-3 bg-white rounded-xl shadow-sm border border-primary/5">
+              <div key={i} className="flex items-center gap-2 p-3 bg-white/80 rounded-xl shadow-sm border border-primary/5">
                 <Sparkles className="h-3 w-3 text-primary shrink-0" />
-                <span className="text-[10px] font-bold uppercase tracking-tight text-foreground/70">{item}</span>
+                <span className="text-[10px] font-bold uppercase tracking-tight text-foreground/80">{item}</span>
               </div>
             ))}
           </div>
@@ -145,7 +140,7 @@ export default function AboutPage() {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {(processPhotos.length > 0 ? processPhotos : instagramPosts.slice(0, 4)).map((img, i) => (
-              <div key={i} className="relative aspect-square rounded-[1.5rem] overflow-hidden shadow-lg group">
+              <div key={i} className="relative aspect-square rounded-[1.5rem] overflow-hidden shadow-lg group border-2 border-white">
                 <Image 
                   src={img.imageUrl} 
                   alt={img.description} 
