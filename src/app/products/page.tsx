@@ -6,13 +6,15 @@ import { ProductCard } from '@/components/ProductCard';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search } from 'lucide-react';
+import { Search, SlidersHorizontal } from 'lucide-react';
 
 export default function ProductsPage() {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get('category');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(categoryParam || 'All');
+
+  const categories = ['All', 'Festive / Special Gifts', 'Home Decor', 'Wedding', 'Diwali decor', 'Anniversary'];
 
   const allProducts = useMemo(() => PlaceHolderImages.map((img, i) => ({
     id: img.id,
@@ -21,10 +23,9 @@ export default function ProductsPage() {
     price: [249, 599, 1200, 450, 899, 1500][i % 6],
     originalPrice: [399, 799, 1500, 550, 1100, 1800][i % 6],
     imageUrl: img.imageUrl,
-    category: ['Ceramics', 'Paintings', 'Jewelry', 'Boho', 'Decor', 'Textile'][i % 6]
-  })), []);
-
-  const categories = ['All', 'Ceramics', 'Paintings', 'Jewelry', 'Decor', 'Boho', 'Textile'];
+    category: categories.slice(1)[i % 5],
+    tags: i % 3 === 0 ? ['Bestseller'] : i % 4 === 0 ? ['New Arrival'] : []
+  })), [categories]);
 
   const filteredProducts = allProducts.filter(p => {
     const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
@@ -35,28 +36,37 @@ export default function ProductsPage() {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
-        <div className="text-center md:text-left">
-          <h1 className="text-4xl lg:text-6xl font-black font-headline mb-4">Our Gallery</h1>
-          <p className="text-muted-foreground text-lg">Hand-picked treasures waiting for a home.</p>
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+        <div className="text-center md:text-left space-y-2">
+          <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-primary">The Collection</p>
+          <h1 className="text-5xl lg:text-7xl font-black font-headline uppercase tracking-tight">Art Gallery</h1>
+          <p className="text-muted-foreground text-lg max-w-md font-light">Hand-picked treasures waiting for a home.</p>
         </div>
         
-        <div className="flex flex-col sm:flex-row gap-4 w-full md:max-w-xl">
-          <div className="relative flex-grow">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+        <div className="flex flex-col gap-6 w-full md:max-w-2xl">
+          <div className="relative flex-grow group">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground transition-colors group-focus-within:text-primary" />
             <Input 
-              placeholder="Search products..." 
-              className="pl-10 h-12 rounded-full border-primary/20 bg-white"
+              placeholder="Search unique art..." 
+              className="pl-12 h-14 rounded-2xl border-primary/10 bg-white/50 backdrop-blur-sm focus:bg-white shadow-sm"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <div className="flex gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-hide">
-            {categories.slice(0, 4).map(cat => (
+          <div className="flex items-center gap-4 overflow-x-auto pb-4 scrollbar-hide">
+            <div className="flex items-center justify-center p-3 rounded-xl bg-white shadow-sm border border-primary/5">
+              <SlidersHorizontal className="h-4 w-4 text-primary" />
+            </div>
+            {categories.map(cat => (
               <Button 
                 key={cat} 
                 variant={selectedCategory === cat ? 'default' : 'outline'}
-                className={`rounded-full h-12 px-6 ${selectedCategory === cat ? 'gradient-primary' : 'border-primary/20'}`}
+                className={cn(
+                  "rounded-full h-10 px-6 text-[10px] font-bold uppercase tracking-widest transition-all",
+                  selectedCategory === cat 
+                    ? "gradient-primary border-none shadow-lg shadow-primary/20" 
+                    : "border-primary/10 bg-white/50 hover:bg-white"
+                )}
                 onClick={() => setSelectedCategory(cat)}
               >
                 {cat}
@@ -67,15 +77,25 @@ export default function ProductsPage() {
       </div>
 
       {filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-10">
           {filteredProducts.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       ) : (
-        <div className="text-center py-20 bg-white rounded-3xl border border-dashed">
-          <p className="text-xl text-muted-foreground">No products found matching your filters.</p>
-          <Button variant="link" onClick={() => {setSearchTerm(''); setSelectedCategory('All');}} className="text-primary mt-4">
+        <div className="text-center py-32 bg-white/40 rounded-[3rem] border-2 border-dashed border-primary/10 space-y-6">
+          <div className="w-20 h-20 bg-primary/5 rounded-full flex items-center justify-center mx-auto">
+            <Search className="h-10 w-10 text-primary/30" />
+          </div>
+          <div className="space-y-2">
+            <p className="text-2xl font-black uppercase tracking-tight">No Results Found</p>
+            <p className="text-muted-foreground font-light max-w-xs mx-auto">Try adjusting your filters or search terms to find what you're looking for.</p>
+          </div>
+          <Button 
+            variant="link" 
+            onClick={() => {setSearchTerm(''); setSelectedCategory('All');}} 
+            className="text-primary font-black uppercase tracking-widest text-xs"
+          >
             Clear all filters
           </Button>
         </div>

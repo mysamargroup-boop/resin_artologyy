@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from 'next/link';
@@ -84,94 +83,75 @@ export default function Home() {
   ];
 
   const featuredProducts = [
-    { id: "lippan-1", name: "Vibrant Lippan Art", description: "Traditional mirror work handcrafted.", price: 1299, originalPrice: 1999, imageUrl: "https://picsum.photos/seed/art1/600/600", category: "Art", tags: ['Bestseller'] },
-    { id: "nameplate-1", name: "Custom Nameplates", description: "Elegant personalized ceramic nameplates.", price: 1599, originalPrice: 2200, imageUrl: "https://picsum.photos/seed/name1/600/600", category: "Decor" },
-    { id: "folk-art-1", name: "Indian Folk Art", description: "Authentic traditional patterns.", price: 899, originalPrice: 1200, imageUrl: "https://picsum.photos/seed/folk1/600/600", category: "Art", tags: ['Bestseller'] },
-    { id: "festive-decor-1", name: "Festive Decor", description: "Handcrafted ornaments for every occasion.", price: 650, originalPrice: 950, imageUrl: "https://picsum.photos/seed/decor1/600/600", category: "Decor" }
+    { id: "lippan-1", name: "Vibrant Lippan Art", description: "Traditional mirror work handcrafted.", price: 1299, originalPrice: 1999, imageUrl: "https://picsum.photos/seed/art1/600/600", category: "Home Decor", tags: ['Bestseller'] },
+    { id: "nameplate-1", name: "Custom Nameplates", description: "Elegant personalized ceramic nameplates.", price: 1599, originalPrice: 2200, imageUrl: "https://picsum.photos/seed/name1/600/600", category: "Festive Gifts", tags: ['New Arrival'] },
+    { id: "folk-art-1", name: "Indian Folk Art", description: "Authentic traditional patterns.", price: 899, originalPrice: 1200, imageUrl: "https://picsum.photos/seed/folk1/600/600", category: "Wedding", tags: ['Bestseller'] },
+    { id: "festive-decor-1", name: "Festive Decor", description: "Handcrafted ornaments for every occasion.", price: 650, originalPrice: 950, imageUrl: "https://picsum.photos/seed/decor1/600/600", category: "Diwali Decor", tags: ['Trending'] }
   ];
 
   const categories = [
-    { name: "Ceramics", image: "https://picsum.photos/seed/cat-ceramics/400/400" },
-    { name: "Paintings", image: "https://picsum.photos/seed/cat-paintings/400/400" },
-    { name: "Jewelry", image: "https://picsum.photos/seed/cat-jewelry/400/400" },
-    { name: "Boho", image: "https://picsum.photos/seed/cat-boho/400/400" },
-    { name: "Decor", image: "https://picsum.photos/seed/cat-decor/400/400" },
-    { name: "Textile", image: "https://picsum.photos/seed/cat-textile/400/400" },
-    { name: "Nameplates", image: "https://picsum.photos/seed/cat-name/400/400" },
-    { name: "Folk Art", image: "https://picsum.photos/seed/cat-folk/400/400" }
+    { name: "Festive / Special Gifts", image: "https://picsum.photos/seed/cat-gifts/400/400" },
+    { name: "Home Decor", image: "https://picsum.photos/seed/cat-decor/400/400" },
+    { name: "Wedding", image: "https://picsum.photos/seed/cat-wedding/400/400" },
+    { name: "Diwali decor", image: "https://picsum.photos/seed/cat-diwali/400/400" },
+    { name: "Anniversary", image: "https://picsum.photos/seed/cat-anniversary/400/400" }
   ];
 
   return (
     <div className="flex flex-col w-full overflow-hidden">
-      {/* Hero Slider Section */}
-      <section className="relative w-full h-[75vh] min-h-[500px] overflow-hidden">
+      {/* Hero Slider Section - Updated for Mobile rounded + indicators */}
+      <section className="relative w-full px-4 sm:px-6 pt-6 pb-12 sm:pb-20">
         <Carousel 
           setApi={setApi}
           plugins={[plugin.current]}
-          className="w-full h-full"
+          className="w-full"
         >
-          <CarouselContent className="h-full ml-0">
+          <CarouselContent className="ml-0">
             {heroSlides.map((slide, index) => (
-              <CarouselItem key={index} className="relative h-full pl-0">
-                <div className="absolute inset-0 z-0">
-                  <Image 
-                    src={slide.image}
-                    alt={slide.title}
-                    fill
-                    className="object-cover opacity-25"
-                    priority
-                  />
-                </div>
-                <div className="relative z-10 h-full flex items-center justify-center py-10 px-6">
-                  <div className="container-normal flex flex-col items-center text-center space-y-8">
-                    <div className="inline-block px-4 py-1.5 rounded-full border border-primary/20 text-[10px] font-bold uppercase tracking-[0.4em] text-primary bg-primary/5 backdrop-blur-sm">
-                      {slide.badge}
-                    </div>
-                    <div className="space-y-2">
-                      <h1 className="text-5xl lg:text-8xl font-black leading-none uppercase tracking-tighter text-foreground">
-                        {slide.title}
-                      </h1>
-                      <h2 className="text-5xl lg:text-8xl font-black leading-none uppercase tracking-tighter text-primary">
-                        {slide.highlight}
-                      </h2>
-                    </div>
-                    <p className="text-base lg:text-xl text-foreground/70 font-light max-w-2xl mx-auto leading-relaxed">
-                      {slide.desc}
-                    </p>
-                    <div className="flex flex-col items-center gap-8 w-full max-w-md mx-auto">
-                      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
-                        <Link href="/products" className="w-full">
-                          <Button className="w-full h-14 px-10 rounded-xl text-[11px] font-bold uppercase tracking-widest gradient-primary">
-                            View Collection
-                          </Button>
-                        </Link>
-                        <Button 
-                          variant="secondary" 
-                          className="w-full h-14 px-10 rounded-xl text-[11px] font-bold uppercase tracking-widest bg-white border border-gray-100 shadow-sm flex items-center justify-center gap-3 group hover:bg-gray-50"
-                          onClick={() => window.open('https://wa.me/919876543210', '_blank')}
-                        >
-                          <WhatsAppIcon className="h-5 w-5 text-green-600" />
-                          WhatsApp Order
-                        </Button>
+              <CarouselItem key={index} className="relative pl-0">
+                <div className="relative h-[65vh] sm:h-[75vh] min-h-[500px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl bg-black/5 border border-white/20">
+                  <div className="absolute inset-0 z-0">
+                    <Image 
+                      src={slide.image}
+                      alt={slide.title}
+                      fill
+                      className="object-cover opacity-30"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background/80" />
+                  </div>
+                  <div className="relative z-10 h-full flex items-center justify-center p-8 sm:p-12">
+                    <div className="container-normal flex flex-col items-center text-center space-y-6 sm:space-y-8">
+                      <div className="inline-block px-4 py-1.5 rounded-full border border-primary/20 text-[10px] font-bold uppercase tracking-[0.4em] text-primary bg-white/40 backdrop-blur-md">
+                        {slide.badge}
                       </div>
-
-                      {/* Autoplay Loading Indicators */}
-                      <div className="flex gap-3 z-20">
-                        {Array.from({ length: count }).map((_, i) => (
-                          <button
-                            key={i}
-                            className="relative h-1.5 w-12 bg-primary/10 rounded-full overflow-hidden"
-                            onClick={() => api?.scrollTo(i)}
-                            aria-label={`Go to slide ${i + 1}`}
+                      <div className="space-y-2">
+                        <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black leading-none uppercase tracking-tighter text-foreground">
+                          {slide.title}
+                        </h1>
+                        <h2 className="text-4xl sm:text-6xl lg:text-8xl font-black leading-none uppercase tracking-tighter text-primary">
+                          {slide.highlight}
+                        </h2>
+                      </div>
+                      <p className="text-sm sm:text-lg lg:text-xl text-foreground/70 font-light max-w-2xl mx-auto leading-relaxed">
+                        {slide.desc}
+                      </p>
+                      <div className="flex flex-col items-center gap-6 w-full max-w-md mx-auto pt-4">
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+                          <Link href="/products" className="w-full">
+                            <Button className="w-full h-14 px-10 rounded-2xl text-[11px] font-bold uppercase tracking-widest gradient-primary">
+                              View Collection
+                            </Button>
+                          </Link>
+                          <Button 
+                            variant="secondary" 
+                            className="w-full h-14 px-10 rounded-2xl text-[11px] font-bold uppercase tracking-widest bg-white/80 backdrop-blur-sm border border-white shadow-sm flex items-center justify-center gap-3 group hover:bg-white"
+                            onClick={() => window.open('https://wa.me/919876543210', '_blank')}
                           >
-                            {current === i && (
-                              <div 
-                                className="absolute top-0 left-0 h-full bg-primary transition-all duration-100 ease-linear"
-                                style={{ width: `${progress}%` }}
-                              />
-                            )}
-                          </button>
-                        ))}
+                            <WhatsAppIcon className="h-5 w-5 text-green-600" />
+                            WhatsApp Order
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -179,11 +159,30 @@ export default function Home() {
               </CarouselItem>
             ))}
           </CarouselContent>
+          
+          {/* Slide Indicators / Autoplay Icons */}
+          <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+            {Array.from({ length: count }).map((_, i) => (
+              <button
+                key={i}
+                className="relative h-1.5 w-12 bg-primary/10 rounded-full overflow-hidden transition-all duration-300 hover:bg-primary/20"
+                onClick={() => api?.scrollTo(i)}
+                aria-label={`Go to slide ${i + 1}`}
+              >
+                {current === i && (
+                  <div 
+                    className="absolute top-0 left-0 h-full bg-primary transition-all duration-100 ease-linear"
+                    style={{ width: `${progress}%` }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
         </Carousel>
       </section>
 
       {/* Collections Slider */}
-      <section className="py-12 bg-white/30 backdrop-blur-sm border-b border-white">
+      <section className="py-12 bg-white/40 border-b border-white">
         <div className="container-normal">
           <div className="flex flex-col items-center text-center gap-2 mb-10">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">Browse By</h4>
@@ -192,9 +191,9 @@ export default function Home() {
           <Carousel opts={{ align: "start", loop: true }} className="w-full">
             <CarouselContent className="-ml-4">
               {categories.map((cat, index) => (
-                <CarouselItem key={index} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6">
+                <CarouselItem key={index} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
                   <Link href={`/products?category=${cat.name}`} className="group block text-center space-y-4">
-                    <div className="relative aspect-square rounded-full overflow-hidden border-2 border-white shadow-lg transition-all duration-500 group-hover:scale-105 group-hover:border-primary/30">
+                    <div className="relative aspect-square rounded-[2rem] overflow-hidden border-4 border-white shadow-xl transition-all duration-500 group-hover:scale-105 group-hover:border-primary/30">
                       <Image 
                         src={cat.image} 
                         alt={cat.name} 
@@ -202,6 +201,11 @@ export default function Home() {
                         className="object-cover transition-transform duration-700 group-hover:scale-110" 
                       />
                       <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300" />
+                      <div className="absolute bottom-4 left-0 right-0 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span className="inline-block bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest text-primary shadow-lg">
+                          Explore
+                        </span>
+                      </div>
                     </div>
                     <span className="block text-[10px] font-black uppercase tracking-[0.2em] text-foreground/60 group-hover:text-primary transition-colors">
                       {cat.name}
@@ -215,7 +219,7 @@ export default function Home() {
       </section>
 
       {/* Featured Works Grid */}
-      <section className="py-20">
+      <section className="py-16">
         <div className="container-normal">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
             <div className="space-y-2 text-center md:text-left">
@@ -227,7 +231,7 @@ export default function Home() {
             </Link>
           </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -250,7 +254,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Experience Section - Refined for Style and Responsive Balance */}
+      {/* Experience Section */}
       <section className="py-24">
         <div className="container-normal">
           <h4 className="text-[14px] font-bold text-center mb-16 uppercase tracking-[0.5em] text-primary">The Experience</h4>
@@ -263,7 +267,7 @@ export default function Home() {
               const Icon = step.icon;
               return (
                 <div key={idx} className="flex flex-col items-center text-center space-y-6 group">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-32 md:h-32 rounded-[1.5rem] sm:rounded-[2rem] bg-white shadow-xl shadow-primary/5 border border-primary/5 flex items-center justify-center transition-all duration-500 group-hover:shadow-2xl group-hover:scale-105">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-32 md:h-32 rounded-[2rem] bg-white shadow-xl shadow-primary/5 border border-primary/5 flex items-center justify-center transition-all duration-500 group-hover:shadow-2xl group-hover:scale-105">
                     {typeof Icon === 'string' ? Icon : <Icon className="h-6 w-6 sm:h-10 sm:h-10 md:h-14 md:w-14 text-primary stroke-[1.5px]" />}
                   </div>
                   <div className="space-y-2">
@@ -294,7 +298,7 @@ export default function Home() {
               </p>
             </div>
             <Link href="/discovery" className="inline-block pt-4">
-              <Button className="h-16 px-12 rounded-xl text-[12px] font-bold uppercase tracking-widest gradient-primary border-none text-white shadow-2xl shadow-primary/30">
+              <Button className="h-16 px-12 rounded-2xl text-[12px] font-bold uppercase tracking-widest gradient-primary border-none text-white shadow-2xl shadow-primary/30">
                 Start Discovery
               </Button>
             </Link>
