@@ -55,7 +55,7 @@ export default function AboutPage() {
               <ArrowLeft className="h-6 w-6" />
             </Button>
           </Link>
-          <h1 className="text-3xl font-serif font-bold text-foreground">Our Story</h1>
+          <h1 className="text-3xl font-display font-extrabold text-foreground uppercase tracking-widest">Our Story</h1>
           <div className="w-10" />
         </div>
 
@@ -74,15 +74,15 @@ export default function AboutPage() {
           <div className="space-y-8">
             <div className="space-y-2">
               <span className="text-primary font-display font-bold text-sm uppercase tracking-widest">Creator & Artist</span>
-              <h2 className="text-5xl md:text-7xl font-serif font-bold text-foreground">Sumegha</h2>
+              <h2 className="text-5xl md:text-7xl font-cursive text-primary font-bold">Sumegha</h2>
             </div>
             
-            <p className="text-foreground/80 text-xl leading-relaxed italic border-l-4 border-primary/20 pl-6">
+            <p className="text-foreground/80 text-2xl leading-relaxed italic font-cursive border-l-4 border-primary/20 pl-6">
               "Art has always been my sanctuary. Sumegha Handmades is my way of sharing that peace with the world, one handcrafted detail at a time."
             </p>
             
             <div className="p-8 bg-white/60 backdrop-blur-md rounded-3xl border border-white/50 space-y-4 shadow-sm">
-              <h3 className="font-display font-bold text-xl flex items-center gap-2 text-foreground">
+              <h3 className="font-display font-bold text-xl flex items-center gap-2 text-foreground uppercase tracking-widest">
                 <Sparkles className="text-primary h-5 w-5" />
                 The Vision
               </h3>
@@ -95,7 +95,7 @@ export default function AboutPage() {
 
         {/* Our Journey Section */}
         <div className="mb-32">
-          <h3 className="text-4xl font-serif font-bold text-foreground text-center mb-16">The Journey</h3>
+          <h3 className="text-4xl font-display font-extrabold text-foreground text-center mb-16 uppercase tracking-widest">The Journey</h3>
 
           <div className="relative space-y-20 max-w-4xl mx-auto">
             {/* Timeline line */}
@@ -108,7 +108,7 @@ export default function AboutPage() {
                 <div key={index} className={`flex flex-col md:flex-row gap-8 items-center ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                   <div className={`w-full md:w-1/2 px-4 text-center ${isEven ? 'md:text-right' : 'md:text-left'}`}>
                     <p className="text-primary font-display font-black text-2xl mb-1">{item.year}</p>
-                    <h4 className="text-2xl font-serif font-bold text-foreground mb-3">{item.title}</h4>
+                    <h4 className="text-2xl font-display font-extrabold text-foreground mb-3 uppercase">{item.title}</h4>
                     <p className="text-muted-foreground text-lg leading-relaxed max-w-md mx-auto md:mx-0">{item.description}</p>
                   </div>
                   
@@ -125,7 +125,7 @@ export default function AboutPage() {
 
         {/* Our Philosophy Section */}
         <div className="bg-white/40 backdrop-blur-xl rounded-[3rem] p-12 md:p-20 shadow-xl border border-white/50 mb-16">
-          <h3 className="text-4xl font-serif font-bold text-foreground mb-16 text-center">The Philosophy</h3>
+          <h3 className="text-4xl font-display font-extrabold text-foreground mb-16 text-center uppercase tracking-widest">The Philosophy</h3>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {philosophies.map((item, index) => {
@@ -135,7 +135,7 @@ export default function AboutPage() {
                   <div className="w-20 h-20 rounded-3xl bg-white shadow-lg flex items-center justify-center mx-auto mb-6">
                     <Icon className="h-10 w-10 text-primary" />
                   </div>
-                  <h4 className="text-2xl font-display font-bold text-foreground">{item.title}</h4>
+                  <h4 className="text-2xl font-display font-bold text-foreground uppercase tracking-wider">{item.title}</h4>
                   <p className="text-muted-foreground text-lg leading-relaxed">{item.description}</p>
                 </div>
               );

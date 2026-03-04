@@ -64,8 +64,8 @@ export default function Home() {
                 <span className="inline-block px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white text-[10px] font-display font-bold uppercase tracking-[0.2em]">
                   Est. 2023
                 </span>
-                <h1 className="font-serif text-white text-4xl md:text-7xl font-bold leading-tight max-w-2xl drop-shadow-md">
-                  Handmade Creations <br /> <span className="text-pink-200 italic">Crafted With Love</span>
+                <h1 className="font-display text-white text-4xl md:text-7xl font-bold leading-tight max-w-2xl drop-shadow-md">
+                  Handmade Creations <br /> <span className="text-pink-200 opacity-90">Crafted With Love</span>
                 </h1>
                 <p className="text-white/90 text-lg md:text-xl font-display font-medium max-w-xl drop-shadow-sm">
                   Discover unique, heartfelt pieces made just for you. From vibrant totes to bespoke custom jewelry.
@@ -74,13 +74,13 @@ export default function Home() {
               
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                 <Link href="/products">
-                  <Button size="lg" className="w-full sm:w-auto h-14 px-10 rounded-xl gradient-primary text-base font-display font-bold tracking-widest">
+                  <Button size="lg" className="w-full sm:w-auto h-14 px-10 rounded-xl gradient-primary text-base font-display font-bold tracking-widest uppercase">
                     View Collection
                   </Button>
                 </Link>
                 <Button 
                   variant="outline" 
-                  className="w-full sm:w-auto h-14 px-10 rounded-xl bg-white/10 backdrop-blur-md text-white border-white/30 hover:bg-white hover:text-foreground text-base font-display font-bold flex gap-2 tracking-widest transition-all"
+                  className="w-full sm:w-auto h-14 px-10 rounded-xl bg-white/10 backdrop-blur-md text-white border-white/30 hover:bg-white hover:text-foreground text-base font-display font-bold flex gap-2 tracking-widest uppercase transition-all"
                   onClick={() => window.open('https://wa.me/919876543210', '_blank')}
                 >
                   <MessageCircle className="h-5 w-5 text-green-400" />
@@ -96,7 +96,7 @@ export default function Home() {
       <section className="py-20 px-4">
         <div className="container mx-auto">
           <div className="flex items-center justify-between mb-12">
-            <h2 className="font-serif text-3xl md:text-5xl font-bold text-foreground">Featured Collections</h2>
+            <h2 className="font-display text-3xl md:text-5xl font-extrabold text-foreground uppercase tracking-tight">Featured Collections</h2>
             <Link href="/products" className="text-primary text-sm font-display font-bold uppercase tracking-widest group flex items-center gap-1 border-b border-primary/20 pb-1 hover:border-primary transition-all">
               See All <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
@@ -115,13 +115,13 @@ export default function Home() {
         <div className="container mx-auto max-w-4xl text-center">
           <div className="bg-white/70 backdrop-blur-md p-10 md:p-20 rounded-[4rem] border border-white shadow-xl relative">
             <Flower2 className="h-12 w-12 text-primary/30 mx-auto mb-8" />
-            <h2 className="font-serif text-3xl md:text-5xl font-bold text-foreground mb-8">Our Story</h2>
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-8 uppercase tracking-wide">Our Story</h2>
             <p className="text-muted-foreground text-xl md:text-2xl leading-relaxed mb-10 italic">
               "Sumegha Handmades began as a small passion project in a sunlit corner of my room. Every stroke of paint and every thread woven carries a piece of my heart."
             </p>
             <div className="w-20 h-1 bg-primary/20 mx-auto rounded-full mb-10"></div>
             <Link href="/about">
-              <Button variant="link" className="text-primary text-lg font-display font-bold hover:underline">
+              <Button variant="link" className="text-primary text-lg font-display font-bold hover:underline uppercase tracking-widest">
                 Read the full journey
               </Button>
             </Link>
@@ -132,7 +132,7 @@ export default function Home() {
       {/* Steps */}
       <section className="py-24 px-4">
         <div className="container mx-auto">
-          <h2 className="font-serif text-3xl md:text-5xl font-bold text-center mb-20 text-foreground">How to Order</h2>
+          <h2 className="font-display text-3xl md:text-5xl font-extrabold text-center mb-20 text-foreground uppercase tracking-tight">How to Order</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-5xl mx-auto relative">
             <div className="absolute hidden md:block left-0 right-0 top-10 h-0.5 bg-gradient-to-r from-transparent via-primary/20 to-transparent -z-10"></div>
             {[
@@ -146,7 +146,7 @@ export default function Home() {
                   <div className="size-20 rounded-full bg-white shadow-xl border border-primary/10 flex items-center justify-center z-10 scale-110">
                     <Icon className="h-10 w-10 text-primary" />
                   </div>
-                  <h3 className="font-display font-bold text-2xl text-foreground">{step.title}</h3>
+                  <h3 className="font-display font-bold text-2xl text-foreground uppercase">{step.title}</h3>
                   <p className="text-muted-foreground text-base leading-relaxed max-w-[240px]">{step.desc}</p>
                 </div>
               );
@@ -162,12 +162,12 @@ export default function Home() {
             <div className="absolute top-0 right-0 w-80 h-80 opacity-5 -mr-20 -mt-20 text-white">
               <Sparkles className="w-full h-full" />
             </div>
-            <h2 className="font-serif text-3xl md:text-6xl font-bold">Ask the Art Concierge</h2>
-            <p className="text-white/60 text-lg md:text-xl max-w-xl font-display font-light tracking-wide">
+            <h2 className="font-display text-3xl md:text-6xl font-bold uppercase tracking-tighter">Ask the Art Concierge</h2>
+            <p className="text-white/60 text-lg md:text-xl max-w-xl font-display font-light tracking-wide uppercase">
               Not sure which piece fits your aesthetic? Our AI Assistant can curate a selection based on your preferences.
             </p>
             <Link href="/discovery">
-              <Button size="lg" className="gradient-primary h-16 px-12 rounded-2xl text-lg font-display font-bold tracking-widest">
+              <Button size="lg" className="gradient-primary h-16 px-12 rounded-2xl text-lg font-display font-bold tracking-widest uppercase">
                 Start Discovery
               </Button>
             </Link>
