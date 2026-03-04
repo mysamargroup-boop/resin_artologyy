@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -10,7 +11,7 @@ export function BottomNav() {
 
   const navItems = [
     { name: 'HOME', href: '/', icon: Home },
-    { name: 'COLLECTIONS', href: '/products', icon: Shapes },
+    { name: 'COLLECTIONS', href: '/collections', icon: Shapes },
     { name: 'ABOUT', href: '/about', icon: User },
     { name: 'SEARCH', href: '/products?search=true', icon: Search },
   ];
@@ -21,7 +22,7 @@ export function BottomNav() {
         <div className="flex justify-around w-[42%] gap-1">
           {navItems.slice(0, 2).map((item) => {
             const Icon = item.icon;
-            const isActive = pathname === item.href && (item.name !== 'COLLECTIONS' || pathname === '/products');
+            const isActive = pathname === item.href;
             return (
               <Link 
                 key={item.name} 
