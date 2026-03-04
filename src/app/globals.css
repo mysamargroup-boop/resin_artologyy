@@ -53,7 +53,7 @@
   @apply bg-primary hover:bg-primary/90 text-white transition-all duration-300 shadow-lg shadow-primary/20;
 }
 
-/* Custom width classes to ensure "normal" spacing */
+/* Custom width classes for normal spacing */
 .container-normal {
-  @apply container mx-auto px-4 max-w-7xl;
+  @apply container mx-auto px-6 max-w-7xl;
 }

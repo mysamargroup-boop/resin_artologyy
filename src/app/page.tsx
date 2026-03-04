@@ -1,11 +1,21 @@
-
 "use client";
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { MessageCircle, Sparkles, PanelsTopLeft, MousePointer2, Truck } from 'lucide-react';
+import { Sparkles, PanelsTopLeft, MousePointer2, Truck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/ProductCard';
+
+const WhatsAppIcon = ({ className }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+  </svg>
+);
 
 export default function Home() {
   const featuredProducts = [
@@ -53,62 +63,66 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col w-full">
-      {/* Hero Section - Full Width */}
-      <section className="relative min-h-[600px] flex items-center justify-center">
-        <div className="absolute inset-0 z-0">
-          <Image 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3qxN3LYJdPEaN5vCr3rv6aBTfqLL4k8KN0LXFYDWDX_mng1VVncE4k928Rq_CIGJndudXp5TOqeBl3fZmhfmuEqLlKVrL3HD-OeUcPTmS3IbPp_KE1vGv6Q5W1O7b1Y4ZDiluzJ1ZQSovyZPGC5BHsYfn0-sWe_L85C6SBl-8TdJixXWLBcpJasjrQkdoojyWJoN7V6JLDbwarf6Yct4S_0A2KG2E9W-LKaCQngO009UPMOEU2R4FiIQSecKqInQfQCKPhB8ioXLJ"
-            alt="Hero background"
-            fill
-            className="object-cover brightness-50"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/30"></div>
-        </div>
-        
-        <div className="container mx-auto px-6 relative z-10 text-center text-white space-y-8 max-w-7xl">
-          <div className="space-y-6">
-            <div className="inline-block px-4 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold uppercase tracking-[0.2em]">
-              Aesthetic Living
+    <div className="flex flex-col w-full overflow-hidden">
+      {/* Hero Section - Normal Width */}
+      <section className="relative min-h-[600px] flex items-center justify-center py-20">
+        <div className="container-normal relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-8 text-center lg:text-left">
+            <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold uppercase tracking-[0.2em] text-primary">
+              Modern Artistry
             </div>
-            <h1 className="text-4xl lg:text-7xl font-black leading-tight uppercase tracking-tight">
-              Modern Artistry, <br /> Curated for Your Home
+            <h1 className="text-4xl lg:text-7xl font-black leading-tight uppercase tracking-tight text-foreground">
+              Handmade Elegance, <br /> <span className="text-primary">Curated for You.</span>
             </h1>
-            <p className="text-lg lg:text-xl opacity-90 font-light max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg lg:text-xl text-foreground/70 font-light max-w-xl mx-auto lg:mx-0 leading-relaxed">
               Experience contemporary design through bespoke handmade elegance. Every piece is a testament to sophisticated simplicity.
             </p>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <Link href="/products" className="w-full sm:w-auto">
-              <Button className="w-full h-14 px-10 rounded-xl text-sm font-bold uppercase tracking-widest bg-primary hover:bg-primary/90 text-white">
-                View Collection
+            <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
+              <Link href="/products" className="w-full sm:w-auto">
+                <Button className="w-full h-14 px-10 rounded-xl text-xs font-bold uppercase tracking-widest gradient-primary">
+                  View Collection
+                </Button>
+              </Link>
+              <Button 
+                variant="secondary" 
+                className="w-full sm:w-auto h-14 px-10 rounded-xl text-xs font-bold uppercase tracking-widest bg-white border border-gray-100 shadow-sm flex items-center gap-2 group hover:bg-gray-50"
+                onClick={() => window.open('https://wa.me/919876543210', '_blank')}
+              >
+                <WhatsAppIcon className="h-5 w-5 text-green-600" />
+                Order on WhatsApp
               </Button>
-            </Link>
-            <Button 
-              variant="secondary" 
-              className="w-full sm:w-auto h-14 px-10 rounded-xl text-sm font-bold uppercase tracking-widest bg-white text-foreground hover:bg-gray-100 flex items-center gap-2"
-              onClick={() => window.open('https://wa.me/919876543210', '_blank')}
-            >
-              <MessageCircle className="h-5 w-5 text-primary" />
-              Order on WhatsApp
-            </Button>
+            </div>
+          </div>
+
+          <div className="relative aspect-square max-w-[500px] mx-auto lg:ml-auto">
+            <div className="absolute inset-0 bg-primary/20 rounded-[3rem] rotate-3 scale-105"></div>
+            <div className="relative h-full w-full rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
+              <Image 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3qxN3LYJdPEaN5vCr3rv6aBTfqLL4k8KN0LXFYDWDX_mng1VVncE4k928Rq_CIGJndudXp5TOqeBl3fZmhfmuEqLlKVrL3HD-OeUcPTmS3IbPp_KE1vGv6Q5W1O7b1Y4ZDiluzJ1ZQSovyZPGC5BHsYfn0-sWe_L85C6SBl-8TdJixXWLBcpJasjrQkdoojyWJoN7V6JLDbwarf6Yct4S_0A2KG2E9W-LKaCQngO009UPMOEU2R4FiIQSecKqInQfQCKPhB8ioXLJ"
+                alt="Hero banner"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Gallery - Normal Width, 5 columns desktop, 2 columns mobile */}
-      <section className="py-24 px-6">
-        <div className="container mx-auto max-w-7xl">
-          <div className="flex items-center justify-between mb-12">
-            <h4 className="text-xl font-bold uppercase tracking-widest text-foreground">Featured Works</h4>
-            <Link href="/products" className="text-primary text-xs font-bold uppercase tracking-widest border-b-2 border-primary/20 pb-1 hover:border-primary transition-all">
+      {/* Featured Gallery - 5 Columns Desktop, 2 Mobile */}
+      <section className="py-24">
+        <div className="container-normal">
+          <div className="flex items-end justify-between mb-16">
+            <div className="space-y-4">
+              <h4 className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Gallery</h4>
+              <h2 className="text-3xl lg:text-5xl font-black uppercase tracking-tight text-foreground">Featured Works</h2>
+            </div>
+            <Link href="/products" className="text-foreground text-xs font-bold uppercase tracking-[0.2em] border-b-2 border-primary/20 pb-1 hover:border-primary transition-all">
               See All Gallery
             </Link>
           </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -116,13 +130,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Philosophy Section - Normal Width */}
-      <section className="py-24 px-6 bg-white/40">
-        <div className="container mx-auto max-w-7xl">
-          <div className="bg-white p-16 md:p-24 rounded-[3rem] shadow-sm text-center border border-gray-100 space-y-8">
+      {/* Philosophy Section */}
+      <section className="py-24 bg-white/30">
+        <div className="container-normal">
+          <div className="bg-white p-12 lg:p-24 rounded-[3rem] shadow-sm text-center border border-gray-100 space-y-8">
             <PanelsTopLeft className="h-10 w-10 text-primary/30 mx-auto" />
-            <h4 className="text-sm font-bold uppercase tracking-[0.3em] text-foreground">The Philosophy</h4>
-            <p className="text-foreground/70 text-lg md:text-2xl leading-relaxed font-light italic max-w-3xl mx-auto">
+            <h4 className="text-xs font-bold uppercase tracking-[0.3em] text-primary">The Philosophy</h4>
+            <p className="text-foreground/70 text-lg md:text-3xl leading-relaxed font-light italic max-w-4xl mx-auto">
               "Rooted in contemporary aesthetics and traditional soul, we believe in the power of handmade elements to transform spaces into personal sanctuaries of elegance."
             </p>
             <div className="w-16 h-[2px] bg-primary/30 mx-auto"></div>
@@ -130,24 +144,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Experience Section - Normal Width */}
-      <section className="py-24 px-6">
-        <div className="container mx-auto max-w-7xl">
-          <h4 className="text-xs font-bold text-center mb-20 uppercase tracking-[0.4em] text-foreground/60">The Experience</h4>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      {/* Experience Section */}
+      <section className="py-32">
+        <div className="container-normal">
+          <h4 className="text-xs font-bold text-center mb-24 uppercase tracking-[0.5em] text-primary">The Experience</h4>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24">
             {[
               { id: '01', title: "Curate", desc: "Select from our gallery of hand-designed artisan creations.", icon: MousePointer2 },
-              { id: '02', title: "Connect", desc: "Direct consultation for bespoke modifications and orders.", icon: MessageCircle },
+              { id: '02', title: "Connect", desc: "Direct consultation for bespoke modifications and orders via WhatsApp.", icon: WhatsAppIcon },
               { id: '03', title: "Cherish", desc: "Bespoke delivery of a piece crafted specifically for your home.", icon: Truck }
             ].map((step) => {
+              const Icon = step.icon;
               return (
-                <div key={step.id} className="flex flex-col items-center text-center gap-6 group">
-                  <div className="size-16 rounded-2xl border border-primary/20 flex items-center justify-center text-sm font-black text-primary bg-white shadow-sm group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                    {step.id}
+                <div key={step.id} className="flex flex-col items-center text-center gap-8 group">
+                  <div className="size-20 rounded-3xl border border-primary/10 flex items-center justify-center text-lg font-black text-primary bg-white shadow-sm group-hover:bg-primary group-hover:text-white transition-all duration-500 group-hover:shadow-xl group-hover:shadow-primary/20">
+                    {typeof Icon === 'string' ? Icon : <Icon className="h-8 w-8 text-primary group-hover:text-white transition-colors" />}
                   </div>
-                  <div className="space-y-2">
-                    <h5 className="font-bold text-base uppercase tracking-widest">{step.title}</h5>
-                    <p className="text-foreground/60 text-xs font-light leading-relaxed max-w-[250px]">{step.desc}</p>
+                  <div className="space-y-4">
+                    <h5 className="font-bold text-xl uppercase tracking-widest text-foreground">{step.title}</h5>
+                    <p className="text-foreground/60 text-sm font-light leading-relaxed max-w-[280px]">{step.desc}</p>
                   </div>
                 </div>
               );
@@ -157,20 +172,23 @@ export default function Home() {
       </section>
 
       {/* AI Assistant CTA - Dark background, White text */}
-      <section className="py-24 px-6">
-        <div className="container mx-auto max-w-7xl">
-          <div className="bg-foreground text-white p-12 lg:p-24 rounded-[3rem] text-center space-y-8 relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-48 h-48 opacity-10 -mr-12 -mt-12">
+      <section className="py-24">
+        <div className="container-normal">
+          <div className="bg-foreground text-white p-12 lg:p-24 rounded-[4rem] text-center space-y-10 relative overflow-hidden shadow-2xl">
+            <div className="absolute top-0 right-0 w-64 h-64 opacity-5 -mr-12 -mt-12 pointer-events-none">
               <Sparkles className="w-full h-full" />
             </div>
-            <div className="space-y-4">
-              <h3 className="text-3xl lg:text-5xl font-black uppercase tracking-[0.2em] text-white">Ask the Art Concierge</h3>
-              <p className="text-white/70 text-sm lg:text-base font-light tracking-wide max-w-xl mx-auto">
-                Not sure which piece fits your aesthetic? Our AI Assistant can curate a selection based on your unique preferences.
+            <div className="space-y-6">
+              <div className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase tracking-[0.3em] text-white/80">
+                AI Powered
+              </div>
+              <h3 className="text-3xl lg:text-6xl font-black uppercase tracking-[0.1em] text-white">Ask the Art Concierge</h3>
+              <p className="text-white/60 text-base lg:text-lg font-light tracking-wide max-w-2xl mx-auto leading-relaxed">
+                Not sure which piece fits your aesthetic? Our AI Assistant can curate a selection based on your unique preferences and home decor style.
               </p>
             </div>
             <Link href="/discovery" className="inline-block">
-              <Button className="h-14 px-12 rounded-xl text-xs font-bold uppercase tracking-widest bg-primary hover:bg-primary/90 text-white border-none">
+              <Button className="h-16 px-16 rounded-2xl text-xs font-bold uppercase tracking-widest gradient-primary border-none shadow-2xl shadow-primary/40 hover:scale-105 transition-transform">
                 Start Discovery
               </Button>
             </Link>
