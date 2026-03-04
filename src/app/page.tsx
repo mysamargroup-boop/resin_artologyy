@@ -92,7 +92,14 @@ export default function Home() {
   ];
 
   const categories = [
-    "Ceramics", "Paintings", "Jewelry", "Boho", "Decor", "Textile", "Nameplates", "Folk Art"
+    { name: "Ceramics", image: "https://picsum.photos/seed/cat-ceramics/400/400" },
+    { name: "Paintings", image: "https://picsum.photos/seed/cat-paintings/400/400" },
+    { name: "Jewelry", image: "https://picsum.photos/seed/cat-jewelry/400/400" },
+    { name: "Boho", image: "https://picsum.photos/seed/cat-boho/400/400" },
+    { name: "Decor", image: "https://picsum.photos/seed/cat-decor/400/400" },
+    { name: "Textile", image: "https://picsum.photos/seed/cat-textile/400/400" },
+    { name: "Nameplates", image: "https://picsum.photos/seed/cat-name/400/400" },
+    { name: "Folk Art", image: "https://picsum.photos/seed/cat-folk/400/400" }
   ];
 
   return (
@@ -177,22 +184,29 @@ export default function Home() {
       </section>
 
       {/* Collections Rounded Slider */}
-      <section className="py-16 bg-white/30 backdrop-blur-sm border-b border-white">
+      <section className="py-24 bg-white/30 backdrop-blur-sm border-b border-white">
         <div className="container-normal">
-          <div className="flex items-center gap-4 mb-8">
-            <Shapes className="h-6 w-6 text-primary" />
-            <h2 className="text-xl font-black uppercase tracking-widest">Explore Collections</h2>
+          <div className="flex flex-col items-center text-center gap-4 mb-16">
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">Browse</h4>
+            <h2 className="text-3xl lg:text-5xl font-black uppercase tracking-tight">Explore Collections</h2>
           </div>
-          <Carousel opts={{ align: "start", loop: true }} className="w-full">
+          <Carousel opts={{ align: "start", loop: true }} className="w-full px-4 md:px-0">
             <CarouselContent className="-ml-4">
               {categories.map((cat, index) => (
-                <CarouselItem key={index} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/6">
-                  <Link href={`/products?category=${cat}`}>
-                    <div className="h-14 flex items-center justify-center rounded-full border-2 border-primary/10 bg-white hover:border-primary hover:bg-primary/5 transition-all duration-300 group">
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/60 group-hover:text-primary">
-                        {cat}
-                      </span>
+                <CarouselItem key={index} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6">
+                  <Link href={`/products?category=${cat.name}`} className="group block text-center space-y-4">
+                    <div className="relative aspect-square rounded-full overflow-hidden border-4 border-white shadow-lg transition-all duration-500 group-hover:scale-105 group-hover:border-primary/20 group-hover:shadow-xl">
+                      <Image 
+                        src={cat.image} 
+                        alt={cat.name} 
+                        fill 
+                        className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                      />
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
                     </div>
+                    <span className="block text-[10px] font-black uppercase tracking-[0.2em] text-foreground/60 group-hover:text-primary transition-colors">
+                      {cat.name}
+                    </span>
                   </Link>
                 </CarouselItem>
               ))}

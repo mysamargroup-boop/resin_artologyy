@@ -5,6 +5,12 @@ import Link from 'next/link';
 import { Instagram, Facebook, Twitter, Youtube } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg 
@@ -18,6 +24,37 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 export function Footer() {
+  const footerData = [
+    {
+      title: "Company",
+      links: [
+        { name: "Our Story", href: "/about" },
+        { name: "The Craft", href: "#" },
+      ]
+    },
+    {
+      title: "Shop",
+      links: [
+        { name: "All Works", href: "/products" },
+        { name: "AI Concierge", href: "/discovery" },
+      ]
+    },
+    {
+      title: "Legal",
+      links: [
+        { name: "Privacy", href: "#" },
+        { name: "Shipping", href: "#" },
+      ]
+    },
+    {
+      title: "Support",
+      links: [
+        { name: "Contact", href: "#" },
+        { name: "FAQ", href: "#" },
+      ]
+    }
+  ];
+
   return (
     <footer className="bg-foreground text-white rounded-t-[4rem] pt-32 pb-16">
       <div className="container-normal">
@@ -58,35 +95,44 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-16 py-16 border-t border-white/10 text-xs font-bold uppercase tracking-widest text-white/80">
-          <div className="space-y-6">
-            <h4 className="text-white/40 text-[10px] tracking-[0.4em]">Company</h4>
-            <ul className="space-y-4">
-              <li><Link href="/about" className="hover:text-primary transition-colors">Our Story</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">The Craft</Link></li>
-            </ul>
-          </div>
-          <div className="space-y-6">
-            <h4 className="text-white/40 text-[10px] tracking-[0.4em]">Shop</h4>
-            <ul className="space-y-4">
-              <li><Link href="/products" className="hover:text-primary transition-colors">All Works</Link></li>
-              <li><Link href="/discovery" className="hover:text-primary transition-colors">AI Concierge</Link></li>
-            </ul>
-          </div>
-          <div className="space-y-6">
-            <h4 className="text-white/40 text-[10px] tracking-[0.4em]">Legal</h4>
-            <ul className="space-y-4">
-              <li><Link href="#" className="hover:text-primary transition-colors">Privacy</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">Shipping</Link></li>
-            </ul>
-          </div>
-          <div className="space-y-6">
-            <h4 className="text-white/40 text-[10px] tracking-[0.4em]">Support</h4>
-            <ul className="space-y-4">
-              <li><Link href="#" className="hover:text-primary transition-colors">Contact</Link></li>
-              <li><Link href="#" className="hover:text-primary transition-colors">FAQ</Link></li>
-            </ul>
-          </div>
+        {/* Desktop View (Grid) */}
+        <div className="hidden md:grid md:grid-cols-4 gap-16 py-16 border-t border-white/10 text-xs font-bold uppercase tracking-widest text-white/80">
+          {footerData.map((section) => (
+            <div key={section.title} className="space-y-6">
+              <h4 className="text-white/40 text-[10px] tracking-[0.4em]">{section.title}</h4>
+              <ul className="space-y-4">
+                {section.links.map((link) => (
+                  <li key={link.name}>
+                    <Link href={link.href} className="hover:text-primary transition-colors">{link.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile View (Accordion) */}
+        <div className="md:hidden border-t border-white/10 py-8">
+          <Accordion type="single" collapsible className="w-full">
+            {footerData.map((section, idx) => (
+              <AccordionItem key={section.title} value={`item-${idx}`} className="border-white/5">
+                <AccordionTrigger className="text-xs font-bold uppercase tracking-widest text-white/80 hover:no-underline py-4">
+                  {section.title}
+                </AccordionTrigger>
+                <AccordionContent>
+                  <ul className="flex flex-col gap-4 py-2 px-4">
+                    {section.links.map((link) => (
+                      <li key={link.name}>
+                        <Link href={link.href} className="text-[10px] text-white/60 uppercase tracking-widest hover:text-primary transition-colors">
+                          {link.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
 
         <div className="mt-16 pt-10 border-t border-white/5 text-center">
