@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useSearchParams } from 'next/navigation';
@@ -31,7 +30,16 @@ export default function ProductsPage() {
     }
   }, [searchModeParam]);
 
-  const categories = ['All', 'Festive / Special Gifts', 'Home Decor', 'Wedding', 'Diwali decor', 'Anniversary'];
+  const categories = [
+    'All', 
+    'Custom Name Plates', 
+    'Shubh Symbols', 
+    'Evil Eye Protection Decor', 
+    'Decorative Hangings', 
+    'Festive / Special Gifts', 
+    'Home Decor', 
+    'Wedding'
+  ];
 
   const allProducts = useMemo(() => PlaceHolderImages.map((img, i) => ({
     id: img.id,
@@ -40,7 +48,7 @@ export default function ProductsPage() {
     price: [249, 599, 1200, 450, 899, 1500][i % 6],
     originalPrice: [399, 799, 1500, 550, 1100, 1800][i % 6],
     imageUrl: img.imageUrl,
-    category: categories.slice(1)[i % 5],
+    category: categories.slice(1)[i % (categories.length - 1)],
     tags: i % 3 === 0 ? ['Bestseller'] : i % 4 === 0 ? ['New Arrival'] : []
   })), [categories]);
 

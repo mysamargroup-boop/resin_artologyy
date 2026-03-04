@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from 'next/link';
@@ -49,31 +48,25 @@ export default function Home() {
   }, [api, current]);
 
   const categories = [
-    { name: "Festive / Special Gifts", image: "https://picsum.photos/seed/cat-gifts/400/400" },
-    { name: "Home Decor", image: "https://picsum.photos/seed/cat-decor/400/400" },
-    { name: "Wedding", image: "https://picsum.photos/seed/cat-wedding/400/400" },
-    { name: "Diwali decor", image: "https://picsum.photos/seed/cat-diwali/400/400" },
-    { name: "Anniversary", image: "https://picsum.photos/seed/cat-anniversary/400/400" }
+    { name: "Custom Name Plates", image: "https://picsum.photos/seed/cat-name/400/400" },
+    { name: "Shubh Symbols", image: "https://picsum.photos/seed/cat-symbols/400/400" },
+    { name: "Evil Eye Decor", image: "https://picsum.photos/seed/cat-evil/400/400" },
+    { name: "Decorative Hangings", image: "https://picsum.photos/seed/cat-hang/400/400" },
+    { name: "Home Decor", image: "https://picsum.photos/seed/cat-decor/400/400" }
   ];
 
   const productsByCategory: Record<string, any[]> = {
-    "Festive / Special Gifts": [
-      { id: "fest-1", name: "Floral Pooja Thali", price: 899, originalPrice: 1200, imageUrl: "https://picsum.photos/seed/pooja/600/600", category: "Festive", tags: ["Bestseller"], rating: 5 },
-      { id: "fest-2", name: "Handpainted Diya Set", price: 450, originalPrice: 600, imageUrl: "https://picsum.photos/seed/diya/600/600", category: "Festive", tags: ["New Arrival"], rating: 4 },
-      { id: "fest-3", name: "Custom Gift Hamper", price: 1500, originalPrice: 2000, imageUrl: "https://picsum.photos/seed/hamper/600/600", category: "Festive", tags: ["Top Selling"], rating: 5 },
-      { id: "fest-4", name: "Artisan Box", price: 599, originalPrice: 850, imageUrl: "https://picsum.photos/seed/box/600/600", category: "Festive", tags: ["Classic"], rating: 5 },
+    "Custom Name Plates": [
+      { id: "name-1", name: "Floral Name Plate", price: 1599, originalPrice: 2200, imageUrl: "https://picsum.photos/seed/name1/600/600", category: "Name Plates", tags: ["Bestseller"], rating: 5 },
+      { id: "name-2", name: "Resin Door Sign", price: 1899, originalPrice: 2500, imageUrl: "https://picsum.photos/seed/name2/600/600", category: "Name Plates", tags: ["New Arrival"], rating: 4 },
+      { id: "name-3", name: "Couple Name Plaque", price: 1299, originalPrice: 1800, imageUrl: "https://picsum.photos/seed/name3/600/600", category: "Name Plates", tags: ["Top Selling"], rating: 5 },
+      { id: "name-4", name: "Modern Ceramic Nameplate", price: 2100, originalPrice: 3000, imageUrl: "https://picsum.photos/seed/name4/600/600", category: "Name Plates", tags: ["Luxury"], rating: 5 },
     ],
-    "Home Decor": [
-      { id: "home-1", name: "Lippan Mirror Art", price: 1299, originalPrice: 1800, imageUrl: "https://picsum.photos/seed/lippan/600/600", category: "Home Decor", tags: ["Bestseller"], rating: 5 },
-      { id: "home-2", name: "Ceramic Floor Vase", price: 2500, originalPrice: 3500, imageUrl: "https://images.unsplash.com/photo-1631125915732-b98f8774f675?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2VyYW1pYyUyMHZhc2V8ZW58MHx8fHwxNzcyNTI3MTU5fDA&ixlib=rb-4.1.0&q=80&w=1080", category: "Home Decor", tags: ["Top Selling"], rating: 4 },
-      { id: "home-3", name: "Macrame Decor", price: 899, originalPrice: 1200, imageUrl: "https://picsum.photos/seed/macrame-home/600/600", category: "Home Decor", tags: ["Boho"], rating: 5 },
-      { id: "home-4", name: "Abstract Canvas", price: 1500, originalPrice: 2200, imageUrl: "https://picsum.photos/seed/canvas/600/600", category: "Home Decor", tags: ["Modern"], rating: 5 },
-    ],
-    "Wedding": [
-      { id: "wed-1", name: "Bridal Trunk Box", price: 3500, originalPrice: 4500, imageUrl: "https://picsum.photos/seed/trunk/600/600", category: "Wedding", tags: ["Luxury"], rating: 5 },
-      { id: "wed-2", name: "Wedding Shagun Envelope", price: 150, originalPrice: 200, imageUrl: "https://picsum.photos/seed/env/600/600", category: "Wedding", tags: ["Top Selling"], rating: 5 },
-      { id: "wed-3", name: "Bespoke Invitation", price: 299, originalPrice: 450, imageUrl: "https://picsum.photos/seed/card/600/600", category: "Wedding", tags: ["Artistic"], rating: 5 },
-      { id: "wed-4", name: "Floral Jewelry", price: 899, originalPrice: 1500, imageUrl: "https://picsum.photos/seed/floral/600/600", category: "Wedding", tags: ["Traditional"], rating: 5 },
+    "Decorative Hangings": [
+      { id: "hang-1", name: "Artisanal Wall Charm", price: 899, originalPrice: 1200, imageUrl: "https://picsum.photos/seed/hang1/600/600", category: "Hangings", tags: ["Bestseller"], rating: 5 },
+      { id: "hang-2", name: "Nazar Battu Hanging", price: 550, originalPrice: 750, imageUrl: "https://picsum.photos/seed/hang2/600/600", category: "Evil Eye Decor", tags: ["Protection"], rating: 4 },
+      { id: "hang-3", name: "Boho Macrame Tassel", price: 699, originalPrice: 950, imageUrl: "https://picsum.photos/seed/hang3/600/600", category: "Hangings", tags: ["Boho"], rating: 5 },
+      { id: "hang-4", name: "Mirror Work Toran", price: 1299, originalPrice: 1800, imageUrl: "https://picsum.photos/seed/hang4/600/600", category: "Hangings", tags: ["Traditional"], rating: 5 },
     ]
   };
 
@@ -216,7 +209,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
             {categories.map((cat, index) => (
-              <Link key={index} href={`/products?category=${cat.name}`} className="group block shrink-0 text-center space-y-2 w-28 sm:w-40">
+              <Link key={index} href={`/products?category=${encodeURIComponent(cat.name)}`} className="group block shrink-0 text-center space-y-2 w-28 sm:w-40">
                 <div className="relative aspect-square rounded-xl overflow-hidden border-2 border-white shadow-sm transition-all duration-500 group-hover:scale-105 group-hover:bg-primary/5">
                   <Image 
                     src={cat.image} 
@@ -245,7 +238,7 @@ export default function Home() {
                 <h4 className="text-[9px] font-bold uppercase tracking-[0.4em] text-primary">{idx % 2 === 0 ? "Curated" : "Premium"} Selection</h4>
                 <h2 className="text-xl lg:text-4xl font-black uppercase tracking-tight text-foreground leading-tight">{catName}</h2>
               </div>
-              <Link href={`/products?category=${catName}`} className="flex items-center gap-2 text-primary font-black uppercase tracking-widest text-[9px] group">
+              <Link href={`/products?category=${encodeURIComponent(catName)}`} className="flex items-center gap-2 text-primary font-black uppercase tracking-widest text-[9px] group">
                 <span className="whitespace-nowrap">VIEW ALL</span>
                 <ChevronRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
               </Link>
