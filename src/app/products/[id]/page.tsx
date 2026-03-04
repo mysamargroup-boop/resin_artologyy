@@ -243,7 +243,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 </Button>
                 <Button 
                   size="lg" 
-                  className="h-14 lg:h-16 rounded-2xl text-[10px] font-bold uppercase tracking-widest gradient-primary flex-1 shadow-lg shadow-primary/20 relative overflow-hidden transition-all duration-300 hover:opacity-90 active:scale-95" 
+                  className="h-14 lg:h-16 rounded-2xl text-[10px] font-bold uppercase tracking-widest gradient-primary flex-1 shadow-lg shadow-primary/20 relative overflow-hidden transition-opacity duration-300 hover:opacity-90 active:scale-95" 
                   onClick={() => {addToCart(product); window.location.href = '/cart';}}
                 >
                   <Zap className="h-4 w-4 mr-1.5" />
