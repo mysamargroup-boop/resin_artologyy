@@ -27,7 +27,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-lg border-b border-gray-100">
-      <div className="container-normal py-4">
+      <div className="container-normal py-2 lg:py-3">
         {/* Main Header Row - 3 Column Grid for perfect alignment */}
         <div className="grid grid-cols-3 items-center w-full">
           {/* Left: Hamburger Button */}
@@ -45,7 +45,7 @@ export function Header() {
           {/* Center: Logo Image */}
           <div className="flex justify-center">
             <Link href="/" className="flex items-center group">
-              <div className="relative h-12 lg:h-16 w-48 lg:w-64">
+              <div className="relative h-10 lg:h-12 w-64 lg:w-80">
                 <Image 
                   src="/logo.png" 
                   alt="Sumegha Handmades" 
@@ -83,7 +83,7 @@ export function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center justify-center space-x-12 mt-6 pt-4 border-t border-gray-50">
+        <nav className="hidden lg:flex items-center justify-center space-x-12 mt-4 pt-3 border-t border-gray-50">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
