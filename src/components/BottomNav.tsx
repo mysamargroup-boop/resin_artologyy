@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -38,10 +39,10 @@ export function BottomNav() {
           })}
         </div>
 
-        {/* Central Raised Button */}
-        <div className="absolute -top-8 left-1/2 -translate-x-1/2">
+        {/* Central Raised Button - Shifted slightly lower per user request */}
+        <div className="absolute -top-6 left-1/2 -translate-x-1/2">
           <Link href="/discovery">
-            <div className="size-16 rounded-full bg-primary border-[4px] border-background shadow-xl flex items-center justify-center group active:scale-95 transition-transform duration-200">
+            <div className="size-16 rounded-full gradient-primary border-[4px] border-background shadow-xl flex items-center justify-center group active:scale-95 transition-transform duration-200">
               <Gem className="h-7 w-7 text-white fill-white/20 drop-shadow-md" />
             </div>
           </Link>

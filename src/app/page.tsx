@@ -177,7 +177,7 @@ export default function Home() {
               >
                 {current === i && (
                   <div 
-                    className="absolute top-0 left-0 h-full bg-primary transition-all duration-100 ease-linear"
+                    className="absolute top-0 left-0 h-full gradient-primary transition-all duration-100 ease-linear"
                     style={{ width: `${progress}%` }}
                   />
                 )}
