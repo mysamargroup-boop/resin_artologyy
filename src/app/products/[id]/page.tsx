@@ -4,7 +4,7 @@
 import { use, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Heart, ShoppingCart, Share2, Star, Sparkles, ChevronRight, Zap, ShieldCheck, Leaf, Medal, MessageCircle } from 'lucide-react';
+import { Heart, ShoppingCart, Share2, Star, Sparkles, ChevronRight, Zap, ShieldCheck, Leaf, Medal } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { useStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
@@ -195,7 +195,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
               <div className="flex items-center gap-4">
                 <p className="text-3xl lg:text-5xl font-black font-headline text-primary">₹{product.price}</p>
-                <p className="text-xl lg:text-2xl text-muted-foreground line-through decoration-primary/30 font-bold">₹{product.originalPrice}</p>
+                <p className="text-xl lg:text-2xl text-muted-foreground line-through decoration-primary/60 font-bold">₹{product.originalPrice}</p>
               </div>
 
               <div className="flex flex-wrap gap-4 pt-2">
@@ -235,7 +235,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 <Button 
                   size="lg" 
                   variant="outline"
-                  className="h-14 lg:h-16 rounded-2xl text-[10px] font-bold uppercase tracking-widest border-primary text-primary hover:bg-primary/5 hover:text-primary flex-1 shadow-sm" 
+                  className="h-14 lg:h-16 rounded-2xl text-[10px] font-bold uppercase tracking-widest border-primary text-primary hover:bg-primary/5 hover:text-primary flex-1 shadow-sm transition-opacity duration-300" 
                   onClick={() => {addToCart(product); toast({title: "Added to bag", description: product.name});}}
                 >
                   <ShoppingCart className="h-4 w-4 mr-1.5" />
@@ -243,17 +243,17 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 </Button>
                 <Button 
                   size="lg" 
-                  className="h-14 lg:h-16 rounded-2xl text-[10px] font-bold uppercase tracking-widest gradient-primary flex-1 shadow-lg shadow-primary/20 group relative overflow-hidden transition-all hover:scale-[1.02] active:scale-95" 
+                  className="h-14 lg:h-16 rounded-2xl text-[10px] font-bold uppercase tracking-widest gradient-primary flex-1 shadow-lg shadow-primary/20 relative overflow-hidden transition-all duration-300 hover:opacity-90 active:scale-95" 
                   onClick={() => {addToCart(product); window.location.href = '/cart';}}
                 >
-                  <Zap className="h-4 w-4 mr-1.5 group-hover:animate-bounce" />
+                  <Zap className="h-4 w-4 mr-1.5" />
                   Buy Now
                 </Button>
               </div>
 
               <Button 
                 variant="outline" 
-                className="w-full h-12 rounded-2xl border-green-100 bg-green-50/30 hover:bg-green-50 hover:text-green-700 text-green-700 font-bold text-[11px] uppercase tracking-widest gap-2" 
+                className="w-full h-12 rounded-2xl border-green-100 bg-green-50/30 hover:bg-green-50/50 hover:text-green-700 text-green-700 font-bold text-[11px] uppercase tracking-widest gap-2 transition-opacity duration-300" 
                 onClick={handleWhatsAppShare}
               >
                 <WhatsAppIcon className="h-4 w-4" />
