@@ -3,7 +3,7 @@
 import { use, useState, useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Heart, ShoppingCart, Share2, Star, Sparkles, ChevronRight, Zap, ShieldCheck, Leaf, Medal, MessageSquareQuote, Truck, Shield } from 'lucide-react';
+import { Heart, ShoppingCart, Share2, Star, Sparkles, ChevronRight, Zap, ShieldCheck, Leaf, Medal, MessageSquareQuote, Truck } from 'lucide-react';
 import { useStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -55,7 +55,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   if (!product) {
     return (
       <div className="container mx-auto p-32 text-center space-y-6">
-        <h1 className="text-3xl lg:text-5xl font-black uppercase">Product not found</h1>
+        <h1 className="text-3xl lg:text-5xl font-black uppercase tracking-tight">Product not found</h1>
         <p className="text-muted-foreground">The masterpiece you are looking for is missing from our gallery.</p>
         <Link href="/products">
           <Button className="gradient-primary rounded-full px-8">Back to Gallery</Button>
@@ -218,23 +218,23 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
               </div>
             </div>
 
-            {/* Enhanced Trust Badges Section */}
-            <div className="bg-white/60 backdrop-blur-md rounded-2xl border border-primary/5 shadow-sm p-6 grid grid-cols-3 divide-x divide-primary/10">
-              <div className="flex flex-col items-center justify-center text-center px-2 gap-2">
-                <div className="p-2 bg-amber-50 rounded-full">
-                  <Medal className="h-5 w-5 text-amber-500" />
+            {/* Compact Trust Badges Section */}
+            <div className="bg-white/60 backdrop-blur-md rounded-2xl border border-primary/5 shadow-sm p-4 grid grid-cols-3 divide-x divide-primary/10">
+              <div className="flex flex-col items-center justify-center text-center px-2 gap-1.5">
+                <div className="p-1.5 bg-amber-50 rounded-full">
+                  <Medal className="h-4 w-4 text-amber-500" />
                 </div>
                 <span className="text-[8px] font-black uppercase tracking-widest text-foreground/60 leading-tight">Award Winning Artist</span>
               </div>
-              <div className="flex flex-col items-center justify-center text-center px-2 gap-2">
-                <div className="p-2 bg-green-50 rounded-full">
-                  <Leaf className="h-5 w-5 text-green-600" />
+              <div className="flex flex-col items-center justify-center text-center px-2 gap-1.5">
+                <div className="p-1.5 bg-green-50 rounded-full">
+                  <Leaf className="h-4 w-4 text-green-600" />
                 </div>
                 <span className="text-[8px] font-black uppercase tracking-widest text-foreground/60 leading-tight">Eco Friendly Materials</span>
               </div>
-              <div className="flex flex-col items-center justify-center text-center px-2 gap-2">
-                <div className="p-2 bg-blue-50 rounded-full">
-                  <ShieldCheck className="h-5 w-5 text-blue-500" />
+              <div className="flex flex-col items-center justify-center text-center px-2 gap-1.5">
+                <div className="p-1.5 bg-blue-50 rounded-full">
+                  <ShieldCheck className="h-4 w-4 text-blue-500" />
                 </div>
                 <span className="text-[8px] font-black uppercase tracking-widest text-foreground/60 leading-tight">Authenticity Guaranteed</span>
               </div>
@@ -299,7 +299,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
           </div>
         </div>
 
-        {/* Reviews & Recommended Sections remain here as previously defined... */}
         <div className="mb-24 space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-primary/5 pb-8">
             <div className="space-y-4">

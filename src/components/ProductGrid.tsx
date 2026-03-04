@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useSearchParams } from 'next/navigation';
@@ -23,7 +22,8 @@ export default function ProductGrid() {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 800);
+    // Artificial delay to show beautiful skeletons
+    const timer = setTimeout(() => setIsLoading(false), 1200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -94,19 +94,23 @@ export default function ProductGrid() {
         </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-8">
             {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="space-y-4 p-2 bg-white rounded-xl shadow-sm">
-                <Skeleton className="aspect-square w-full rounded-lg" />
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-3/4" />
-                  <Skeleton className="h-4 w-1/2" />
+              <div key={i} className="space-y-4 p-4 bg-white rounded-3xl shadow-sm border border-primary/5">
+                <Skeleton className="aspect-square w-full rounded-2xl" />
+                <div className="space-y-3">
+                  <div className="flex justify-between">
+                    <Skeleton className="h-3 w-20 rounded-full" />
+                    <Skeleton className="h-3 w-10 rounded-full" />
+                  </div>
+                  <Skeleton className="h-5 w-full rounded-full" />
+                  <Skeleton className="h-4 w-2/3 rounded-full" />
                 </div>
               </div>
             ))}
           </div>
         ) : filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-8">
             {filteredProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
