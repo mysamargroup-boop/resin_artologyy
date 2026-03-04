@@ -120,30 +120,30 @@ export default function Home() {
                       priority
                     />
                     <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/5 to-black/30" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/5 to-black/40" />
                   </div>
 
                   <div className={cn(
                     "relative z-10 h-full flex items-center justify-center p-6 text-center transition-all duration-1000 delay-300",
                     current === index ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-4 blur-sm"
                   )}>
-                    <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-8 sm:p-12 rounded-[2.5rem] shadow-2xl max-w-lg w-full flex flex-col items-center space-y-4">
-                      <div className="inline-block px-3 py-1 rounded-full border border-white/20 text-[9px] font-bold uppercase tracking-[0.3em] text-white bg-white/10">
+                    <div className="max-w-2xl w-full flex flex-col items-center space-y-6">
+                      <div className="inline-block px-4 py-1.5 rounded-full border border-white/20 text-[10px] font-bold uppercase tracking-[0.3em] text-white bg-white/10 backdrop-blur-md">
                         {slide.badge}
                       </div>
-                      <div className="space-y-1">
-                        <h1 className="text-2xl sm:text-6xl font-black leading-none uppercase tracking-tighter text-white">
+                      <div className="space-y-2">
+                        <h1 className="text-3xl sm:text-7xl font-black leading-none uppercase tracking-tighter text-white drop-shadow-lg">
                           {slide.title}
                         </h1>
-                        <h2 className="text-2xl sm:text-6xl font-black leading-none uppercase tracking-tighter text-primary">
+                        <h2 className="text-3xl sm:text-7xl font-black leading-none uppercase tracking-tighter text-primary drop-shadow-lg">
                           {slide.highlight}
                         </h2>
                       </div>
-                      <p className="text-[10px] sm:text-lg text-white/90 font-medium leading-relaxed">
+                      <p className="text-sm sm:text-xl text-white/90 font-medium leading-relaxed max-w-lg drop-shadow-md">
                         {slide.desc}
                       </p>
-                      <Link href="/products" className="w-full pt-4">
-                        <Button className="w-full h-12 rounded-xl text-[10px] font-bold uppercase tracking-widest gradient-primary border-none shadow-xl shadow-primary/20">
+                      <Link href="/products" className="pt-4">
+                        <Button className="h-14 px-12 rounded-xl text-[10px] font-bold uppercase tracking-widest gradient-primary border-none shadow-xl shadow-primary/40 active:scale-95 transition-all">
                           Shop Now
                         </Button>
                       </Link>
