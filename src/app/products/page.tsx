@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useSearchParams } from 'next/navigation';
@@ -5,7 +6,6 @@ import { useState, useMemo } from 'react';
 import { ProductCard } from '@/components/ProductCard';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Search, SlidersHorizontal } from 'lucide-react';
 import { cn } from '@/lib/utils';
 

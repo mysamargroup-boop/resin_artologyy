@@ -123,18 +123,18 @@ export default function Home() {
           <CarouselContent className="ml-0">
             {heroSlides.map((slide, index) => (
               <CarouselItem key={index} className="relative pl-0">
-                <div className="relative h-[65vh] sm:h-[75vh] min-h-[450px] w-full rounded-[3rem] overflow-hidden shadow-2xl bg-black/5 border border-white/20">
+                <div className="relative h-[65vh] sm:h-[75vh] min-h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl bg-black/5 border border-white/20">
                   {/* Background & Overlay Layer */}
                   <div className="absolute inset-0 z-0">
                     <Image 
                       src={slide.image}
                       alt={slide.title}
                       fill
-                      className="object-cover opacity-80 rounded-[3rem]"
+                      className="object-cover opacity-80 rounded-2xl"
                       priority
                     />
-                    <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px] rounded-[3rem]" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/40 rounded-[3rem]" />
+                    <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px] rounded-2xl" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/40 rounded-2xl" />
                   </div>
 
                   {/* Content Layer */}
@@ -274,7 +274,7 @@ export default function Home() {
               const Icon = step.icon;
               return (
                 <div key={idx} className="flex flex-col items-center text-center space-y-4 sm:space-y-6 group">
-                  <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-2xl bg-white shadow-lg border border-primary/10 flex items-center justify-center transition-all duration-500 group-hover:shadow-2xl group-hover:scale-110">
+                  <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-white shadow-lg border border-primary/10 flex items-center justify-center transition-all duration-500 group-hover:shadow-2xl group-hover:scale-110">
                     <Icon className="h-6 w-6 sm:h-10 sm:w-10 text-primary stroke-[1.5px]" />
                   </div>
                   <div className="space-y-1 sm:space-y-2">
