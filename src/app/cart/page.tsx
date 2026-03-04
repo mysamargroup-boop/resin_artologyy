@@ -3,19 +3,45 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, Sparkles } from 'lucide-react';
+import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, Sparkles, Ticket } from 'lucide-react';
 import { useStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
 import { WhatsAppCheckout } from '@/components/WhatsAppCheckout';
 import { toast } from '@/hooks/use-toast';
+import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
 
 export default function CartPage() {
   const { cart, removeFromCart, updateCartQuantity, clearCart } = useStore();
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [couponCode, setCouponCode] = useState('');
+  const [appliedDiscount, setAppliedDiscount] = useState(0);
+  const [isSparkling, setIsSparkling] = useState(false);
 
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const totalOriginal = cart.reduce((sum, item) => sum + ((item.originalPrice || item.price) * item.quantity), 0);
-  const totalSavings = totalOriginal - subtotal;
+  
+  const discountFromCoupon = Math.round(subtotal * (appliedDiscount / 100));
+  const finalTotal = subtotal - discountFromCoupon;
+  const totalSavings = (totalOriginal - subtotal) + discountFromCoupon;
+
+  const handleApplyCoupon = () => {
+    if (couponCode.toUpperCase() === 'SUMEGHA10') {
+      setAppliedDiscount(10);
+      setIsSparkling(true);
+      toast({
+        title: "Coupon Applied!",
+        description: "You got an extra 10% off.",
+      });
+      setTimeout(() => setIsSparkling(false), 2000);
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Invalid Coupon",
+        description: "Please try SUMEGHA10 for a discount.",
+      });
+    }
+  };
 
   if (cart.length === 0) {
     return (
@@ -33,23 +59,26 @@ export default function CartPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12 pb-32 max-w-7xl">
+    <div className="container mx-auto px-4 py-12 pb-32 max-w-7xl relative">
+      {isSparkling && (
+        <div className="fixed inset-0 pointer-events-none z-[100] flex items-center justify-center">
+          <Sparkles className="h-32 w-32 text-primary animate-bounce" />
+        </div>
+      )}
+
       <div className="text-center mb-12 space-y-2">
         <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">Review Your Items</p>
         <h1 className="text-3xl lg:text-5xl font-black font-headline uppercase tracking-tight text-foreground">Shopping Bag</h1>
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
-        {/* Left: Cart Items */}
         <div className="lg:col-span-2 space-y-6">
           {cart.map((item) => (
             <div key={item.id} className="flex flex-row items-center gap-6 p-4 lg:p-6 bg-white/50 backdrop-blur-sm rounded-[2rem] shadow-sm border border-primary/5 transition-all hover:shadow-md hover:bg-white group">
-              {/* Image Column */}
               <div className="relative w-24 h-32 sm:w-32 sm:h-40 flex-shrink-0 rounded-[1.5rem] overflow-hidden shadow-sm border border-primary/5">
                 <Image src={item.imageUrl} alt={item.name} fill className="object-cover transition-transform group-hover:scale-105" />
               </div>
               
-              {/* Details Column */}
               <div className="flex-grow flex flex-col justify-between self-stretch py-1">
                 <div className="space-y-2">
                   <div className="flex justify-between items-start gap-4">
@@ -102,26 +131,58 @@ export default function CartPage() {
           ))}
         </div>
 
-        {/* Right: Summary */}
-        <div className="lg:col-span-1">
-          <div className="bg-white rounded-[2.5rem] p-8 shadow-2xl border border-primary/10 sticky top-24 space-y-8">
+        <div className="lg:col-span-1 space-y-6">
+          <div className="bg-white rounded-[2.5rem] p-8 shadow-2xl border border-primary/10 space-y-8">
             <h2 className="text-xl font-headline font-black uppercase tracking-tight text-foreground">Order Summary</h2>
             
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <Input 
+                  placeholder="COUPON CODE" 
+                  className="rounded-xl border-primary/10 bg-primary/5 h-12 text-[10px] font-bold tracking-widest uppercase"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                />
+                <Button 
+                  onClick={handleApplyCoupon}
+                  variant="outline"
+                  className="rounded-xl h-12 px-6 border-primary text-primary font-black text-[10px] uppercase tracking-widest"
+                >
+                  Apply
+                </Button>
+              </div>
+              {appliedDiscount > 0 && (
+                <div className="flex items-center gap-2 text-[10px] font-black text-green-600 uppercase tracking-widest animate-in slide-in-from-left duration-300">
+                  <Ticket className="h-3 w-3" />
+                  Code SUMEGHA10 Applied!
+                </div>
+              )}
+            </div>
+
             <div className="space-y-5">
               <div className="flex justify-between items-center text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">
                 <span>Items ({cart.length})</span>
                 <span>₹{totalOriginal}</span>
               </div>
+              {discountFromCoupon > 0 && (
+                <div className="flex justify-between items-center text-[10px] font-black text-green-600 uppercase tracking-[0.2em]">
+                  <span>Coupon Discount</span>
+                  <span>-₹{discountFromCoupon}</span>
+                </div>
+              )}
               <div className="flex justify-between items-center text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">
                 <span>Shipping</span>
                 <span className="text-green-600 font-black">FREE</span>
               </div>
               
               {totalSavings > 0 && (
-                <div className="flex justify-between items-center p-4 bg-green-50 rounded-2xl border border-green-100 animate-in fade-in zoom-in duration-500">
+                <div className={cn(
+                  "flex justify-between items-center p-4 bg-green-50 rounded-2xl border border-green-100 transition-all",
+                  isSparkling && "scale-105 shadow-lg shadow-green-100"
+                )}>
                   <span className="text-[10px] font-black text-green-700 uppercase tracking-widest flex items-center">
-                    <Sparkles className="h-3 w-3 mr-2" />
-                    Your Savings
+                    <Sparkles className={cn("h-3 w-3 mr-2", isSparkling && "animate-spin")} />
+                    Your Total Savings
                   </span>
                   <span className="font-black text-green-700 text-base">₹{totalSavings}</span>
                 </div>
@@ -130,7 +191,7 @@ export default function CartPage() {
               <div className="pt-6 border-t border-primary/10 flex justify-between items-end">
                 <span className="text-base font-black uppercase tracking-tight">Net Total</span>
                 <div className="text-right">
-                  <span className="block text-3xl font-black font-headline text-primary leading-none">₹{subtotal}</span>
+                  <span className="block text-3xl font-black font-headline text-primary leading-none">₹{finalTotal}</span>
                 </div>
               </div>
             </div>
@@ -143,17 +204,6 @@ export default function CartPage() {
                 Checkout on WhatsApp
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <p className="text-[8px] text-center text-muted-foreground leading-relaxed uppercase tracking-[0.2em] font-bold">
-                Direct Contact with the Artist
-              </p>
-            </div>
-            
-            <div className="pt-2">
-              <div className="flex justify-center gap-6 opacity-40 grayscale hover:grayscale-0 transition-all duration-500 items-center">
-                <Image src="https://picsum.photos/seed/pay1/40/24" alt="UPI" width={40} height={24} className="rounded-md" />
-                <Image src="https://picsum.photos/seed/pay2/40/24" alt="Card" width={40} height={24} className="rounded-md" />
-                <Image src="https://picsum.photos/seed/pay3/40/24" alt="COD" width={40} height={24} className="rounded-md" />
-              </div>
             </div>
           </div>
         </div>
@@ -163,7 +213,9 @@ export default function CartPage() {
         open={isCheckoutOpen} 
         onOpenChange={setIsCheckoutOpen} 
         items={cart} 
-        total={subtotal} 
+        total={finalTotal} 
+        savings={totalSavings}
+        coupon={appliedDiscount > 0 ? couponCode : undefined}
         onSuccess={() => {
           clearCart();
           toast({ title: "Order sent!", description: "Check WhatsApp to finalize with the artist." });
