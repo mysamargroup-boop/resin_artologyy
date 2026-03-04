@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Sparkles, PanelsTopLeft, MousePointer2, Truck, Gem, ArrowRight, Shapes } from 'lucide-react';
+import { Sparkles, PanelsTopLeft, MousePointer2, Truck, Star, ArrowRight, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/ProductCard';
 import {
@@ -59,6 +59,41 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [api, current]);
 
+  const categories = [
+    { name: "Festive / Special Gifts", image: "https://picsum.photos/seed/cat-gifts/400/400" },
+    { name: "Home Decor", image: "https://picsum.photos/seed/cat-decor/400/400" },
+    { name: "Wedding", image: "https://picsum.photos/seed/cat-wedding/400/400" },
+    { name: "Diwali decor", image: "https://picsum.photos/seed/cat-diwali/400/400" },
+    { name: "Anniversary", image: "https://picsum.photos/seed/cat-anniversary/400/400" }
+  ];
+
+  const productsByCategory: Record<string, any[]> = {
+    "Festive / Special Gifts": [
+      { id: "fest-1", name: "Floral Pooja Thali", price: 899, originalPrice: 1200, imageUrl: "https://picsum.photos/seed/pooja/600/600", category: "Festive", tags: ["Bestseller"], rating: 5 },
+      { id: "fest-2", name: "Handpainted Diya Set", price: 450, originalPrice: 600, imageUrl: "https://picsum.photos/seed/diya/600/600", category: "Festive", tags: ["New Arrival"], rating: 4 },
+      { id: "fest-3", name: "Custom Gift Hamper", price: 1500, originalPrice: 2000, imageUrl: "https://picsum.photos/seed/hamper/600/600", category: "Festive", tags: ["Top Selling"], rating: 5 },
+      { id: "fest-4", name: "Artisan Box", price: 750, originalPrice: 950, imageUrl: "https://picsum.photos/seed/box/600/600", category: "Festive", tags: ["Bestseller"], rating: 4 },
+      { id: "fest-5", name: "Wall Hanging Art", price: 1100, originalPrice: 1400, imageUrl: "https://picsum.photos/seed/hang/600/600", category: "Festive", tags: ["Trending"], rating: 5 },
+      { id: "fest-6", name: "Silver Plated Plate", price: 1999, originalPrice: 2500, imageUrl: "https://picsum.photos/seed/silver/600/600", category: "Festive", tags: ["Premium"], rating: 5 },
+    ],
+    "Home Decor": [
+      { id: "home-1", name: "Lippan Mirror Art", price: 1299, originalPrice: 1800, imageUrl: "https://picsum.photos/seed/lippan/600/600", category: "Home Decor", tags: ["Bestseller"], rating: 5 },
+      { id: "home-2", name: "Ceramic Floor Vase", price: 2500, originalPrice: 3500, imageUrl: "https://picsum.photos/seed/vase-home/600/600", category: "Home Decor", tags: ["Top Selling"], rating: 4 },
+      { id: "home-3", name: "Macrame Wall Decor", price: 850, originalPrice: 1100, imageUrl: "https://picsum.photos/seed/macrame-home/600/600", category: "Home Decor", tags: ["New Arrival"], rating: 5 },
+      { id: "home-4", name: "Abstract Canvas", price: 1800, originalPrice: 2200, imageUrl: "https://picsum.photos/seed/canvas/600/600", category: "Home Decor", tags: ["Trending"], rating: 4 },
+      { id: "home-5", name: "Scented Candle Set", price: 599, originalPrice: 799, imageUrl: "https://picsum.photos/seed/candle-home/600/600", category: "Home Decor", tags: ["Bestseller"], rating: 5 },
+      { id: "home-6", name: "Handwoven Cushion", price: 450, originalPrice: 650, imageUrl: "https://picsum.photos/seed/cushion/600/600", category: "Home Decor", tags: ["Soft Living"], rating: 4 },
+    ],
+    "Wedding": [
+      { id: "wed-1", name: "Bridal Trunk Box", price: 3500, originalPrice: 4500, imageUrl: "https://picsum.photos/seed/trunk/600/600", category: "Wedding", tags: ["Luxury"], rating: 5 },
+      { id: "wed-2", name: "Wedding Shagun Envelope", price: 150, originalPrice: 200, imageUrl: "https://picsum.photos/seed/env/600/600", category: "Wedding", tags: ["Top Selling"], rating: 5 },
+      { id: "wed-3", name: "Handmade Wedding Card", price: 250, originalPrice: 350, imageUrl: "https://picsum.photos/seed/card/600/600", category: "Wedding", tags: ["Custom"], rating: 4 },
+      { id: "wed-4", name: "Floral Jewelry Set", price: 999, originalPrice: 1300, imageUrl: "https://picsum.photos/seed/floral/600/600", category: "Wedding", tags: ["Bestseller"], rating: 5 },
+      { id: "wed-5", name: "Traditional Potli", price: 650, originalPrice: 850, imageUrl: "https://picsum.photos/seed/potli/600/600", category: "Wedding", tags: ["New Arrival"], rating: 5 },
+      { id: "wed-6", name: "Shubh Labh Hangings", price: 450, originalPrice: 550, imageUrl: "https://picsum.photos/seed/labh/600/600", category: "Wedding", tags: ["Traditional"], rating: 4 },
+    ]
+  };
+
   const heroSlides = [
     {
       badge: "HANDMADE ELEGANCE",
@@ -69,39 +104,17 @@ export default function Home() {
     },
     {
       badge: "PERSONALIZED FOR YOU",
-      title: "BESPOKE",
-      highlight: "JEWELRY",
+      title: "HANDMADE",
+      highlight: "TREASURES",
       desc: "Each piece is meticulously handcrafted, ensuring no two items are exactly alike.",
       image: "https://picsum.photos/seed/jewelry-bg/1920/1080",
-    },
-    {
-      badge: "ARTISANAL SOUL",
-      title: "CRAFTED",
-      highlight: "WITH LOVE",
-      desc: "Discover unique, heartfelt creations from traditional pottery to modern paintings.",
-      image: "https://picsum.photos/seed/craft-bg/1920/1080",
     }
-  ];
-
-  const featuredProducts = [
-    { id: "lippan-1", name: "Vibrant Lippan Art", description: "Traditional mirror work handcrafted.", price: 1299, originalPrice: 1999, imageUrl: "https://picsum.photos/seed/art1/600/600", category: "Home Decor", tags: ['Bestseller'] },
-    { id: "nameplate-1", name: "Custom Nameplates", description: "Elegant personalized ceramic nameplates.", price: 1599, originalPrice: 2200, imageUrl: "https://picsum.photos/seed/name1/600/600", category: "Festive Gifts", tags: ['New Arrival'] },
-    { id: "folk-art-1", name: "Indian Folk Art", description: "Authentic traditional patterns.", price: 899, originalPrice: 1200, imageUrl: "https://picsum.photos/seed/folk1/600/600", category: "Wedding", tags: ['Bestseller'] },
-    { id: "festive-decor-1", name: "Festive Decor", description: "Handcrafted ornaments for every occasion.", price: 650, originalPrice: 950, imageUrl: "https://picsum.photos/seed/decor1/600/600", category: "Diwali Decor", tags: ['Trending'] }
-  ];
-
-  const categories = [
-    { name: "Festive / Special Gifts", image: "https://picsum.photos/seed/cat-gifts/400/400" },
-    { name: "Home Decor", image: "https://picsum.photos/seed/cat-decor/400/400" },
-    { name: "Wedding", image: "https://picsum.photos/seed/cat-wedding/400/400" },
-    { name: "Diwali decor", image: "https://picsum.photos/seed/cat-diwali/400/400" },
-    { name: "Anniversary", image: "https://picsum.photos/seed/cat-anniversary/400/400" }
   ];
 
   return (
     <div className="flex flex-col w-full overflow-hidden">
       {/* Hero Slider Section */}
-      <section className="relative w-full px-3 sm:px-6 pt-3 sm:pt-6 pb-12">
+      <section className="relative w-full px-4 sm:px-6 pt-6 pb-12">
         <Carousel 
           setApi={setApi}
           plugins={[plugin.current]}
@@ -110,47 +123,39 @@ export default function Home() {
           <CarouselContent className="ml-0">
             {heroSlides.map((slide, index) => (
               <CarouselItem key={index} className="relative pl-0">
-                <div className="relative h-[60vh] sm:h-[75vh] min-h-[450px] w-full rounded-[2rem] sm:rounded-[3rem] overflow-hidden shadow-2xl bg-black/5 border border-white/20">
+                <div className="relative h-[55vh] sm:h-[70vh] min-h-[400px] w-full rounded-[2rem] overflow-hidden shadow-2xl bg-black/5 border border-white/20">
                   <div className="absolute inset-0 z-0">
                     <Image 
                       src={slide.image}
                       alt={slide.title}
                       fill
-                      className="object-cover opacity-60"
+                      className="object-cover opacity-80"
                       priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background/60" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/10 to-background/40" />
                   </div>
-                  <div className="relative z-10 h-full flex items-center justify-center p-6 sm:p-12">
-                    <div className="container-normal flex flex-col items-center text-center space-y-4 sm:space-y-8">
-                      <div className="inline-block px-3 py-1 rounded-full border border-primary/20 text-[8px] font-bold uppercase tracking-[0.4em] text-primary bg-white/40 backdrop-blur-md">
+                  <div className="relative z-10 h-full flex items-center justify-center p-6 text-center">
+                    <div className="flex flex-col items-center space-y-6">
+                      <div className="inline-block px-4 py-1 rounded-full border border-primary/20 text-[10px] font-bold uppercase tracking-[0.4em] text-primary bg-white/60 backdrop-blur-md">
                         {slide.badge}
                       </div>
                       <div className="space-y-1">
-                        <h1 className="text-2xl sm:text-6xl lg:text-8xl font-black leading-none uppercase tracking-tighter text-foreground">
+                        <h1 className="text-3xl sm:text-6xl lg:text-8xl font-black leading-none uppercase tracking-tighter text-foreground">
                           {slide.title}
                         </h1>
-                        <h2 className="text-2xl sm:text-6xl lg:text-8xl font-black leading-none uppercase tracking-tighter text-primary">
+                        <h2 className="text-3xl sm:text-6xl lg:text-8xl font-black leading-none uppercase tracking-tighter text-primary">
                           {slide.highlight}
                         </h2>
                       </div>
-                      <p className="text-[10px] sm:text-lg lg:text-xl text-foreground/70 font-light max-w-xl mx-auto leading-relaxed">
+                      <p className="text-xs sm:text-lg text-foreground/80 font-medium max-w-xl leading-relaxed">
                         {slide.desc}
                       </p>
-                      <div className="flex flex-col items-center gap-3 w-full max-w-[280px] sm:max-w-sm mx-auto pt-2">
+                      <div className="flex flex-col sm:flex-row items-center gap-4 w-full max-w-sm pt-4">
                         <Link href="/products" className="w-full">
-                          <Button className="w-full h-10 lg:h-14 px-8 rounded-xl text-[9px] font-bold uppercase tracking-widest gradient-primary">
-                            View Collection
+                          <Button className="w-full h-12 rounded-xl text-xs font-bold uppercase tracking-widest gradient-primary">
+                            Shop Now
                           </Button>
                         </Link>
-                        <Button 
-                          variant="secondary" 
-                          className="w-full h-10 lg:h-14 px-8 rounded-xl text-[9px] font-bold uppercase tracking-widest bg-white/80 backdrop-blur-sm border border-white shadow-sm flex items-center justify-center gap-2 group hover:bg-white"
-                          onClick={() => window.open('https://wa.me/919876543210', '_blank')}
-                        >
-                          <WhatsAppIcon className="h-3.5 w-3.5 text-green-600" />
-                          WhatsApp Order
-                        </Button>
                       </div>
                     </div>
                   </div>
@@ -159,11 +164,12 @@ export default function Home() {
             ))}
           </CarouselContent>
           
-          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+          {/* Autoplay Progress Indicators */}
+          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
             {Array.from({ length: count }).map((_, i) => (
               <button
                 key={i}
-                className="relative h-1 w-6 sm:w-12 bg-primary/10 rounded-full overflow-hidden transition-all duration-300"
+                className="relative h-1.5 w-10 bg-primary/10 rounded-full overflow-hidden transition-all duration-300"
                 onClick={() => api?.scrollTo(i)}
               >
                 {current === i && (
@@ -178,92 +184,96 @@ export default function Home() {
         </Carousel>
       </section>
 
-      {/* Collections Slider */}
-      <section className="py-8 bg-white/40 border-b border-white">
-        <div className="container-normal">
-          <div className="flex flex-col items-center text-center gap-2 mb-6">
-            <h4 className="text-[8px] font-bold uppercase tracking-[0.4em] text-primary">Browse By</h4>
-            <h2 className="text-xl lg:text-4xl font-black uppercase tracking-tight">Explore Collections</h2>
+      {/* Categories Grid - Reduced Roundness */}
+      <section className="py-12 bg-white/40 border-b border-white">
+        <div className="container-normal px-4">
+          <div className="flex flex-col items-center text-center gap-2 mb-10">
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">Discover Our</h4>
+            <h2 className="text-2xl lg:text-5xl font-black uppercase tracking-tight">Artistic Categories</h2>
           </div>
-          <Carousel opts={{ align: "start", loop: true }} className="w-full">
-            <CarouselContent className="-ml-3">
-              {categories.map((cat, index) => (
-                <CarouselItem key={index} className="pl-3 basis-[42%] sm:basis-1/3 md:basis-1/4 lg:basis-1/5">
-                  <Link href={`/products?category=${cat.name}`} className="group block text-center space-y-2">
-                    <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-white shadow-lg transition-all duration-500 group-hover:scale-105 group-hover:border-primary/30">
-                      <Image 
-                        src={cat.image} 
-                        alt={cat.name} 
-                        fill 
-                        className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                      />
-                      <div className="absolute inset-0 bg-black/5" />
-                    </div>
-                    <span className="block text-[8px] font-black uppercase tracking-[0.15em] text-foreground/60 group-hover:text-primary">
-                      {cat.name}
-                    </span>
-                  </Link>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </div>
-      </section>
-
-      {/* Featured Works Grid */}
-      <section className="py-10">
-        <div className="container-normal">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 text-center md:text-left">
-            <div className="space-y-1">
-              <h4 className="text-[8px] font-bold uppercase tracking-[0.4em] text-primary">Artisanal Gallery</h4>
-              <h2 className="text-xl lg:text-5xl font-black uppercase tracking-tight text-foreground">Featured Works</h2>
-            </div>
-            <Link href="/products" className="text-foreground text-[8px] font-bold uppercase tracking-[0.3em] border-b-2 border-primary/20 pb-1 hover:border-primary">
-              See All Gallery
-            </Link>
-          </div>
-          
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            {categories.map((cat, index) => (
+              <Link key={index} href={`/products?category=${cat.name}`} className="group block text-center space-y-3">
+                <div className="relative aspect-square rounded-lg overflow-hidden border-2 border-white shadow-md transition-all duration-500 group-hover:scale-105">
+                  <Image 
+                    src={cat.image} 
+                    alt={cat.name} 
+                    fill 
+                    className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                  />
+                  <div className="absolute inset-0 bg-black/5" />
+                </div>
+                <span className="block text-[10px] font-black uppercase tracking-widest text-foreground/60 group-hover:text-primary">
+                  {cat.name}
+                </span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Philosophy Section */}
-      <section className="py-10 bg-white/40 border-y border-white">
-        <div className="container-normal">
-          <div className="bg-white p-6 lg:p-20 rounded-[2rem] sm:rounded-[3rem] shadow-xl text-center border border-primary/5 space-y-4 sm:space-y-6">
-            <PanelsTopLeft className="h-5 w-5 text-primary/40 mx-auto" />
-            <h4 className="text-[9px] font-bold uppercase tracking-[0.5em] text-primary">The Art Philosophy</h4>
-            <p className="text-foreground/80 text-base md:text-3xl leading-relaxed font-light italic max-w-4xl mx-auto">
-              "Rooted in contemporary aesthetics and traditional soul, we believe in the power of handmade elements to transform spaces into personal sanctuaries of elegance."
-            </p>
-            <div className="w-10 h-[1.5px] bg-primary/30 mx-auto"></div>
+      {/* Dynamic Category Sections with Background Designs */}
+      {Object.entries(productsByCategory).map(([catName, products], idx) => (
+        <section key={catName} className={cn(
+          "py-16 relative overflow-hidden",
+          idx % 2 === 0 ? "bg-white/20" : "bg-white/40"
+        )}>
+          {/* Background Elements */}
+          <div className="absolute inset-0 z-0 pointer-events-none opacity-5">
+            {idx % 3 === 0 ? (
+              <div className="absolute -right-20 -top-20 w-[400px] h-[400px] border-[20px] border-primary rounded-full animate-[spin_30s_linear_infinite]" />
+            ) : idx % 3 === 1 ? (
+              <svg viewBox="0 0 1000 1000" className="w-full h-full text-primary" preserveAspectRatio="none">
+                <path d="M0,1000 C300,800 400,1000 1000,800 L1000,1000 L0,1000 Z" fill="currentColor" />
+              </svg>
+            ) : (
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border-[1px] border-dashed border-primary rounded-full opacity-20" />
+            )}
           </div>
-        </div>
-      </section>
+
+          <div className="container-normal relative z-10 px-4">
+            <div className="flex items-end justify-between mb-8">
+              <div className="space-y-1">
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">{idx % 2 === 0 ? "Curated" : "Premium"} Selection</h4>
+                <h2 className="text-2xl lg:text-5xl font-black uppercase tracking-tight text-foreground">{catName}</h2>
+              </div>
+              <Link href={`/products?category=${catName}`} className="flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-[10px] group">
+                View All <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+
+            <Carousel opts={{ align: "start", loop: true }} className="w-full">
+              <CarouselContent className="-ml-4">
+                {products.slice(0, 6).map((product) => (
+                  <CarouselItem key={product.id} className="pl-4 basis-[75%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                    <ProductCard product={product} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+          </div>
+        </section>
+      ))}
 
       {/* Experience Section */}
-      <section className="py-12 lg:py-24">
-        <div className="container-normal">
-          <h4 className="text-[10px] font-bold text-center mb-8 uppercase tracking-[0.5em] text-primary">The Experience</h4>
-          <div className="grid grid-cols-3 gap-2 sm:gap-24">
+      <section className="py-16">
+        <div className="container-normal px-4">
+          <h4 className="text-[12px] font-bold text-center mb-12 uppercase tracking-[0.5em] text-primary">The Art Experience</h4>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-24">
             {[
-              { title: "CURATE", desc: "Select from our gallery of creations.", icon: MousePointer2 },
+              { title: "CURATE", desc: "Select from our gallery of artisan creations.", icon: MousePointer2 },
               { title: "CONNECT", desc: "Direct consultation via WhatsApp.", icon: WhatsAppIcon },
-              { title: "CHERISH", desc: "Bespoke delivery for you.", icon: Truck }
+              { title: "CHERISH", desc: "Bespoke delivery for your home.", icon: Truck }
             ].map((step, idx) => {
               const Icon = step.icon;
               return (
-                <div key={idx} className="flex flex-col items-center text-center space-y-3 lg:space-y-6 group">
-                  <div className="w-12 h-12 sm:w-20 sm:h-20 md:w-32 md:h-32 rounded-xl lg:rounded-3xl bg-white shadow-lg shadow-primary/5 border border-primary/5 flex items-center justify-center transition-all duration-500 group-hover:shadow-2xl group-hover:scale-105">
-                    <Icon className="h-5 w-5 sm:h-10 sm:w-10 md:h-14 md:w-14 text-primary stroke-[1.5px]" />
+                <div key={idx} className="flex flex-col items-center text-center space-y-6 group">
+                  <div className="w-24 h-24 rounded-2xl bg-white shadow-lg border border-primary/10 flex items-center justify-center transition-all duration-500 group-hover:shadow-2xl group-hover:scale-110">
+                    <Icon className="h-10 w-10 text-primary stroke-[1.5px]" />
                   </div>
-                  <div className="space-y-1">
-                    <h5 className="font-black text-[9px] sm:text-base md:text-xl uppercase tracking-[0.1em] text-foreground">{step.title}</h5>
-                    <p className="text-foreground/50 text-[6px] sm:text-[10px] md:text-xs font-light leading-relaxed max-w-[100px] mx-auto">{step.desc}</p>
+                  <div className="space-y-2">
+                    <h5 className="font-black text-lg uppercase tracking-widest text-foreground">{step.title}</h5>
+                    <p className="text-foreground/50 text-xs font-light leading-relaxed max-w-[200px] mx-auto">{step.desc}</p>
                   </div>
                 </div>
               );
@@ -273,20 +283,20 @@ export default function Home() {
       </section>
 
       {/* AI Assistant CTA */}
-      <section className="py-10 lg:py-20">
-        <div className="container-normal">
-          <div className="bg-[#181113] text-white p-8 lg:p-24 rounded-[2.5rem] sm:rounded-[4rem] text-center space-y-4 lg:space-y-8 relative overflow-hidden shadow-2xl">
-            <div className="space-y-3">
-              <div className="inline-block px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[8px] font-bold uppercase tracking-[0.4em] text-white">
+      <section className="py-16 lg:py-24">
+        <div className="container-normal px-4">
+          <div className="bg-[#181113] text-white p-12 lg:p-24 rounded-[3rem] text-center space-y-8 relative overflow-hidden shadow-2xl">
+            <div className="space-y-4">
+              <div className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase tracking-[0.4em]">
                 AI Powered Concierge
               </div>
-              <h3 className="text-xl lg:text-6xl font-black uppercase tracking-tight text-white leading-tight">Your Personal Art Curator</h3>
-              <p className="text-white/60 text-[10px] lg:text-lg font-light tracking-wide max-w-2xl mx-auto leading-relaxed">
+              <h3 className="text-3xl lg:text-7xl font-black uppercase tracking-tight leading-tight">Your Personal Art Curator</h3>
+              <p className="text-white/60 text-sm lg:text-xl font-light tracking-wide max-w-2xl mx-auto leading-relaxed">
                 Not sure which piece fits your aesthetic? Our AI Assistant can curate a selection based on your unique style and space.
               </p>
             </div>
-            <Link href="/discovery" className="inline-block pt-2">
-              <Button className="h-12 lg:h-16 px-8 rounded-xl text-[10px] font-bold uppercase tracking-widest gradient-primary border-none text-white shadow-2xl shadow-primary/30">
+            <Link href="/discovery" className="inline-block pt-4">
+              <Button className="h-16 px-12 rounded-xl text-xs font-bold uppercase tracking-widest gradient-primary border-none shadow-3xl shadow-primary/40">
                 Start Discovery
               </Button>
             </Link>
