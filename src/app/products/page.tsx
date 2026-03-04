@@ -7,6 +7,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search, SlidersHorizontal } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function ProductsPage() {
   const searchParams = useSearchParams();
@@ -46,9 +47,9 @@ export default function ProductsPage() {
         <div className="flex flex-col gap-6 w-full md:max-w-2xl">
           <div className="relative flex-grow group">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground transition-colors group-focus-within:text-primary" />
-            <Input 
+            <input 
               placeholder="Search unique art..." 
-              className="pl-12 h-14 rounded-2xl border-primary/10 bg-white/50 backdrop-blur-sm focus:bg-white shadow-sm"
+              className="w-full pl-12 h-14 rounded-2xl border border-primary/10 bg-white/50 backdrop-blur-sm focus:bg-white shadow-sm outline-none px-4"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
