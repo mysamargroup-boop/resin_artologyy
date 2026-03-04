@@ -55,5 +55,13 @@
 }
 
 .container-normal {
-  @apply container mx-auto px-6 max-w-7xl;
+  @apply container mx-auto px-3 sm:px-6 max-w-7xl;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
