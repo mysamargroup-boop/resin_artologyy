@@ -1,28 +1,71 @@
+
 {
   "placeholderImages": [
     {
-      "id": "lippan-art-1",
-      "description": "Vibrant Lippan Art piece with traditional mirror work",
-      "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuCdc7QHqmb8IoFw1otk9qpDxgkSPFRF6v-g9-5wUHln1LJGtaytUpF9dDwusObFHk6_SzO1aI-t6j8Y93gOlZXcQUTlQqYz153HEzKAK3peQTe5dLHDSkdyFmdySPUJvRZI0dCkMg9DXujNS1ZfX2KnrQc-NH1GRCM2FhOfkLfSUh4KW4rpZ0fIspAwU_rEmx2J3S4iySUFnCHvEB6tqbdKgnQTNV1JYCP9at0W7pUqgwTOoRuJncTZBnjhx0C4kD3sES8ZoEUXmUqS",
-      "imageHint": "lippan art"
+      "id": "hero-pattern",
+      "description": "Elegant abstract pattern for hero backgrounds",
+      "imageUrl": "https://picsum.photos/seed/sumegha-pattern/1920/1080",
+      "imageHint": "abstract pattern"
     },
     {
-      "id": "nameplate-1",
-      "description": "Custom handcrafted ceramic nameplate",
-      "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuB5zZUhE3Y6R0W0llzf9IYPUY54CnECp6lnAAgpPAOZXAVcovYGiPinIU5GU5hFXHABy7Rv8cgeHrVED6CN7ALdvaHQV7v8-oIH2SWmAw0nL9-NDb5h8Ms_Fi4HWNbhj2t9NlGtCN7JK8hogz7baDruuQaOxdjjdO3uKU9Ni2KOBgyFmV8k0OeewvIzaumYWoke22z5uIKAtVgNtnjQeEhTi____7CDtA1VAyDyd4c4ixsA8S85-dszzsrBphWbt7iD_Ig7hMZfTcmE",
-      "imageHint": "handmade nameplate"
+      "id": "artist-main",
+      "description": "Sumegha - The lead artist in her studio",
+      "imageUrl": "https://picsum.photos/seed/sumegha-artist/800/800",
+      "imageHint": "artist studio"
     },
     {
-      "id": "folk-art-1",
-      "description": "Indian Folk Art canvas painting",
-      "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuD63rFSKw-M6kg2WTaH9p8ikR9JvpsN4Dqj-g-rQ52URHNznf5jw3X80OgUQbWEbdeuoGWqLg9PFYylTOWofLYGeZnIXp-DzsBPm4Ddr_8cu8xqn9XagBWvq1cIgDR0O8x3ayw3s6X6H9LkcJkt2_4JNL6ezqYUB4cKZv6fGe-JL1ZCPHCplBHK3Nqi5DifB3GrwI_cnp6sklwGaoSuXjkEiX0pTuAiknZ6Fzksw_1oApPFYngCdcCBFBMVhkNhS-uaRyzlh5QkJVLz",
-      "imageHint": "indian folk art"
+      "id": "process-1",
+      "description": "Artist working on a Lippan art piece",
+      "imageUrl": "https://picsum.photos/seed/process1/600/600",
+      "imageHint": "crafting process"
     },
     {
-      "id": "festive-decor-1",
-      "description": "Artisanal festive wall hanging",
-      "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuBUsyLP0xQMBpBkX_34Kj-cuDT5Rt4ifEcem4J1L_mgabKGB97S43wAnV3SEhO7ZlFrlm-hn_wstC9QhnfZyk9bElqhlxnrbks4uA6O1TwHSX8UUeXhLBkuATFBPVp0jOcr115YiKqsvYnuVrUObk0Xdt7GWGrNQhNKI0FPE_ajD5Bv2t7Q3SJHrmthSrUElVFOnkWhS9I_whOnbMpD0z0oZ0f5ZGxb08qhpydxFVtZLgTpkD2Bx2UkCFhNQCwefFEoScaZd1adHi88",
-      "imageHint": "festive decor"
+      "id": "process-2",
+      "description": "Intricate detail work on a name plate",
+      "imageUrl": "https://picsum.photos/seed/process2/600/600",
+      "imageHint": "detailed craft"
+    },
+    {
+      "id": "insta-1",
+      "description": "Instagram showcase 1",
+      "imageUrl": "https://picsum.photos/seed/insta1/500/500",
+      "imageHint": "art display"
+    },
+    {
+      "id": "insta-2",
+      "description": "Instagram showcase 2",
+      "imageUrl": "https://picsum.photos/seed/insta2/500/500",
+      "imageHint": "art studio"
+    },
+    {
+      "id": "insta-3",
+      "description": "Instagram showcase 3",
+      "imageUrl": "https://picsum.photos/seed/insta3/500/500",
+      "imageHint": "handmade decor"
+    },
+    {
+      "id": "blog-1",
+      "description": "The soul of handmade art",
+      "imageUrl": "https://picsum.photos/seed/blog1/1200/600",
+      "imageHint": "handmade art"
+    },
+    {
+      "id": "blog-2",
+      "description": "Traditional desert masterpiece",
+      "imageUrl": "https://picsum.photos/seed/blog2/1200/600",
+      "imageHint": "traditional art"
+    },
+    {
+      "id": "blog-3",
+      "description": "Designing for serenity",
+      "imageUrl": "https://picsum.photos/seed/blog3/1200/600",
+      "imageHint": "interior design"
+    },
+    {
+      "id": "studio-map",
+      "description": "Our studio location in Jaipur",
+      "imageUrl": "https://picsum.photos/seed/jaipur-map/800/400",
+      "imageHint": "map location"
     }
   ]
 }
