@@ -1,7 +1,7 @@
-
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ShoppingBag, Heart, Menu, X, Home, Shapes, Info, Phone, Gem, BookText } from 'lucide-react';
 import { useState } from 'react';
@@ -29,7 +29,7 @@ export function Header() {
       <div className="container-normal py-4">
         {/* Main Header Row - 3 Column Grid for perfect alignment */}
         <div className="grid grid-cols-3 items-center w-full">
-          {/* Left: Hamburger Button with padding from edge */}
+          {/* Left: Hamburger Button */}
           <div className="flex items-center justify-start">
             <Button 
               variant="ghost" 
@@ -41,16 +41,22 @@ export function Header() {
             </Button>
           </div>
 
-          {/* Center: Logo */}
+          {/* Center: Logo Image */}
           <div className="flex justify-center">
             <Link href="/" className="flex items-center group">
-              <h2 className="text-foreground text-2xl lg:text-4xl font-display font-black leading-tight tracking-[0.1em] uppercase transition-colors group-hover:text-primary whitespace-nowrap">
-                Sumegha
-              </h2>
+              <div className="relative h-10 lg:h-14 w-40 lg:w-56">
+                <Image 
+                  src="/logo.png" 
+                  alt="Sumegha Handmades" 
+                  fill 
+                  className="object-contain transition-transform group-hover:scale-105"
+                  priority
+                />
+              </div>
             </Link>
           </div>
 
-          {/* Right: Icons with padding from edge */}
+          {/* Right: Icons */}
           <div className="flex justify-end items-center gap-1 -mr-2">
             <Link href="/wishlist">
               <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 text-foreground relative h-10 w-10 sm:h-12 sm:w-12 transition-transform hover:scale-110">
@@ -75,7 +81,7 @@ export function Header() {
           </div>
         </div>
 
-        {/* Desktop Navigation: Centered Below Logo */}
+        {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center justify-center space-x-12 mt-6 pt-4 border-t border-gray-50">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
@@ -99,7 +105,7 @@ export function Header() {
         </nav>
       </div>
 
-      {/* Mobile/Tablet Nav Overlay with Icons */}
+      {/* Mobile Nav Overlay */}
       {isOpen && (
         <div className="absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-100 p-8 animate-in slide-in-from-top duration-300 lg:hidden shadow-2xl z-50">
           <nav className="flex flex-col space-y-2">
