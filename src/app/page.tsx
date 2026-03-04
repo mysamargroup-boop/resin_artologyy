@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { MessageCircle, Sparkles, Truck, Flower2, ShoppingBag, ArrowRight, Heart } from 'lucide-react';
+import { MessageCircle, Sparkles, Truck, Flower2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/ProductCard';
 
@@ -48,39 +48,39 @@ export default function Home() {
       {/* Hero Section */}
       <section className="px-4 py-8 md:py-16">
         <div className="container mx-auto">
-          <div className="relative overflow-hidden rounded-[2rem] bg-white shadow-xl min-h-[500px] flex items-center">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-2xl min-h-[500px] flex items-center">
             <div className="absolute inset-0 z-0">
               <Image 
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3qxN3LYJdPEaN5vCr3rv6aBTfqLL4k8KN0LXFYDWDX_mng1VVncE4k928Rq_CIGJndudXp5TOqeBl3fZmhfmuEqLlKVrL3HD-OeUcPTmS3IbPp_KE1vGv6Q5W1O7b1Y4ZDiluzJ1ZQSovyZPGC5BHsYfn0-sWe_L85C6SBl-8TdJixXWLBcpJasjrQkdoojyWJoN7V6JLDbwarf6Yct4S_0A2KG2E9W-LKaCQngO009UPMOEU2R4FiIQSecKqInQfQCKPhB8ioXLJ"
-                alt="Soft floral craft"
+                alt="Soft floral craft background"
                 fill
-                className="object-cover brightness-[0.4]"
+                className="object-cover brightness-[0.45]"
                 priority
               />
             </div>
             
             <div className="relative z-10 w-full px-8 md:px-16 py-12 text-center md:text-left flex flex-col items-center md:items-start gap-8">
               <div className="space-y-4">
-                <span className="inline-block px-4 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white text-xs font-bold uppercase tracking-widest">
+                <span className="inline-block px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/20 text-white text-[10px] font-display font-bold uppercase tracking-[0.2em]">
                   Est. 2023
                 </span>
                 <h1 className="font-serif text-white text-4xl md:text-7xl font-bold leading-tight max-w-2xl drop-shadow-md">
-                  Handmade Creations <br /> <span className="text-pink-300 italic">Crafted With Love</span>
+                  Handmade Creations <br /> <span className="text-pink-200 italic">Crafted With Love</span>
                 </h1>
-                <p className="text-white/90 text-lg md:text-xl font-medium max-w-xl drop-shadow-sm">
+                <p className="text-white/90 text-lg md:text-xl font-display font-medium max-w-xl drop-shadow-sm">
                   Discover unique, heartfelt pieces made just for you. From vibrant totes to bespoke custom jewelry.
                 </p>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                 <Link href="/products">
-                  <Button size="lg" className="w-full sm:w-auto h-14 px-10 rounded-xl gradient-primary text-base font-bold tracking-wide">
+                  <Button size="lg" className="w-full sm:w-auto h-14 px-10 rounded-xl gradient-primary text-base font-display font-bold tracking-widest">
                     View Collection
                   </Button>
                 </Link>
                 <Button 
                   variant="outline" 
-                  className="w-full sm:w-auto h-14 px-10 rounded-xl bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white hover:text-secondary text-base font-bold flex gap-2"
+                  className="w-full sm:w-auto h-14 px-10 rounded-xl bg-white/10 backdrop-blur-md text-white border-white/30 hover:bg-white hover:text-foreground text-base font-display font-bold flex gap-2 tracking-widest transition-all"
                   onClick={() => window.open('https://wa.me/919876543210', '_blank')}
                 >
                   <MessageCircle className="h-5 w-5 text-green-400" />
@@ -93,11 +93,11 @@ export default function Home() {
       </section>
 
       {/* Featured Gallery */}
-      <section className="py-16 px-4">
+      <section className="py-20 px-4">
         <div className="container mx-auto">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-secondary">Featured Collections</h2>
-            <Link href="/products" className="text-primary text-sm font-bold uppercase tracking-widest group flex items-center gap-1">
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="font-serif text-3xl md:text-5xl font-bold text-foreground">Featured Collections</h2>
+            <Link href="/products" className="text-primary text-sm font-display font-bold uppercase tracking-widest group flex items-center gap-1 border-b border-primary/20 pb-1 hover:border-primary transition-all">
               See All <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
@@ -111,59 +111,67 @@ export default function Home() {
       </section>
 
       {/* Story Preview */}
-      <section className="py-20 px-4 relative overflow-hidden">
+      <section className="py-24 px-4 relative overflow-hidden">
         <div className="container mx-auto max-w-4xl text-center">
-          <div className="bg-white/80 backdrop-blur-md p-10 md:p-16 rounded-[3rem] border border-white/50 shadow-2xl relative">
-            <Flower2 className="h-12 w-12 text-primary/30 mx-auto mb-6" />
-            <h2 className="font-serif text-3xl md:text-5xl font-bold text-secondary mb-6">Our Story</h2>
-            <p className="text-secondary/70 text-lg md:text-xl leading-relaxed mb-8 max-w-2xl mx-auto italic">
-              "Sumegha Handmades began as a small passion project in a sunlit corner of my room. Every stroke of paint and every thread woven carries a piece of my heart, aiming to bring warmth and beauty into your everyday life."
+          <div className="bg-white/70 backdrop-blur-md p-10 md:p-20 rounded-[4rem] border border-white shadow-xl relative">
+            <Flower2 className="h-12 w-12 text-primary/30 mx-auto mb-8" />
+            <h2 className="font-serif text-3xl md:text-5xl font-bold text-foreground mb-8">Our Story</h2>
+            <p className="text-muted-foreground text-xl md:text-2xl leading-relaxed mb-10 italic">
+              "Sumegha Handmades began as a small passion project in a sunlit corner of my room. Every stroke of paint and every thread woven carries a piece of my heart."
             </p>
-            <div className="w-20 h-1 bg-primary/20 mx-auto rounded-full"></div>
-            <Link href="/about" className="mt-8 inline-block text-primary font-bold hover:underline">Read the full journey</Link>
+            <div className="w-20 h-1 bg-primary/20 mx-auto rounded-full mb-10"></div>
+            <Link href="/about">
+              <Button variant="link" className="text-primary text-lg font-display font-bold hover:underline">
+                Read the full journey
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Steps */}
-      <section className="py-20 px-4 container mx-auto">
-        <h2 className="font-serif text-3xl md:text-4xl font-bold text-center mb-16 text-secondary">How to Order</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto relative">
-          <div className="absolute hidden md:block left-0 right-0 top-6 h-0.5 bg-gradient-to-r from-transparent via-primary/20 to-transparent -z-10"></div>
-          {[
-            { id: '01', title: "Choose Your Favorite", desc: "Browse our collection and select the item that speaks to you.", icon: ShoppingBag },
-            { id: '02', title: "Message on WhatsApp", desc: "Click the order button to send us the product details directly.", icon: MessageCircle },
-            { id: '03', title: "Wait for Delivery", desc: "We'll craft, pack with love, and ship it to your doorstep.", icon: Truck }
-          ].map((step) => {
-            const Icon = step.icon;
-            return (
-              <div key={step.id} className="flex flex-col items-center text-center gap-4">
-                <div className="size-16 rounded-full bg-white shadow-lg border border-primary/10 flex items-center justify-center z-10">
-                  <Icon className="h-8 w-8 text-primary" />
+      <section className="py-24 px-4">
+        <div className="container mx-auto">
+          <h2 className="font-serif text-3xl md:text-5xl font-bold text-center mb-20 text-foreground">How to Order</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-5xl mx-auto relative">
+            <div className="absolute hidden md:block left-0 right-0 top-10 h-0.5 bg-gradient-to-r from-transparent via-primary/20 to-transparent -z-10"></div>
+            {[
+              { id: '01', title: "Choose Your Favorite", desc: "Browse our collection and select the item that speaks to you.", icon: ShoppingBag },
+              { id: '02', title: "Message on WhatsApp", desc: "Click the order button to send us the product details directly.", icon: MessageCircle },
+              { id: '03', title: "Wait for Delivery", desc: "We'll craft, pack with love, and ship it to your doorstep.", icon: Truck }
+            ].map((step) => {
+              const Icon = step.icon;
+              return (
+                <div key={step.id} className="flex flex-col items-center text-center gap-6">
+                  <div className="size-20 rounded-full bg-white shadow-xl border border-primary/10 flex items-center justify-center z-10 scale-110">
+                    <Icon className="h-10 w-10 text-primary" />
+                  </div>
+                  <h3 className="font-display font-bold text-2xl text-foreground">{step.title}</h3>
+                  <p className="text-muted-foreground text-base leading-relaxed max-w-[240px]">{step.desc}</p>
                 </div>
-                <h3 className="font-bold text-xl text-secondary">{step.title}</h3>
-                <p className="text-secondary/60 text-sm leading-relaxed">{step.desc}</p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </section>
 
       {/* AI Assistant CTA */}
-      <section className="px-4 py-20 container mx-auto">
-        <div className="bg-secondary text-white p-12 md:p-20 rounded-[4rem] relative overflow-hidden text-center flex flex-col items-center gap-8 shadow-2xl">
-          <div className="absolute top-0 right-0 w-64 h-64 opacity-10 -mr-16 -mt-16 text-primary">
-            <Sparkles className="w-full h-full" />
+      <section className="px-4 py-24">
+        <div className="container mx-auto">
+          <div className="bg-foreground text-white p-12 md:p-24 rounded-[4rem] relative overflow-hidden text-center flex flex-col items-center gap-8 shadow-2xl">
+            <div className="absolute top-0 right-0 w-80 h-80 opacity-5 -mr-20 -mt-20 text-white">
+              <Sparkles className="w-full h-full" />
+            </div>
+            <h2 className="font-serif text-3xl md:text-6xl font-bold">Ask the Art Concierge</h2>
+            <p className="text-white/60 text-lg md:text-xl max-w-xl font-display font-light tracking-wide">
+              Not sure which piece fits your aesthetic? Our AI Assistant can curate a selection based on your preferences.
+            </p>
+            <Link href="/discovery">
+              <Button size="lg" className="gradient-primary h-16 px-12 rounded-2xl text-lg font-display font-bold tracking-widest">
+                Start Discovery
+              </Button>
+            </Link>
           </div>
-          <h2 className="font-serif text-3xl md:text-5xl font-bold">Ask the Art Concierge</h2>
-          <p className="text-white/60 text-lg max-w-md font-light">
-            Not sure which piece fits your aesthetic? Our AI Assistant can curate a selection based on your preferences.
-          </p>
-          <Link href="/discovery">
-            <Button size="lg" className="gradient-primary h-14 px-12 rounded-xl text-lg font-bold">
-              Start Discovery
-            </Button>
-          </Link>
         </div>
       </section>
     </div>

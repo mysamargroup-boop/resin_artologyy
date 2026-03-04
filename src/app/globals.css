@@ -4,18 +4,18 @@
 
 @layer base {
   :root {
-    --background: 18 100% 96%;
-    --foreground: 343 25% 8%;
+    --background: 18 100% 96%; /* #FFF1EB */
+    --foreground: 343 25% 7%; /* #181113 - Deep Charcoal Maroon */
     --card: 0 0% 100%;
-    --card-foreground: 343 25% 8%;
+    --card-foreground: 343 25% 7%;
     --popover: 0 0% 100%;
-    --popover-foreground: 343 25% 8%;
-    --primary: 345 80% 45%;
+    --popover-foreground: 343 25% 7%;
+    --primary: 345 80% 45%; /* #cf1745 - Vibrant Pink */
     --primary-foreground: 0 0% 100%;
-    --secondary: 343 25% 95%;
+    --secondary: 343 15% 96%;
     --secondary-foreground: 345 80% 45%;
-    --muted: 343 25% 92%;
-    --muted-foreground: 343 15% 40%;
+    --muted: 343 10% 90%;
+    --muted-foreground: 343 15% 35%; /* Softer Charcoal for body text */
     --accent: 345 80% 45%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
@@ -37,7 +37,7 @@
     min-height: 100vh;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-bold;
+    @apply font-serif font-bold text-foreground;
   }
 }
 
@@ -45,16 +45,14 @@
   font-family: 'Playfair Display', serif;
 }
 
+.font-display {
+  font-family: 'Manrope', sans-serif;
+}
+
+.gradient-bg {
+  background: linear-gradient(180deg, #FFF1EB 0%, #FFDDE1 100%);
+}
+
 .gradient-primary {
   @apply bg-primary hover:bg-primary/90 text-white transition-all duration-300 shadow-lg shadow-primary/20;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
 }
