@@ -28,9 +28,9 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className="group flex flex-col gap-4 bg-white p-3 rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
+    <div className="group flex flex-col gap-3 bg-white p-2 rounded-[12px] shadow-sm hover:shadow-md transition-all duration-300">
       <Link href={`/products/${product.id}`} className="block">
-        <div className="relative w-full aspect-square bg-gray-50 rounded-lg overflow-hidden">
+        <div className="relative w-full aspect-square bg-gray-50 rounded-[10px] overflow-hidden">
           <Image
             src={product.imageUrl}
             alt={product.name}
@@ -41,7 +41,7 @@ export function ProductCard({ product }: ProductCardProps) {
             <Button 
               size="icon" 
               variant="secondary" 
-              className="rounded-full size-8 bg-white/80 backdrop-blur-sm shadow-sm text-charcoal/40 hover:text-primary transition-colors"
+              className="rounded-full size-8 bg-white/80 backdrop-blur-sm shadow-sm text-charcoal/40 hover:text-primary transition-colors border-none"
               onClick={handleWishlist}
             >
               <Heart className={`h-4 w-4 ${wishlisted ? 'fill-primary text-primary' : ''}`} />
@@ -54,16 +54,11 @@ export function ProductCard({ product }: ProductCardProps) {
           )}
         </div>
         
-        <div className="px-1 pt-2 space-y-1">
+        <div className="px-1 pb-1 pt-2">
           <p className="text-charcoal text-[11px] font-bold uppercase tracking-wide font-display truncate">
             {product.name}
           </p>
-          <div className="flex items-center justify-between">
-            <p className="text-primary text-[10px] font-semibold tracking-wider">₹{product.price}</p>
-            <span className="text-[9px] text-charcoal/40 font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity">
-              View Detail
-            </span>
-          </div>
+          <p className="text-primary text-[10px] font-semibold mt-1">₹{product.price}</p>
         </div>
       </Link>
     </div>

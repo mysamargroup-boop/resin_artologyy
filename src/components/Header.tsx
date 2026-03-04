@@ -1,15 +1,14 @@
 "use client";
 
 import Link from 'next/link';
-import { ShoppingBag, Menu, X, Heart } from 'lucide-react';
+import { ShoppingBag, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { useStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const { cart, wishlist } = useStore();
+  const { cart } = useStore();
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -23,29 +22,23 @@ export function Header() {
         <Button 
           variant="ghost" 
           size="icon" 
-          className="rounded-full hover:bg-black/5"
+          className="rounded-full hover:bg-black/5 text-charcoal"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </Button>
 
         <Link href="/" className="flex-1 flex justify-center">
-          <h2 className="text-charcoal text-base font-display font-bold leading-tight tracking-[0.2em] uppercase">
+          <h2 className="text-charcoal text-base font-display font-bold leading-tight tracking-[0.1em] uppercase">
             Sumegha
           </h2>
         </Link>
 
-        <div className="flex items-center space-x-1">
-          <Link href="/wishlist">
-            <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 relative">
-              <Heart className="h-5 w-5" />
-              {wishlist.length > 0 && <span className="absolute top-2 right-2 size-1.5 bg-primary rounded-full"></span>}
-            </Button>
-          </Link>
+        <div className="flex items-center">
           <Link href="/cart">
-            <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 relative">
+            <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 text-charcoal relative">
               <ShoppingBag className="h-5 w-5" />
-              {cart.length > 0 && <span className="absolute top-2 right-2 size-1.5 bg-primary rounded-full"></span>}
+              {cart.length > 0 && <span className="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>}
             </Button>
           </Link>
         </div>
@@ -60,7 +53,7 @@ export function Header() {
                 key={link.name} 
                 href={link.href} 
                 onClick={() => setIsOpen(false)}
-                className="text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                className="text-xs font-bold uppercase tracking-widest hover:text-primary transition-colors font-display"
               >
                 {link.name}
               </Link>

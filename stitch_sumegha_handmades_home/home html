@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sumegha Handmades Home Updated</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#cf1745",
+                        "primary-light": "#fcecee",
+                        "primary-dark": "#a01235",
+                        "secondary": "#181113",
+                        "background-light": "#FFF1EB",
+                        "background-dark": "#211115",
+                        "accent-pink": "#FFDDE1",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background: linear-gradient(180deg, #FFF1EB 0%, #FFDDE1 100%);
+            min-height: max(884px, 100dvh);
+        }
+        .flower-texture {
+            background-image: radial-gradient(#cf1745 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.05;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display text-secondary antialiased overflow-x-hidden pb-20 relative">
+<div class="fixed top-0 left-0 w-32 h-32 opacity-10 pointer-events-none z-[-1]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M54.627 0l.83.83-1.66 1.66-.83-.83.83-.83zm-5.81 0l.83.83-1.66 1.66-.83-.83.83-.83zm-5.81 0l.83.83-1.66 1.66-.83-.83.83-.83zM0 54.627l.83.83-1.66 1.66-.83-.83.83-.83zm0-5.81l.83.83-1.66 1.66-.83-.83.83-.83zm0-5.81l.83.83-1.66 1.66-.83-.83.83-.83z\' fill=\'%23cf1745\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');"></div>
+<div class="fixed bottom-0 right-0 w-32 h-32 opacity-10 pointer-events-none z-[-1]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M54.627 0l.83.83-1.66 1.66-.83-.83.83-.83zm-5.81 0l.83.83-1.66 1.66-.83-.83.83-.83zm-5.81 0l.83.83-1.66 1.66-.83-.83.83-.83zM0 54.627l.83.83-1.66 1.66-.83-.83.83-.83zm0-5.81l.83.83-1.66 1.66-.83-.83.83-.83zm0-5.81l.83.83-1.66 1.66-.83-.83.83-.83z\' fill=\'%23cf1745\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');"></div>
+<div class="relative mx-auto w-full max-w-md bg-white/50 min-h-screen shadow-2xl overflow-hidden backdrop-blur-sm">
+<div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-pink-200 blur-3xl opacity-40 pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 rounded-full bg-orange-100 blur-3xl opacity-40 pointer-events-none"></div>
+<div class="sticky top-0 z-50 flex items-center justify-between p-4 pb-2 bg-white/80 backdrop-blur-md border-b border-white/20">
+<button class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 text-secondary transition-colors">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+<h2 class="text-secondary text-lg font-serif font-bold leading-tight tracking-wide flex-1 text-center">Sumegha Handmades</h2>
+<button class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 text-secondary transition-colors relative">
+<span class="material-symbols-outlined text-2xl">shopping_bag</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>
+</button>
+</div>
+<div class="@container p-4">
+<div class="relative overflow-hidden rounded-[12px] bg-white shadow-lg">
+<div class="absolute inset-0 z-0 bg-cover bg-center" data-alt="Soft pink floral arrangement flatlay with hands crafting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC-JpPH3cpfoZ5jyZj3LtwEfqTqZJp1azGRFH5Gncj8nwyFsfQdMbcCoyhzK9ckQSoYCSkeP2zRUVqJF3daNOXPw3XhY2m3voi9AbX6IVOjSlK-iEIqIfRuxsFbp8chWQskVhmKnzPwpS1tuOhdixcKv0uYCL41LnfdnrOG4KbqVsbSBV9QJj6t5P9s9ZA80yuz8PNpHg7DHC7ASsM-BwG7VLMN-Gxroe1nlLpt8TTT1H-mdQrAw5YwMOd_Dedsv7KlXTd66spuAgEQ");'>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+</div>
+<div class="relative z-10 flex min-h-[420px] flex-col items-center justify-end px-4 py-8 text-center gap-6">
+<div class="flex flex-col gap-2">
+<span class="text-white/90 text-xs font-bold uppercase tracking-widest bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full self-center border border-white/10">Est. 2023</span>
+<h1 class="font-serif text-white text-4xl font-bold leading-tight drop-shadow-sm">
+                            Handmade Creations Crafted With Love
+                        </h1>
+<p class="text-white/90 text-sm font-medium leading-relaxed max-w-[280px] mx-auto drop-shadow-sm font-display">
+                            Discover unique, heartfelt pieces made just for you. From custom nameplates to vibrant Lippan art.
+                        </p>
+</div>
+<div class="flex w-full flex-col gap-3 sm:flex-row sm:justify-center">
+<button class="w-full flex-1 cursor-pointer items-center justify-center rounded-[12px] h-12 px-6 bg-primary text-white text-sm font-bold tracking-wide shadow-lg shadow-primary/30 transition hover:bg-primary-dark font-display">
+                            View Collection
+                        </button>
+<button class="w-full flex-1 cursor-pointer items-center justify-center rounded-[12px] h-12 px-6 bg-white/90 backdrop-blur text-secondary text-sm font-bold tracking-wide shadow-md transition hover:bg-white flex gap-2 font-display">
+<span class="material-symbols-outlined text-green-600 text-lg">chat</span>
+                            Order on WhatsApp
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<div class="py-6">
+<div class="flex items-center justify-between px-6 mb-4">
+<h4 class="font-serif text-secondary text-xl font-bold">Featured Collections</h4>
+<a class="text-primary text-xs font-bold uppercase tracking-wider hover:underline font-display" href="#">See All</a>
+</div>
+<div class="grid grid-cols-2 gap-4 px-4">
+<div class="group flex flex-col gap-3 bg-white p-3 rounded-[12px] shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="relative w-full aspect-[4/5] bg-gray-100 rounded-[12px] overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Vibrant Lippan art piece" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCdc7QHqmb8IoFw1otk9qpDxgkSPFRF6v-g9-5wUHln1LJGtaytUpF9dDwusObFHk6_SzO1aI-t6j8Y93gOlZXcQUTlQqYz153HEzKAK3peQTe5dLHDSkdyFmdySPUJvRZI0dCkMg9DXujNS1ZfX2KnrQc-NH1GRCM2FhOfkLfSUh4KW4rpZ0fIspAwU_rEmx2J3S4iySUFnCHvEB6tqbdKgnQTNV1JYCP9at0W7pUqgwTOoRuJncTZBnjhx0C4kD3sES8ZoEUXmUqS");'></div>
+<div class="absolute top-2 right-2 bg-white/90 rounded-full p-1.5 shadow-sm text-gray-400 cursor-pointer hover:bg-primary hover:text-white transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</div>
+</div>
+<div>
+<p class="text-secondary text-sm font-bold leading-tight font-serif">Vibrant Lippan Art</p>
+<p class="text-primary text-xs font-semibold mt-1 font-display">₹1299</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3 bg-white p-3 rounded-[12px] shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="relative w-full aspect-[4/5] bg-gray-100 rounded-[12px] overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Custom nameplate with peacock motif" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5zZUhE3Y6R0W0llzf9IYPUY54CnECp6lnAAgpPAOZXAVcovYGiPinIU5GU5hFXHABy7Rv8cgeHrVED6CN7ALdvaHQV7v8-oIH2SWmAw0nL9-NDb5h8Ms_Fi4HWNbhj2t9NlGtCN7JK8hogz7baDruuQaOxdjjdO3uKU9Ni2KOBgyFmV8k0OeewvIzaumYWoke22z5uIKAtVgNtnjQeEhTi____7CDtA1VAyDyd4c4ixsA8S85-dszzsrBphWbt7iD_Ig7hMZfTcmE");'></div>
+<div class="absolute top-2 right-2 bg-white/90 rounded-full p-1.5 shadow-sm text-gray-400 cursor-pointer hover:bg-primary hover:text-white transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</div>
+</div>
+<div>
+<p class="text-secondary text-sm font-bold leading-tight font-serif">Custom Nameplates</p>
+<p class="text-primary text-xs font-semibold mt-1 font-display">₹1599</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3 bg-white p-3 rounded-[12px] shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="relative w-full aspect-[4/5] bg-gray-100 rounded-[12px] overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Traditional Indian folk art painting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD63rFSKw-M6kg2WTaH9p8ikR9JvpsN4Dqj-g-rQ52URHNznf5jw3X80OgUQbWEbdeuoGWqLg9PFYylTOWofLYGeZnIXp-DzsBPm4Ddr_8cu8xqn9XagBWvq1cIgDR0O8x3ayw3s6X6H9LkcJkt2_4JNL6ezqYUB4cKZv6fGe-JL1ZCPHCplBHK3Nqi5DifB3GrwI_cnp6sklwGaoSuXjkEiX0pTuAiknZ6Fzksw_1oApPFYngCdcCBFBMVhkNhS-uaRyzlh5QkJVLz");'></div>
+<div class="absolute top-2 right-2 bg-white/90 rounded-full p-1.5 shadow-sm text-gray-400 cursor-pointer hover:bg-primary hover:text-white transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</div>
+<div class="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded text-[10px] text-white font-medium font-display">Bestseller</div>
+</div>
+<div>
+<p class="text-secondary text-sm font-bold leading-tight font-serif">Indian Folk Art</p>
+<p class="text-primary text-xs font-semibold mt-1 font-display">₹899</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3 bg-white p-3 rounded-[12px] shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="relative w-full aspect-[4/5] bg-gray-100 rounded-[12px] overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Handcrafted festive decor pieces" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBUsyLP0xQMBpBkX_34Kj-cuDT5Rt4ifEcem4J1L_mgabKGB97S43wAnV3SEhO7ZlFrlm-hn_wstC9QhnfZyk9bElqhlxnrbks4uA6O1TwHSX8UUeXhLBkuATFBPVp0jOcr115YiKqsvYnuVrUObk0Xdt7GWGrNQhNKI0FPE_ajD5Bv2t7Q3SJHrmthSrUElVFOnkWhS9I_whOnbMpD0z0oZ0f5ZGxb08qhpydxFVtZLgTpkD2Bx2UkCFhNQCwefFEoScaZd1adHi88");'></div>
+<div class="absolute top-2 right-2 bg-white/90 rounded-full p-1.5 shadow-sm text-gray-400 cursor-pointer hover:bg-primary hover:text-white transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</div>
+</div>
+<div>
+<p class="text-secondary text-sm font-bold leading-tight font-serif">Festive Decor</p>
+<p class="text-primary text-xs font-semibold mt-1 font-display">₹650</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-4 py-8 relative">
+<div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-40 bg-white/40 -z-10 skew-y-3"></div>
+<div class="bg-white/80 backdrop-blur-md p-6 rounded-[12px] shadow-sm text-center border border-white/50">
+<span class="material-symbols-outlined text-primary/50 text-4xl mb-2">spa</span>
+<h4 class="font-serif text-2xl font-bold text-secondary mb-3">About the Brand</h4>
+<p class="text-secondary/70 text-sm leading-relaxed mb-4 font-display">
+                    Sumegha Handmades began as a small passion project in a sunlit corner of my room. Every stroke of paint and every thread woven carries a piece of my heart, aiming to bring warmth and beauty into your everyday life.
+                </p>
+<div class="w-16 h-1 bg-primary/20 mx-auto rounded-full"></div>
+</div>
+</div>
+<div class="px-4 pb-12">
+<h4 class="font-serif text-secondary text-xl font-bold text-center mb-8">How to Order</h4>
+<div class="flex flex-col gap-6 relative">
+<div class="absolute left-6 top-6 bottom-6 w-0.5 bg-gradient-to-b from-primary/10 via-primary/30 to-primary/10 -z-10"></div>
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0 size-12 rounded-full bg-white shadow-sm border border-primary/10 flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-primary text-xl">touch_app</span>
+</div>
+<div class="pt-1">
+<h5 class="font-bold text-secondary text-base font-serif">Choose Your Favorite</h5>
+<p class="text-secondary/60 text-xs mt-1 font-display">Browse our collection and select the item that speaks to you.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0 size-12 rounded-full bg-white shadow-sm border border-primary/10 flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-primary text-xl">chat</span>
+</div>
+<div class="pt-1">
+<h5 class="font-bold text-secondary text-base font-serif">Message on WhatsApp</h5>
+<p class="text-secondary/60 text-xs mt-1 font-display">Click the order button to send us the product details directly.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="flex-shrink-0 size-12 rounded-full bg-white shadow-sm border border-primary/10 flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-primary text-xl">local_shipping</span>
+</div>
+<div class="pt-1">
+<h5 class="font-bold text-secondary text-base font-serif">Wait for Delivery</h5>
+<p class="text-secondary/60 text-xs mt-1 font-display">We'll craft, pack with love, and ship it to your doorstep.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-secondary text-white py-12 px-6 rounded-t-3xl mt-4 relative overflow-hidden mb-16">
+<div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-primary/20 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col items-center text-center gap-6">
+<h3 class="font-serif text-2xl font-bold">Join the Sumegha Family</h3>
+<p class="text-white/60 text-sm max-w-xs font-display">Be the first to know about new collections and exclusive handmade drops.</p>
+<div class="flex w-full max-w-xs gap-2">
+<input class="flex-1 rounded-[12px] bg-white/10 border border-white/20 text-white placeholder-white/40 px-4 py-2 text-sm focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 font-display" placeholder="Your email address" type="email"/>
+<button class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-[12px] text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+<div class="flex gap-6 mt-4">
+<a class="text-white/80 hover:text-primary transition-colors" href="#">
+<span class="sr-only">Instagram</span>
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+<path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772 4.902 4.902 0 011.772-1.153c.636-.247 1.363-.416 2.427-.465 1.067-.047 1.409-.06 3.809-.06h.63zm1.676 5.332H8.389a3.335 3.335 0 00-3.33 3.33v1.968c0 1.833 1.5 3.33 3.33 3.33h5.602c1.833 0 3.33-1.497 3.33-3.33V8.662a3.335 3.335 0 00-3.33-3.33zM12 7.007c2.75 0 4.993 2.243 4.993 4.993 0 2.75-2.243 4.993-4.993 4.993-2.75 0-4.993-2.243-4.993-4.993 0-2.75 2.243-4.993 4.993-4.993zm0 2.497a2.497 2.497 0 100 4.993 2.497 2.497 0 000-4.993zm5.007-.996a1.002 1.002 0 110-2.004 1.002 1.002 0 010 2.004z" fill-rule="evenodd"></path>
+</svg>
+</a>
+<a class="text-white/80 hover:text-green-500 transition-colors" href="#">
+<span class="sr-only">WhatsApp</span>
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path>
+</svg>
+</a>
+</div>
+<div class="w-full border-t border-white/10 mt-4 pt-6 text-center">
+<p class="text-[10px] text-white/40 uppercase tracking-widest font-display">© 2023 Sumegha Handmades</p>
+</div>
+</div>
+</div>
+<div class="fixed bottom-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-t border-black/5 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] mx-auto max-w-md w-full pb-safe">
+<div class="flex justify-around items-center h-16 px-4">
+<a class="flex flex-col items-center justify-center w-full gap-1 text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[26px]">home</span>
+<span class="text-[10px] font-medium font-display">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full gap-1 text-secondary/60 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[26px]">grid_view</span>
+<span class="text-[10px] font-medium font-display">Collection</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full gap-1 text-secondary/60 hover:text-primary transition-colors relative" href="#">
+<span class="material-symbols-outlined text-[26px]">favorite</span>
+<span class="text-[10px] font-medium font-display">Wishlist</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full gap-1 text-secondary/60 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[26px]">call</span>
+<span class="text-[10px] font-medium font-display">Contact</span>
+</a>
+</div>
+</div>
+</div>
+
+</body></html>
