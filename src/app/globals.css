@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 18 100% 96%; /* Soft peach/pink base */
-    --foreground: 343 25% 7%; /* Deep Charcoal Maroon */
+    --background: 18 100% 96%; /* #FFF1EB */
+    --foreground: 343 25% 7%; /* Deep Charcoal Maroon #181113 */
     --card: 0 0% 100%;
     --card-foreground: 343 25% 7%;
     --popover: 0 0% 100%;
     --popover-foreground: 343 25% 7%;
-    --primary: 196 28% 49%; /* Blue-Grey #5A8D9F from screenshot */
+    --primary: 343 80% 45%; /* #cf1745 */
     --primary-foreground: 0 0% 100%;
     --secondary: 343 15% 96%;
-    --secondary-foreground: 196 28% 49%;
+    --secondary-foreground: 343 80% 45%;
     --muted: 343 10% 90%;
     --muted-foreground: 343 15% 35%;
-    --accent: 196 28% 49%;
+    --accent: 343 80% 45%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 343 20% 90%;
     --input: 343 20% 90%;
-    --ring: 196 28% 49%;
+    --ring: 343 80% 45%;
     --radius: 1rem;
   }
 }
@@ -51,4 +51,9 @@
 
 .gradient-primary {
   @apply bg-primary hover:bg-primary/90 text-white transition-all duration-300 shadow-lg shadow-primary/20;
+}
+
+/* Custom width classes to ensure "normal" spacing */
+.container-normal {
+  @apply container mx-auto px-4 max-w-7xl;
 }

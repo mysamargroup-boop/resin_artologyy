@@ -19,40 +19,42 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-gray-100">
-      <div className="container mx-auto px-4 flex h-16 items-center justify-between">
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="rounded-full hover:bg-black/5 text-charcoal md:hidden"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </Button>
+      <div className="container mx-auto px-6 h-20 flex items-center justify-between max-w-7xl">
+        <div className="flex items-center gap-4">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="rounded-full hover:bg-black/5 text-foreground md:hidden"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
 
-        <Link href="/" className="flex-1 text-center md:text-left">
-          <h2 className="text-charcoal text-base font-display font-bold leading-tight tracking-[0.3em] uppercase">
-            Sumegha
-          </h2>
-        </Link>
+          <Link href="/" className="flex items-center">
+            <h2 className="text-foreground text-xl font-display font-extrabold leading-tight tracking-[0.2em] uppercase">
+              Sumegha
+            </h2>
+          </Link>
+        </div>
 
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-10">
           {navLinks.map((link) => (
             <Link 
               key={link.name} 
               href={link.href}
-              className="text-[10px] font-bold uppercase tracking-[0.2em] text-charcoal/60 hover:text-primary transition-colors"
+              className="text-xs font-bold uppercase tracking-[0.15em] text-foreground/70 hover:text-primary transition-colors"
             >
               {link.name}
             </Link>
           ))}
         </nav>
 
-        <div className="flex-1 flex justify-end">
+        <div className="flex items-center gap-4">
           <Link href="/cart">
-            <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 text-charcoal relative">
-              <ShoppingBag className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 text-foreground relative h-12 w-12">
+              <ShoppingBag className="h-6 w-6" />
               {cart.length > 0 && (
-                <span className="absolute top-2 right-2 size-2 bg-primary rounded-full animate-pulse"></span>
+                <span className="absolute top-3 right-3 size-2.5 bg-primary rounded-full animate-pulse border-2 border-white"></span>
               )}
             </Button>
           </Link>
@@ -61,14 +63,14 @@ export function Header() {
 
       {/* Mobile Nav Overlay */}
       {isOpen && (
-        <div className="absolute top-16 left-0 w-full bg-white border-b border-gray-100 p-8 animate-in slide-in-from-top duration-300 md:hidden shadow-xl">
+        <div className="absolute top-20 left-0 w-full bg-white border-b border-gray-100 p-8 animate-in slide-in-from-top duration-300 md:hidden shadow-xl z-50">
           <nav className="flex flex-col space-y-6 text-center">
             {navLinks.map((link) => (
               <Link 
                 key={link.name} 
                 href={link.href} 
                 onClick={() => setIsOpen(false)}
-                className="text-xs font-bold uppercase tracking-[0.2em] text-charcoal hover:text-primary transition-colors"
+                className="text-sm font-bold uppercase tracking-[0.2em] text-foreground hover:text-primary transition-colors"
               >
                 {link.name}
               </Link>
