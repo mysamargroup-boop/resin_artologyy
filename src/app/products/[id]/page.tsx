@@ -1,10 +1,9 @@
-
 "use client";
 
 import { use, useState, useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Heart, ShoppingCart, Share2, Star, Sparkles, ChevronRight, Zap, ShieldCheck, Leaf, Medal, MessageSquareQuote } from 'lucide-react';
+import { Heart, ShoppingCart, Share2, Star, Sparkles, ChevronRight, Zap, ShieldCheck, Leaf, Medal, MessageSquareQuote, Truck, Shield } from 'lucide-react';
 import { useStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -70,6 +69,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
     : 0;
 
   const wishlisted = isWishlisted(product.id);
+  const isFreeDelivery = product.sale_price >= 999;
 
   const recommendedProducts = useMemo(() => 
     (productsData.products as Product[])
@@ -115,12 +115,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
     { label: "Finish", value: "Glossy Protective Coat" }
   ];
 
-  const artisanBadges = [
-    { icon: Medal, text: "Award Winning Artist", color: "text-amber-500" },
-    { icon: Leaf, text: "Eco-Friendly", color: "text-green-600" },
-    { icon: ShieldCheck, text: "Authenticity Guaranteed", color: "text-blue-500" }
-  ];
-
   return (
     <div className="w-full overflow-x-hidden">
       <div className="container mx-auto px-4 py-8 lg:py-12 max-w-7xl">
@@ -134,7 +128,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start mb-24">
           <div className="flex flex-col-reverse lg:flex-row gap-4 items-start w-full relative">
-            {/* Desktop Thumbnails */}
             <div className="hidden lg:flex flex-col gap-3 w-20 shrink-0 sticky top-24">
               {galleryImages.map((img, idx) => (
                 <button
@@ -147,17 +140,11 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                       : "border-transparent opacity-60 hover:opacity-100"
                   )}
                 >
-                  <Image 
-                    src={img} 
-                    alt={`${product.name} detail ${idx + 1}`} 
-                    fill 
-                    className="object-cover" 
-                  />
+                  <Image src={img} alt={`${product.name} detail ${idx + 1}`} fill className="object-cover" />
                 </button>
               ))}
             </div>
 
-            {/* Main Carousel */}
             <div className="flex-1 w-full relative group">
               <Carousel setApi={setApi} className="w-full">
                 <CarouselContent>
@@ -182,7 +169,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                   ))}
                 </CarouselContent>
               </Carousel>
-              
               <div className="flex justify-center gap-2 mt-4 lg:hidden">
                 {galleryImages.map((_, idx) => (
                   <div key={idx} className={cn("h-1.5 rounded-full transition-all duration-300", currentSlide === idx ? "w-6 bg-primary" : "w-1.5 bg-primary/20")} />
@@ -216,23 +202,41 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 {product.name}
               </h1>
 
-              <div className="flex items-center gap-4">
-                <p className="text-3xl lg:text-5xl font-black font-headline text-primary">₹{product.sale_price}</p>
-                {product.regular_price && (
-                  <p className="text-xl lg:text-2xl text-muted-foreground line-through decoration-primary/20 decoration-2 font-black">₹{product.regular_price}</p>
+              <div className="flex items-center justify-between py-2">
+                <div className="flex items-center gap-4">
+                  <p className="text-3xl lg:text-5xl font-black font-headline text-primary">₹{product.sale_price}</p>
+                  {product.regular_price && (
+                    <p className="text-xl lg:text-2xl text-muted-foreground line-through decoration-primary/20 decoration-2 font-black">₹{product.regular_price}</p>
+                  )}
+                </div>
+                {isFreeDelivery && (
+                  <div className="flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full border border-green-100 text-green-700">
+                    <Truck className="h-4 w-4" />
+                    <span className="text-[10px] font-black uppercase tracking-widest">Free Delivery</span>
+                  </div>
                 )}
               </div>
+            </div>
 
-              <div className="flex flex-wrap gap-4 pt-2">
-                {artisanBadges.map((badge, idx) => {
-                  const Icon = badge.icon;
-                  return (
-                    <div key={idx} className="flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-lg border border-primary/5 shadow-sm">
-                      <Icon className={cn("h-3.5 w-3.5", badge.color)} />
-                      <span className="text-[9px] font-bold uppercase tracking-widest text-foreground/70">{badge.text}</span>
-                    </div>
-                  );
-                })}
+            {/* Enhanced Trust Badges Section */}
+            <div className="bg-white/60 backdrop-blur-md rounded-2xl border border-primary/5 shadow-sm p-6 grid grid-cols-3 divide-x divide-primary/10">
+              <div className="flex flex-col items-center justify-center text-center px-2 gap-2">
+                <div className="p-2 bg-amber-50 rounded-full">
+                  <Medal className="h-5 w-5 text-amber-500" />
+                </div>
+                <span className="text-[8px] font-black uppercase tracking-widest text-foreground/60 leading-tight">Award Winning Artist</span>
+              </div>
+              <div className="flex flex-col items-center justify-center text-center px-2 gap-2">
+                <div className="p-2 bg-green-50 rounded-full">
+                  <Leaf className="h-5 w-5 text-green-600" />
+                </div>
+                <span className="text-[8px] font-black uppercase tracking-widest text-foreground/60 leading-tight">Eco Friendly Materials</span>
+              </div>
+              <div className="flex flex-col items-center justify-center text-center px-2 gap-2">
+                <div className="p-2 bg-blue-50 rounded-full">
+                  <ShieldCheck className="h-5 w-5 text-blue-500" />
+                </div>
+                <span className="text-[8px] font-black uppercase tracking-widest text-foreground/60 leading-tight">Authenticity Guaranteed</span>
               </div>
             </div>
 
@@ -260,30 +264,17 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
             <div className="space-y-4 w-full">
               <div className="flex gap-3 w-full">
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="h-14 lg:h-16 rounded-2xl text-[10px] font-bold uppercase tracking-widest border-primary text-primary hover:bg-primary/5 hover:text-primary flex-1 shadow-sm transition-opacity duration-300" 
-                  onClick={() => {addToCart(product); toast({title: "Added to bag", description: product.name});}}
-                >
+                <Button size="lg" variant="outline" className="h-14 lg:h-16 rounded-2xl text-[10px] font-bold uppercase tracking-widest border-primary text-primary hover:bg-primary/5 flex-1" onClick={() => {addToCart(product); toast({title: "Added to bag", description: product.name});}}>
                   <ShoppingCart className="h-4 w-4 mr-1.5" />
                   Add to Bag
                 </Button>
-                <Button 
-                  size="lg" 
-                  className="h-14 lg:h-16 rounded-2xl text-[10px] font-bold uppercase tracking-widest gradient-primary flex-1 shadow-lg shadow-primary/20 relative overflow-hidden transition-all duration-300 hover:opacity-90 active:scale-95" 
-                  onClick={() => {addToCart(product); window.location.href = '/cart';}}
-                >
+                <Button size="lg" className="h-14 lg:h-16 rounded-2xl text-[10px] font-bold uppercase tracking-widest gradient-primary flex-1 shadow-lg shadow-primary/20" onClick={() => {addToCart(product); window.location.href = '/cart';}}>
                   <Zap className="h-4 w-4 mr-1.5" />
                   Buy Now
                 </Button>
               </div>
 
-              <Button 
-                variant="outline" 
-                className="w-full h-12 rounded-2xl border-green-100 bg-green-50/30 hover:bg-green-50/50 hover:text-green-700 text-green-700 font-bold text-[11px] uppercase tracking-widest gap-2 transition-all" 
-                onClick={handleWhatsAppShare}
-              >
+              <Button variant="outline" className="w-full h-12 rounded-2xl border-green-100 bg-green-50/30 text-green-700 font-bold text-[11px] uppercase tracking-widest gap-2" onClick={handleWhatsAppShare}>
                 <WhatsAppIcon className="h-4 w-4" />
                 Inquire via WhatsApp
               </Button>
@@ -294,7 +285,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 <AccordionItem value="shipping" className="border-primary/5">
                   <AccordionTrigger className="text-[11px] font-bold uppercase tracking-widest hover:no-underline">Shipping & Delivery</AccordionTrigger>
                   <AccordionContent className="text-muted-foreground text-sm font-light">
-                    We offer free shipping on all orders over ₹999. Since each item is handmade, please allow 3-7 business days for processing and shipment.
+                    {isFreeDelivery ? "🎉 This item qualifies for FREE SHIPPING!" : "Standard shipping rates apply."} Since each item is handmade, please allow 3-7 business days for processing and shipment.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="returns" className="border-primary/5">
@@ -303,18 +294,12 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     As these are unique handcrafted pieces, we only accept returns in case of damage during transit. Please record an unboxing video for claim processing.
                   </AccordionContent>
                 </AccordionItem>
-                <AccordionItem value="custom" className="border-primary/5">
-                  <AccordionTrigger className="text-[11px] font-bold uppercase tracking-widest hover:no-underline">Custom Orders</AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-sm font-light">
-                    We love creating bespoke pieces! If you want a specific size or color combination, reach out to us via WhatsApp for a personalized consultation.
-                  </AccordionContent>
-                </AccordionItem>
               </Accordion>
             </div>
           </div>
         </div>
 
-        {/* Reviews Section */}
+        {/* Reviews & Recommended Sections remain here as previously defined... */}
         <div className="mb-24 space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-primary/5 pb-8">
             <div className="space-y-4">
@@ -324,19 +309,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
               </div>
               <p className="text-muted-foreground text-sm max-w-md">What our collectors have to say about their handcrafted treasures.</p>
             </div>
-            <div className="flex items-center gap-6">
-              <div className="text-center">
-                <p className="text-4xl font-black text-foreground">4.9</p>
-                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Average Rating</p>
-              </div>
-              <div className="h-10 w-px bg-primary/10" />
-              <div className="text-center">
-                <p className="text-4xl font-black text-foreground">150+</p>
-                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Happy Homes</p>
-              </div>
-            </div>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {mockReviews.map((review, idx) => (
               <div key={idx} className="bg-white/40 p-8 rounded-3xl border border-primary/5 shadow-sm space-y-4">
@@ -344,12 +317,9 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                   <div className="space-y-1">
                     <p className="font-black text-sm uppercase">{review.name}</p>
                     <div className="flex text-amber-400">
-                      {Array.from({ length: review.rating }).map((_, i) => (
-                        <Star key={i} className="h-3 w-3 fill-current" />
-                      ))}
+                      {Array.from({ length: review.rating }).map((_, i) => <Star key={i} className="h-3 w-3 fill-current" />)}
                     </div>
                   </div>
-                  <span className="text-[10px] font-bold text-muted-foreground">{review.date}</span>
                 </div>
                 <p className="text-sm italic text-foreground/70 leading-relaxed">"{review.comment}"</p>
               </div>
@@ -360,14 +330,10 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
         {recommendedProducts.length > 0 && (
           <div className="space-y-10">
             <div className="text-center">
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary mb-2">You May Also Like</h4>
               <h2 className="text-2xl lg:text-3xl font-black font-headline tracking-tight uppercase">Recommended Pieces</h2>
-              <p className="text-muted-foreground text-[10px] uppercase tracking-widest mt-2">Based on your interest in {product.category}</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-              {recommendedProducts.map(p => (
-                <ProductCard key={p.id} product={p} />
-              ))}
+              {recommendedProducts.map(p => <ProductCard key={p.id} product={p} />)}
             </div>
           </div>
         )}
