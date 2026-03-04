@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -213,7 +214,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Works Grid - Adjusted for larger cards and tighter gaps */}
+      {/* Featured Works Grid */}
       <section className="py-20">
         <div className="container-normal">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
@@ -249,7 +250,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Experience Section */}
+      {/* Experience Section - Refined for Style and Responsive Balance */}
       <section className="py-24">
         <div className="container-normal">
           <h4 className="text-[14px] font-bold text-center mb-16 uppercase tracking-[0.5em] text-primary">The Experience</h4>
