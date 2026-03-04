@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from 'next/link';
@@ -17,7 +16,7 @@ export function BottomNav() {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-t from-pink-50/90 to-white/90 backdrop-blur-xl border-t border-primary/5 md:hidden h-20 shadow-[0_-8px_30px_rgba(199,29,133,0.08)]">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-t from-pink-50/95 to-white/95 backdrop-blur-2xl border-t border-primary/5 md:hidden h-20 shadow-[0_-8px_40px_rgba(199,29,133,0.1)]">
       <div className="flex justify-around items-center h-full px-1 relative">
         <div className="flex justify-around w-[42%] gap-1">
           {navItems.slice(0, 2).map((item) => {

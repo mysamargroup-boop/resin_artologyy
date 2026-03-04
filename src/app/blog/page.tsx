@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from 'next/link';
@@ -10,7 +9,7 @@ import { Input } from '@/components/ui/input';
 export default function BlogPage() {
   const blogs = [
     {
-      id: 1,
+      id: "1",
       title: "The Soul of Handmade: Why It Matters",
       excerpt: "In a world of mass production, find out why handcrafted pieces carry a unique energy and story within them.",
       author: "Sumegha",
@@ -19,7 +18,7 @@ export default function BlogPage() {
       image: "https://picsum.photos/seed/blog1/800/600"
     },
     {
-      id: 2,
+      id: "2",
       title: "Lippan Art: A Desert Masterpiece",
       excerpt: "Tracing the roots of Kutch's traditional mirror work and how we bring it into modern urban homes.",
       author: "Sumegha",
@@ -28,7 +27,7 @@ export default function BlogPage() {
       image: "https://picsum.photos/seed/blog2/800/600"
     },
     {
-      id: 3,
+      id: "3",
       title: "Designing for Serenity",
       excerpt: "How to curate your living space with minimal but impactful art to create a sanctuary of peace.",
       author: "Sumegha",
@@ -41,17 +40,15 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen py-16 lg:py-24">
       <div className="container-normal mx-auto space-y-20">
-        {/* Header Section */}
         <div className="text-center space-y-4 px-4">
           <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-primary">The Studio Journal</p>
-          <h1 className="text-3xl lg:text-7xl font-black uppercase tracking-tight text-foreground">Stories & Insights</h1>
+          <h1 className="text-2xl lg:text-7xl font-black uppercase tracking-tight text-foreground">Stories & Insights</h1>
           <p className="text-foreground/50 text-sm lg:text-xl max-w-2xl mx-auto font-light leading-relaxed">
             A deeper look into the artistry, traditions, and philosophy behind every Sumegha creation.
           </p>
         </div>
 
-        {/* Blog Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 px-4 pb-20">
           {blogs.map((blog) => (
             <Link key={blog.id} href={`/blog/${blog.id}`} className="group bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-primary/5 block">
               <div className="relative aspect-[4/3] overflow-hidden">
@@ -80,11 +77,11 @@ export default function BlogPage() {
                   </div>
                 </div>
 
-                <h3 className="text-2xl font-black uppercase tracking-tight text-foreground leading-tight group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-black uppercase tracking-tight text-foreground leading-tight group-hover:text-primary transition-colors">
                   {blog.title}
                 </h3>
                 
-                <p className="text-foreground/60 text-sm leading-relaxed font-light">
+                <p className="text-foreground/60 text-sm leading-relaxed font-light line-clamp-2">
                   {blog.excerpt}
                 </p>
               </div>
@@ -92,7 +89,6 @@ export default function BlogPage() {
           ))}
         </div>
 
-        {/* Newsletter CTA in Blog context */}
         <div className="mx-4 bg-[#181113] p-12 lg:p-20 rounded-[4rem] text-center space-y-8 relative overflow-hidden">
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <Image src="https://picsum.photos/seed/patterns/1920/1080" alt="pattern" fill className="object-cover" />
