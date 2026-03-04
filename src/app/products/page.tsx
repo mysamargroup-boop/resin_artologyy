@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useSearchParams } from 'next/navigation';
@@ -41,16 +42,16 @@ export default function ProductsPage() {
     'Wedding'
   ];
 
-  const allProducts = useMemo(() => PlaceHolderImages.map((img, i) => ({
+  const allProducts = useMemo(() => PlaceHolderImages.map((img: any) => ({
     id: img.id,
-    name: img.description.split(' ').slice(0, 3).join(' '),
+    name: img.name || img.description.split(' ').slice(0, 3).join(' '),
     description: img.description,
-    price: [249, 599, 1200, 450, 899, 1500][i % 6],
-    originalPrice: [399, 799, 1500, 550, 1100, 1800][i % 6],
+    price: img.price || 999,
+    originalPrice: Math.round((img.price || 999) * 1.4),
     imageUrl: img.imageUrl,
-    category: categories.slice(1)[i % (categories.length - 1)],
-    tags: i % 3 === 0 ? ['Bestseller'] : i % 4 === 0 ? ['New Arrival'] : []
-  })), [categories]);
+    category: img.category || 'Handmade Art',
+    tags: img.id.includes('name') ? ['Bestseller'] : img.id.includes('shubh') ? ['New Arrival'] : []
+  })), []);
 
   const filteredProducts = allProducts.filter(p => {
     const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;

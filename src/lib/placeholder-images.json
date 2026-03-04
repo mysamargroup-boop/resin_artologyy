@@ -1,112 +1,76 @@
 {
   "placeholderImages": [
     {
-      "id": "fest-1",
-      "description": "Floral Pooja Thali - Hand-painted with intricate traditional motifs for auspicious occasions.",
-      "imageUrl": "https://picsum.photos/seed/pooja/600/600",
-      "imageHint": "pooja thali"
+      "id": "name-home-1",
+      "name": "Modern Family Home Name Plate",
+      "description": "Handcrafted ceramic name plate with elegant floral motifs, perfect for modern home entrances.",
+      "imageUrl": "https://picsum.photos/seed/home-name/600/600",
+      "imageHint": "home nameplate",
+      "category": "Custom Name Plates",
+      "price": 1599
     },
     {
-      "id": "fest-2",
-      "description": "Handpainted Diya Set - Set of 6 colorful clay diyas perfect for festive evenings.",
-      "imageUrl": "https://picsum.photos/seed/diya/600/600",
-      "imageHint": "festive diya"
+      "id": "name-couple-1",
+      "name": "Artisanal Couple Name Plaque",
+      "description": "A bespoke name plaque for couples, featuring a blend of traditional and contemporary design.",
+      "imageUrl": "https://picsum.photos/seed/couple-name/600/600",
+      "imageHint": "couple nameplate",
+      "category": "Custom Name Plates",
+      "price": 1899
     },
     {
-      "id": "fest-3",
-      "description": "Custom Gift Hamper - A curated selection of handmade treasures in a traditional box.",
-      "imageUrl": "https://picsum.photos/seed/hamper/600/600",
-      "imageHint": "gift hamper"
+      "id": "shubh-om-1",
+      "name": "Traditional Om Wall Art",
+      "description": "Auspicious Om symbol handcrafted with premium clay and vibrant colors to bring peace and positivity.",
+      "imageUrl": "https://picsum.photos/seed/om-art/600/600",
+      "imageHint": "om wall art",
+      "category": "Shubh Symbols",
+      "price": 899
     },
     {
-      "id": "fest-4",
-      "description": "Artisan Decorative Box - Handcrafted wooden box with metallic accents.",
-      "imageUrl": "https://picsum.photos/seed/box/600/600",
-      "imageHint": "artisan box"
+      "id": "nazar-wall-1",
+      "name": "Evil Eye Wall Protector",
+      "description": "Handcrafted Nazar Battu decor piece designed to protect your home while adding an artistic touch.",
+      "imageUrl": "https://picsum.photos/seed/nazar-decor/600/600",
+      "imageHint": "evil eye decor",
+      "category": "Evil Eye Protection Decor",
+      "price": 550
     },
     {
-      "id": "fest-5",
-      "description": "Traditional Wall Hanging - Vibrant textile art with mirror and bead work.",
-      "imageUrl": "https://picsum.photos/seed/hang/600/600",
-      "imageHint": "wall hanging"
+      "id": "hang-wall-1",
+      "name": "Boho Macrame Wall Hanging",
+      "description": "Intricate hand-knotted macrame hanging that adds a bohemian vibe to any vertical space.",
+      "imageUrl": "https://picsum.photos/seed/boho-hang/600/600",
+      "imageHint": "macrame hanging",
+      "category": "Decorative Hangings",
+      "price": 1299
     },
     {
-      "id": "fest-6",
-      "description": "Silver Plated Pooja Plate - Premium silver-finished plate for religious ceremonies.",
-      "imageUrl": "https://picsum.photos/seed/silver/600/600",
-      "imageHint": "silver plate"
+      "id": "fest-thali-1",
+      "name": "Floral Pooja Thali",
+      "description": "Hand-painted pooja thali with traditional mirror work, ideal for festive ceremonies.",
+      "imageUrl": "https://picsum.photos/seed/pooja-thali/600/600",
+      "imageHint": "pooja thali",
+      "category": "Festive / Special Gifts",
+      "price": 999
     },
     {
-      "id": "home-1",
-      "description": "Lippan Mirror Art - Traditional Kutch mirror work on a modern circular canvas.",
-      "imageUrl": "https://picsum.photos/seed/lippan/600/600",
-      "imageHint": "lippan art"
+      "id": "home-lippan-1",
+      "name": "Lippan Mirror Art",
+      "description": "Traditional Kutch mud and mirror work on a contemporary circular canvas for sophisticated home decor.",
+      "imageUrl": "https://picsum.photos/seed/lippan-art/600/600",
+      "imageHint": "lippan art",
+      "category": "Home Decor",
+      "price": 2500
     },
     {
-      "id": "home-2",
-      "description": "Ceramic Floor Vase - Elegant oversized floor vase with organic textures.",
-      "imageUrl": "https://images.unsplash.com/photo-1631125915732-b98f8774f675?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2VyYW1pYyUyMHZhc2V8ZW58MHx8fHwxNzcyNTI3MTU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "ceramic vase"
-    },
-    {
-      "id": "home-3",
-      "description": "Macrame Wall Decor - Bohemian hand-knotted wall hanging for a cozy space.",
-      "imageUrl": "https://picsum.photos/seed/macrame-home/600/600",
-      "imageHint": "macrame decor"
-    },
-    {
-      "id": "home-4",
-      "description": "Abstract Hand-painted Canvas - Modern art piece for contemporary living rooms.",
-      "imageUrl": "https://picsum.photos/seed/canvas/600/600",
-      "imageHint": "abstract painting"
-    },
-    {
-      "id": "home-5",
-      "description": "Scented Candle Gift Set - Hand-poured soy wax candles in artistic ceramic jars.",
-      "imageUrl": "https://picsum.photos/seed/candle-home/600/600",
-      "imageHint": "scented candles"
-    },
-    {
-      "id": "home-6",
-      "description": "Handwoven Cotton Cushions - Set of textured cushions for ethnic home styling.",
-      "imageUrl": "https://picsum.photos/seed/cushion/600/600",
-      "imageHint": "woven cushions"
-    },
-    {
-      "id": "wed-1",
-      "description": "Bridal Trunk Box - Velvet-lined luxury trunk for bridal ensembles.",
-      "imageUrl": "https://picsum.photos/seed/trunk/600/600",
-      "imageHint": "bridal trunk"
-    },
-    {
-      "id": "wed-2",
-      "description": "Hand-embroidered Silk Envelopes - Premium Shagun envelopes for weddings.",
-      "imageUrl": "https://picsum.photos/seed/env/600/600",
-      "imageHint": "wedding envelope"
-    },
-    {
-      "id": "wed-3",
-      "description": "Bespoke Wedding Invitation - Hand-designed wedding cards with gold foiling.",
-      "imageUrl": "https://picsum.photos/seed/card/600/600",
-      "imageHint": "wedding card"
-    },
-    {
-      "id": "wed-4",
-      "description": "Bridal Floral Jewelry - Handcrafted gota-patti and floral jewelry for Haldi/Mehendi.",
-      "imageUrl": "https://picsum.photos/seed/floral/600/600",
-      "imageHint": "floral jewelry"
-    },
-    {
-      "id": "wed-5",
-      "description": "Luxury Wedding Potli - Silk potli bag with intricate Zardosi embroidery.",
-      "imageUrl": "https://picsum.photos/seed/potli/600/600",
-      "imageHint": "silk potli"
-    },
-    {
-      "id": "wed-6",
-      "description": "Customized Shubh Labh Hangings - Traditional door hangings for wedding decor.",
-      "imageUrl": "https://picsum.photos/seed/labh/600/600",
-      "imageHint": "door hangings"
+      "id": "wed-trunk-1",
+      "name": "Luxury Bridal Trunk",
+      "description": "Velvet-lined royal bridal trunk for preserving precious wedding memories and ensembles.",
+      "imageUrl": "https://picsum.photos/seed/bridal-trunk/600/600",
+      "imageHint": "bridal trunk",
+      "category": "Wedding",
+      "price": 4500
     }
   ]
 }
