@@ -1,9 +1,10 @@
+
 "use client";
 
 import { use, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Heart, ShoppingCart, Share2, Star, Sparkles, ChevronRight, Zap, ShieldCheck, Leaf, Medal } from 'lucide-react';
+import { Heart, ShoppingCart, Share2, Star, Sparkles, ChevronRight, Zap, ShieldCheck, Leaf, Medal, MessageCircle } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { useStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
@@ -16,6 +17,12 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg 
@@ -188,10 +195,9 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
               <div className="flex items-center gap-4">
                 <p className="text-3xl lg:text-5xl font-black font-headline text-primary">₹{product.price}</p>
-                <p className="text-xl lg:text-2xl text-muted-foreground line-through decoration-primary/30 font-bold italic">₹{product.originalPrice}</p>
+                <p className="text-xl lg:text-2xl text-muted-foreground line-through decoration-primary/30 font-bold">₹{product.originalPrice}</p>
               </div>
 
-              {/* Artisan Badges Section */}
               <div className="flex flex-wrap gap-4 pt-2">
                 {artisanBadges.map((badge, idx) => {
                   const Icon = badge.icon;
@@ -215,7 +221,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 lg:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
               {specifications.map((spec, i) => (
                 <div key={i} className="space-y-1">
                   <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{spec.label}</p>
@@ -229,7 +235,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 <Button 
                   size="lg" 
                   variant="outline"
-                  className="h-14 lg:h-16 rounded-2xl text-[10px] font-bold uppercase tracking-widest border-primary text-primary hover:bg-primary/5 flex-1 shadow-sm" 
+                  className="h-14 lg:h-16 rounded-2xl text-[10px] font-bold uppercase tracking-widest border-primary text-primary hover:bg-primary/5 hover:text-primary flex-1 shadow-sm" 
                   onClick={() => {addToCart(product); toast({title: "Added to bag", description: product.name});}}
                 >
                   <ShoppingCart className="h-4 w-4 mr-1.5" />
@@ -247,12 +253,29 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
               <Button 
                 variant="outline" 
-                className="w-full h-12 rounded-2xl border-green-100 bg-green-50/30 hover:bg-green-50 text-green-700 font-bold text-[11px] uppercase tracking-widest gap-2" 
+                className="w-full h-12 rounded-2xl border-green-100 bg-green-50/30 hover:bg-green-50 hover:text-green-700 text-green-700 font-bold text-[11px] uppercase tracking-widest gap-2" 
                 onClick={handleWhatsAppShare}
               >
                 <WhatsAppIcon className="h-4 w-4" />
                 Inquire via WhatsApp
               </Button>
+            </div>
+
+            <div className="pt-8">
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="shipping" className="border-primary/5">
+                  <AccordionTrigger className="text-[11px] font-bold uppercase tracking-widest hover:no-underline">Shipping & Delivery</AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground text-sm font-light">
+                    We offer free shipping on all orders over ₹999. Since each item is handmade, please allow 3-7 business days for processing and shipment.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="returns" className="border-primary/5">
+                  <AccordionTrigger className="text-[11px] font-bold uppercase tracking-widest hover:no-underline">Return Policy</AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground text-sm font-light">
+                    As these are unique handcrafted pieces, we only accept returns in case of damage during transit. Please record an unboxing video for claim processing.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
           </div>
         </div>
@@ -261,7 +284,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
           <div className="space-y-10">
             <div className="text-center lg:text-left">
               <h4 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary mb-2">You May Also Like</h4>
-              <h2 className="text-2xl lg:text-5xl font-black font-headline tracking-tight uppercase">Recommended Pieces</h2>
+              <h2 className="text-2xl lg:text-3xl font-black font-headline tracking-tight uppercase">Recommended Pieces</h2>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-10">
               {recommendedProducts.map(p => (

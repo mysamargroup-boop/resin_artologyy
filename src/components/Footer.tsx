@@ -64,7 +64,7 @@ export function Footer() {
 
   return (
     <footer className="bg-[#181113] text-white rounded-t-[3rem] lg:rounded-t-[4rem] pt-16 lg:pt-20 pb-12">
-      <div className="container-normal pl-8 lg:pl-12">
+      <div className="container-normal pl-8 lg:pl-16">
         <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-16 mb-16 lg:mb-20">
           <div className="text-center lg:text-left space-y-6 lg:space-y-8 max-w-md w-full">
             <h3 className="text-lg lg:text-3xl font-black uppercase tracking-[0.3em] lg:tracking-[0.4em] text-white">Join the Inner Circle</h3>
@@ -102,7 +102,6 @@ export function Footer() {
               </Link>
             </div>
 
-            {/* Contact Details Section - 3 Columns on Tablet/Desktop */}
             <div className="grid grid-cols-1 md:grid-cols-3 lg:flex lg:flex-col items-start lg:items-end gap-10 w-full lg:w-auto px-4 lg:px-0">
               {contactItems.map((item, idx) => {
                 const Icon = item.icon;
@@ -122,7 +121,6 @@ export function Footer() {
           </div>
         </div>
         
-        {/* Desktop Links Grid */}
         <div className="hidden md:grid md:grid-cols-4 gap-12 py-12 border-t border-white/5 text-[10px] font-bold uppercase tracking-[0.3em] text-white/70">
           {footerData.map((section) => (
             <div key={section.title} className="space-y-6">
@@ -138,7 +136,6 @@ export function Footer() {
           ))}
         </div>
 
-        {/* Mobile Accordion Links */}
         <div className="md:hidden border-t border-white/5 py-2">
           <Accordion type="single" collapsible className="w-full">
             {footerData.map((section, idx) => (
