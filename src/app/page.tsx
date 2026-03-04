@@ -214,7 +214,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Works Grid */}
+      {/* Featured Works Grid - Adjusted for larger cards */}
       <section className="py-20">
         <div className="container-normal">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
@@ -227,7 +227,7 @@ export default function Home() {
             </Link>
           </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -250,7 +250,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Experience Section (Updated to match screenshot) */}
+      {/* Experience Section */}
       <section className="py-24">
         <div className="container-normal">
           <h4 className="text-[14px] font-bold text-center mb-16 uppercase tracking-[0.5em] text-primary">The Experience</h4>
@@ -290,7 +290,7 @@ export default function Home() {
           >
             <CarouselContent className="-ml-6">
               {featuredProducts.concat(featuredProducts).map((product, index) => (
-                <CarouselItem key={`${product.id}-${index}`} className="pl-6 basis-1/2 sm:basis-1/3 lg:basis-1/5">
+                <CarouselItem key={`${product.id}-${index}`} className="pl-6 basis-1/2 sm:basis-1/3 lg:basis-1/4">
                   <ProductCard product={product} />
                 </CarouselItem>
               ))}

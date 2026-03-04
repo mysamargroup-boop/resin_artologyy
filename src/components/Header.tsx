@@ -45,7 +45,7 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Right Icons - Enhanced Size and Closer Spacing */}
+          {/* Right Icons - Increased Size and Tighter Spacing */}
           <div className="flex justify-end items-center gap-0.5">
             <Link href="/wishlist">
               <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 text-foreground relative h-12 w-12 transition-transform hover:scale-110">
