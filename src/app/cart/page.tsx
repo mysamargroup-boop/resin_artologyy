@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from 'react';
@@ -22,7 +21,7 @@ export default function CartPage() {
         <div className="w-24 h-24 bg-secondary rounded-full flex items-center justify-center mx-auto mb-8">
           <ShoppingBag className="h-12 w-12 text-primary" />
         </div>
-        <h1 className="text-4xl font-headline font-black mb-4">Your cart is empty</h1>
+        <h1 className="text-4xl font-headline font-black mb-4 text-center">Your cart is empty</h1>
         <p className="text-muted-foreground mb-8 max-w-md mx-auto">Looks like you haven't added any handmade treasures yet. Let's find something beautiful!</p>
         <Link href="/products">
           <Button size="lg" className="rounded-full gradient-primary px-10">Start Shopping</Button>
@@ -33,7 +32,7 @@ export default function CartPage() {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl lg:text-6xl font-black font-headline mb-12">Shopping Bag</h1>
+      <h1 className="text-4xl lg:text-6xl font-black font-headline mb-12 text-center uppercase tracking-tight">Shopping Bag</h1>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <div className="lg:col-span-2 space-y-6">

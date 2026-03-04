@@ -1,14 +1,14 @@
 "use client";
 
 import Link from 'next/link';
-import { ShoppingBag, Menu, X } from 'lucide-react';
+import { ShoppingBag, Heart, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { useStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const { cart } = useStore();
+  const { cart, wishlist } = useStore();
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -20,7 +20,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-lg border-b border-gray-100">
       <div className="container-normal h-24 grid grid-cols-3 items-center">
-        {/* Left Side: Mobile Menu */}
+        {/* Left Side: Mobile Menu / Nav */}
         <div className="flex items-center">
           <Button 
             variant="ghost" 
@@ -47,19 +47,31 @@ export function Header() {
         {/* Center Side: Logo */}
         <div className="flex justify-center">
           <Link href="/" className="flex items-center group">
-            <h2 className="text-foreground text-2xl font-display font-black leading-tight tracking-[0.2em] uppercase transition-colors group-hover:text-primary">
+            <h2 className="text-foreground text-2xl font-display font-black leading-tight tracking-[0.2em] uppercase transition-colors group-hover:text-primary text-center">
               Sumegha
             </h2>
           </Link>
         </div>
 
-        {/* Right Side: Cart */}
-        <div className="flex justify-end items-center gap-4">
+        {/* Right Side: Wishlist & Cart */}
+        <div className="flex justify-end items-center gap-2 md:gap-4">
+          <Link href="/wishlist">
+            <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 text-foreground relative h-10 w-10 md:h-12 md:w-12 transition-transform hover:scale-110">
+              <Heart className="h-5 w-5 md:h-6 md:w-6" />
+              {wishlist.length > 0 && (
+                <span className="absolute top-2 right-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[8px] font-bold text-white border-2 border-white shadow-sm">
+                  {wishlist.length}
+                </span>
+              )}
+            </Button>
+          </Link>
           <Link href="/cart">
-            <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 text-foreground relative h-12 w-12 transition-transform hover:scale-110">
-              <ShoppingBag className="h-6 w-6" />
+            <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 text-foreground relative h-10 w-10 md:h-12 md:w-12 transition-transform hover:scale-110">
+              <ShoppingBag className="h-5 w-5 md:h-6 md:w-6" />
               {cart.length > 0 && (
-                <span className="absolute top-2 right-2 size-3 bg-primary rounded-full border-2 border-white shadow-sm"></span>
+                <span className="absolute top-2 right-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[8px] font-bold text-white border-2 border-white shadow-sm">
+                  {cart.length}
+                </span>
               )}
             </Button>
           </Link>

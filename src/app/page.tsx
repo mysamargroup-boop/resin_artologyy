@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from 'next/link';
@@ -49,22 +48,25 @@ export default function Home() {
 
   const heroSlides = [
     {
-      title: "Handmade Elegance",
-      subtitle: "Curated for Your Home",
+      badge: "HANDMADE ELEGANCE",
+      title: "BESPOKE",
+      highlight: "ARTISTRY",
       desc: "Experience contemporary design through bespoke handmade elegance. Every piece is a testament to sophisticated simplicity.",
-      image: "https://picsum.photos/seed/slide1/800/800",
+      image: "https://picsum.photos/seed/art-bg/1920/1080",
     },
     {
-      title: "Artisanal Soul",
-      subtitle: "Crafted With Love",
-      desc: "Discover unique, heartfelt creations from traditional pottery to modern paintings.",
-      image: "https://picsum.photos/seed/slide2/800/800",
-    },
-    {
-      title: "Bespoke Jewelry",
-      subtitle: "Personalized For You",
+      badge: "PERSONALIZED FOR YOU",
+      title: "BESPOKE",
+      highlight: "JEWELRY",
       desc: "Each piece is meticulously handcrafted, ensuring no two items are exactly alike.",
-      image: "https://picsum.photos/seed/slide3/800/800",
+      image: "https://picsum.photos/seed/jewelry-bg/1920/1080",
+    },
+    {
+      badge: "ARTISANAL SOUL",
+      title: "CRAFTED",
+      highlight: "WITH LOVE",
+      desc: "Discover unique, heartfelt creations from traditional pottery to modern paintings.",
+      image: "https://picsum.photos/seed/craft-bg/1920/1080",
     }
   ];
 
@@ -115,58 +117,56 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full overflow-hidden">
       {/* Hero Slider Section */}
-      <section className="relative w-full overflow-hidden">
+      <section className="relative w-full h-[80vh] min-h-[600px] overflow-hidden">
         <Carousel 
           setApi={setApi}
           plugins={[plugin.current]}
-          className="w-full"
+          className="w-full h-full"
           onMouseEnter={() => plugin.current.stop()}
           onMouseLeave={() => plugin.current.play()}
         >
-          <CarouselContent>
+          <CarouselContent className="h-full ml-0">
             {heroSlides.map((slide, index) => (
-              <CarouselItem key={index}>
-                <div className="relative min-h-[600px] flex items-center justify-center py-20">
-                  <div className="container-normal relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div className="space-y-8 text-center lg:text-left">
-                      <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
-                        {slide.subtitle}
-                      </div>
-                      <h1 className="text-4xl lg:text-7xl font-black leading-tight uppercase tracking-tight text-foreground">
-                        {slide.title.split(' ')[0]} <br /> <span className="text-primary">{slide.title.split(' ').slice(1).join(' ')}</span>
-                      </h1>
-                      <p className="text-lg lg:text-xl text-foreground/70 font-light max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                        {slide.desc}
-                      </p>
-                      <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                        <Link href="/products" className="w-full sm:w-auto">
-                          <Button className="w-full h-14 px-10 rounded-xl text-xs font-bold uppercase tracking-widest gradient-primary">
-                            View Collection
-                          </Button>
-                        </Link>
-                        <Button 
-                          variant="secondary" 
-                          className="w-full sm:w-auto h-14 px-10 rounded-xl text-xs font-bold uppercase tracking-widest bg-white border border-gray-100 shadow-sm flex items-center gap-2 group hover:bg-gray-50"
-                          onClick={() => window.open('https://wa.me/919876543210', '_blank')}
-                        >
-                          <WhatsAppIcon className="h-5 w-5 text-green-600" />
-                          Order on WhatsApp
-                        </Button>
-                      </div>
+              <CarouselItem key={index} className="relative h-full pl-0">
+                <div className="absolute inset-0 z-0">
+                  <Image 
+                    src={slide.image}
+                    alt={slide.title}
+                    fill
+                    className="object-cover opacity-20"
+                    priority
+                  />
+                </div>
+                <div className="relative z-10 h-full flex items-center justify-center py-20 px-6">
+                  <div className="container-normal flex flex-col items-center text-center space-y-8">
+                    <div className="inline-block px-6 py-2 rounded-full border border-primary/20 text-[10px] font-bold uppercase tracking-[0.3em] text-primary bg-primary/5">
+                      {slide.badge}
                     </div>
-
-                    <div className="relative aspect-square w-full max-w-[450px] mx-auto lg:ml-auto">
-                      <div className="absolute inset-0 bg-primary/10 rounded-[3rem] rotate-3 scale-105"></div>
-                      <div className="relative h-full w-full rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
-                        <Image 
-                          src={slide.image}
-                          alt={slide.title}
-                          fill
-                          className="object-cover"
-                          priority
-                          data-ai-hint="handmade art"
-                        />
-                      </div>
+                    <div className="space-y-2">
+                      <h1 className="text-5xl lg:text-8xl font-black leading-none uppercase tracking-tighter text-foreground">
+                        {slide.title}
+                      </h1>
+                      <h2 className="text-5xl lg:text-8xl font-black leading-none uppercase tracking-tighter text-primary">
+                        {slide.highlight}
+                      </h2>
+                    </div>
+                    <p className="text-lg lg:text-2xl text-foreground/70 font-light max-w-2xl mx-auto leading-relaxed">
+                      {slide.desc}
+                    </p>
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+                      <Link href="/products" className="w-full sm:w-auto">
+                        <Button className="w-full h-16 px-12 rounded-2xl text-xs font-bold uppercase tracking-widest gradient-primary">
+                          View Collection
+                        </Button>
+                      </Link>
+                      <Button 
+                        variant="secondary" 
+                        className="w-full sm:w-auto h-16 px-12 rounded-2xl text-xs font-bold uppercase tracking-widest bg-white border border-gray-100 shadow-sm flex items-center gap-2 group hover:bg-gray-50"
+                        onClick={() => window.open('https://wa.me/919876543210', '_blank')}
+                      >
+                        <WhatsAppIcon className="h-5 w-5 text-green-600" />
+                        WhatsApp Order
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -175,13 +175,13 @@ export default function Home() {
           </CarouselContent>
           
           {/* Autoplay Indicators (Dots) */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-3 z-20">
             {Array.from({ length: count }).map((_, i) => (
               <button
                 key={i}
                 className={cn(
                   "h-1.5 transition-all duration-300 rounded-full",
-                  current === i ? "w-8 bg-primary" : "w-2 bg-primary/20"
+                  current === i ? "w-10 bg-primary" : "w-3 bg-primary/20"
                 )}
                 onClick={() => api?.scrollTo(i)}
                 aria-label={`Go to slide ${i + 1}`}
@@ -194,17 +194,16 @@ export default function Home() {
       {/* Featured Gallery */}
       <section className="py-24">
         <div className="container-normal">
-          <div className="flex items-end justify-between mb-16">
-            <div className="space-y-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+            <div className="space-y-2 text-center md:text-left">
               <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">Gallery</h4>
               <h2 className="text-3xl lg:text-5xl font-black uppercase tracking-tight text-foreground">Featured Works</h2>
             </div>
-            <Link href="/products" className="text-foreground text-[10px] font-bold uppercase tracking-[0.2em] border-b-2 border-primary/20 pb-1 hover:border-primary transition-all">
+            <Link href="/products" className="text-foreground text-[10px] font-bold uppercase tracking-[0.2em] border-b-2 border-primary/20 pb-1 hover:border-primary transition-all self-center md:self-auto">
               See All Gallery
             </Link>
           </div>
           
-          {/* Grid: Desktop 5, Mobile 2 */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
@@ -230,7 +229,7 @@ export default function Home() {
       {/* Experience Section */}
       <section className="py-32">
         <div className="container-normal">
-          <h4 className="text-[10px] font-bold text-center mb-24 uppercase tracking-[0.5em] text-primary">The Experience</h4>
+          <h4 className="text-[10px] font-bold text-center mb-24 uppercase tracking-[0.5em] text-primary text-center">The Experience</h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24">
             {[
               { id: '01', title: "Curate", desc: "Select from our gallery of hand-designed artisan creations.", icon: MousePointer2 },
@@ -265,7 +264,7 @@ export default function Home() {
               <div className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase tracking-[0.3em] text-white/80">
                 AI Powered
               </div>
-              <h3 className="text-3xl lg:text-6xl font-black uppercase tracking-[0.1em] text-white">Ask the Art Concierge</h3>
+              <h3 className="text-3xl lg:text-6xl font-black uppercase tracking-[0.1em] text-white text-center">Ask the Art Concierge</h3>
               <p className="text-white/60 text-sm lg:text-lg font-light tracking-wide max-w-2xl mx-auto leading-relaxed">
                 Not sure which piece fits your aesthetic? Our AI Assistant can curate a selection based on your unique preferences and home decor style.
               </p>
