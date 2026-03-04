@@ -1,7 +1,8 @@
+
 "use client";
 
 import Link from 'next/link';
-import { Instagram, Send } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
@@ -22,33 +23,33 @@ export function Footer() {
       <div className="container-normal">
         <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 mb-24">
           <div className="text-center lg:text-left space-y-8 max-w-md">
-            <h3 className="text-2xl font-black uppercase tracking-[0.4em]">Join the Inner Circle</h3>
-            <p className="text-white/50 text-sm font-light tracking-wide leading-relaxed uppercase">
+            <h3 className="text-2xl font-black uppercase tracking-[0.4em] text-white">Join the Inner Circle</h3>
+            <p className="text-white/60 text-sm font-light tracking-wide leading-relaxed uppercase">
               Be the first to experience new collections, limited drops, and exclusive art releases.
             </p>
             <div className="flex flex-col sm:flex-row w-full gap-3 mt-8">
               <Input 
-                className="bg-white/5 border-white/10 text-white placeholder:text-white/20 text-xs font-display tracking-widest uppercase h-14 rounded-xl flex-grow px-6 border focus:ring-primary/50" 
+                className="bg-white/5 border-white/10 text-white placeholder:text-white/40 text-xs font-display tracking-widest uppercase h-14 rounded-xl flex-grow px-6 border focus:ring-primary/50" 
                 placeholder="Email Address"
                 type="email"
               />
-              <Button className="h-14 px-10 rounded-xl text-xs font-bold uppercase tracking-[0.3em] gradient-primary transition-all">
+              <Button className="h-14 px-10 rounded-xl text-xs font-bold uppercase tracking-[0.3em] gradient-primary transition-all text-white">
                 Subscribe
               </Button>
             </div>
           </div>
           
           <div className="flex gap-12 items-center">
-            <Link href="#" className="text-white/30 hover:text-primary transition-all hover:scale-110">
+            <Link href="#" className="text-white/40 hover:text-primary transition-all hover:scale-110">
               <Instagram className="h-8 w-8" />
             </Link>
-            <Link href="#" className="text-white/30 hover:text-green-500 transition-all hover:scale-110">
+            <Link href="#" className="text-white/40 hover:text-green-500 transition-all hover:scale-110">
               <WhatsAppIcon className="h-8 w-8" />
             </Link>
           </div>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-16 py-16 border-t border-white/10 text-xs font-bold uppercase tracking-widest">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-16 py-16 border-t border-white/10 text-xs font-bold uppercase tracking-widest text-white/80">
           <div className="space-y-6">
             <h4 className="text-white/40 text-[10px] tracking-[0.4em]">Company</h4>
             <ul className="space-y-4">
@@ -80,7 +81,7 @@ export function Footer() {
         </div>
 
         <div className="mt-16 pt-10 border-t border-white/5 text-center">
-          <p className="text-[10px] text-white/10 uppercase tracking-[0.5em] font-display font-medium">
+          <p className="text-[10px] text-white/20 uppercase tracking-[0.5em] font-display font-medium">
             © {new Date().getFullYear()} Sumegha Handmades. Curated with Precision.
           </p>
         </div>

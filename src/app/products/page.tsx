@@ -7,7 +7,7 @@ import { ProductCard } from '@/components/ProductCard';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Filter } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 export default function ProductsPage() {
   const searchParams = useSearchParams();
@@ -20,6 +20,7 @@ export default function ProductsPage() {
     name: img.description.split(' ').slice(0, 3).join(' '),
     description: img.description,
     price: [249, 599, 1200, 450, 899, 1500][i % 6],
+    originalPrice: [399, 799, 1500, 550, 1100, 1800][i % 6],
     imageUrl: img.imageUrl,
     category: ['Ceramics', 'Paintings', 'Jewelry', 'Boho', 'Decor', 'Textile'][i % 6]
   })), []);
@@ -36,7 +37,7 @@ export default function ProductsPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
-        <div>
+        <div className="text-center md:text-left">
           <h1 className="text-4xl lg:text-6xl font-black font-headline mb-4">Our Gallery</h1>
           <p className="text-muted-foreground text-lg">Hand-picked treasures waiting for a home.</p>
         </div>
@@ -67,7 +68,7 @@ export default function ProductsPage() {
       </div>
 
       {filteredProducts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-8">
           {filteredProducts.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}

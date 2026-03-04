@@ -1,8 +1,9 @@
+
 "use client";
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Sparkles, PanelsTopLeft, MousePointer2, Truck, Gem } from 'lucide-react';
+import { Sparkles, PanelsTopLeft, MousePointer2, Truck, Gem, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/ProductCard';
 import {
@@ -30,9 +31,12 @@ export default function Home() {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
+  const [progress, setProgress] = React.useState(0);
+
+  const SLIDE_DURATION = 5000;
 
   const plugin = React.useRef(
-    Autoplay({ delay: 5000, stopOnInteraction: false })
+    Autoplay({ delay: SLIDE_DURATION, stopOnInteraction: false })
   );
 
   React.useEffect(() => {
@@ -43,8 +47,17 @@ export default function Home() {
 
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
+      setProgress(0);
     });
   }, [api]);
+
+  React.useEffect(() => {
+    if (!api) return;
+    const interval = setInterval(() => {
+      setProgress((prev) => (prev >= 100 ? 0 : prev + (100 / (SLIDE_DURATION / 100))));
+    }, 100);
+    return () => clearInterval(interval);
+  }, [api, current]);
 
   const heroSlides = [
     {
@@ -71,59 +84,21 @@ export default function Home() {
   ];
 
   const featuredProducts = [
-    {
-      id: "lippan-1",
-      name: "Vibrant Lippan Art",
-      description: "Traditional mirror work handcrafted with precision.",
-      price: 1299,
-      imageUrl: "https://picsum.photos/seed/art1/600/600",
-      category: "Art"
-    },
-    {
-      id: "nameplate-1",
-      name: "Custom Nameplates",
-      description: "Elegant personalized ceramic nameplates for your home.",
-      price: 1599,
-      imageUrl: "https://picsum.photos/seed/name1/600/600",
-      category: "Decor"
-    },
-    {
-      id: "folk-art-1",
-      name: "Indian Folk Art",
-      description: "Authentic traditional patterns on canvas.",
-      price: 899,
-      imageUrl: "https://picsum.photos/seed/folk1/600/600",
-      category: "Art",
-      tags: ['Bestseller']
-    },
-    {
-      id: "festive-decor-1",
-      name: "Festive Decor",
-      description: "Handcrafted ornaments for every special occasion.",
-      price: 650,
-      imageUrl: "https://picsum.photos/seed/decor1/600/600",
-      category: "Decor"
-    },
-    {
-        id: "jewelry-1",
-        name: "Artisanal Jewelry",
-        description: "Handcrafted pieces that tell a story.",
-        price: 450,
-        imageUrl: "https://picsum.photos/seed/jewel1/600/600",
-        category: "Jewelry"
-    }
+    { id: "lippan-1", name: "Vibrant Lippan Art", description: "Traditional mirror work handcrafted.", price: 1299, originalPrice: 1999, imageUrl: "https://picsum.photos/seed/art1/600/600", category: "Art", tags: ['Bestseller'] },
+    { id: "nameplate-1", name: "Custom Nameplates", description: "Elegant personalized ceramic nameplates.", price: 1599, originalPrice: 2200, imageUrl: "https://picsum.photos/seed/name1/600/600", category: "Decor" },
+    { id: "folk-art-1", name: "Indian Folk Art", description: "Authentic traditional patterns.", price: 899, originalPrice: 1200, imageUrl: "https://picsum.photos/seed/folk1/600/600", category: "Art", tags: ['Bestseller'] },
+    { id: "festive-decor-1", name: "Festive Decor", description: "Handcrafted ornaments for every occasion.", price: 650, originalPrice: 950, imageUrl: "https://picsum.photos/seed/decor1/600/600", category: "Decor" },
+    { id: "jewelry-1", name: "Artisanal Jewelry", description: "Handcrafted pieces that tell a story.", price: 450, originalPrice: 799, imageUrl: "https://picsum.photos/seed/jewel1/600/600", category: "Jewelry" }
   ];
 
   return (
     <div className="flex flex-col w-full overflow-hidden">
       {/* Hero Slider Section */}
-      <section className="relative w-full h-[80vh] min-h-[600px] overflow-hidden">
+      <section className="relative w-full h-[85vh] min-h-[700px] overflow-hidden">
         <Carousel 
           setApi={setApi}
           plugins={[plugin.current]}
           className="w-full h-full"
-          onMouseEnter={() => plugin.current.stop()}
-          onMouseLeave={() => plugin.current.play()}
         >
           <CarouselContent className="h-full ml-0">
             {heroSlides.map((slide, index) => (
@@ -153,58 +128,64 @@ export default function Home() {
                     <p className="text-lg lg:text-2xl text-foreground/70 font-light max-w-2xl mx-auto leading-relaxed">
                       {slide.desc}
                     </p>
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
-                      <Link href="/products" className="w-full sm:w-auto">
-                        <Button className="w-full h-16 px-12 rounded-2xl text-xs font-bold uppercase tracking-widest gradient-primary">
-                          View Collection
+                    <div className="flex flex-col items-center gap-6 w-full max-w-md mx-auto">
+                      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+                        <Link href="/products" className="w-full">
+                          <Button className="w-full h-16 px-12 rounded-2xl text-xs font-bold uppercase tracking-widest gradient-primary">
+                            View Collection
+                          </Button>
+                        </Link>
+                        <Button 
+                          variant="secondary" 
+                          className="w-full h-16 px-12 rounded-2xl text-xs font-bold uppercase tracking-widest bg-white border border-gray-100 shadow-sm flex items-center justify-center gap-2 group hover:bg-gray-50"
+                          onClick={() => window.open('https://wa.me/919876543210', '_blank')}
+                        >
+                          <WhatsAppIcon className="h-5 w-5 text-green-600" />
+                          WhatsApp Order
                         </Button>
-                      </Link>
-                      <Button 
-                        variant="secondary" 
-                        className="w-full sm:w-auto h-16 px-12 rounded-2xl text-xs font-bold uppercase tracking-widest bg-white border border-gray-100 shadow-sm flex items-center gap-2 group hover:bg-gray-50"
-                        onClick={() => window.open('https://wa.me/919876543210', '_blank')}
-                      >
-                        <WhatsAppIcon className="h-5 w-5 text-green-600" />
-                        WhatsApp Order
-                      </Button>
+                      </div>
+
+                      {/* Autoplay Loading Indicators */}
+                      <div className="flex gap-4 z-20 mt-4">
+                        {Array.from({ length: count }).map((_, i) => (
+                          <button
+                            key={i}
+                            className="relative h-1 w-12 bg-primary/10 rounded-full overflow-hidden"
+                            onClick={() => api?.scrollTo(i)}
+                            aria-label={`Go to slide ${i + 1}`}
+                          >
+                            {current === i && (
+                              <div 
+                                className="absolute top-0 left-0 h-full bg-primary transition-all duration-100 ease-linear"
+                                style={{ width: `${progress}%` }}
+                              />
+                            )}
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          
-          {/* Autoplay Indicators (Dots) */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-            {Array.from({ length: count }).map((_, i) => (
-              <button
-                key={i}
-                className={cn(
-                  "h-1.5 transition-all duration-300 rounded-full",
-                  current === i ? "w-10 bg-primary" : "w-3 bg-primary/20"
-                )}
-                onClick={() => api?.scrollTo(i)}
-                aria-label={`Go to slide ${i + 1}`}
-              />
-            ))}
-          </div>
         </Carousel>
       </section>
 
-      {/* Featured Gallery */}
+      {/* Featured Works Grid */}
       <section className="py-24">
         <div className="container-normal">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4 px-2">
             <div className="space-y-2 text-center md:text-left">
               <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">Gallery</h4>
               <h2 className="text-3xl lg:text-5xl font-black uppercase tracking-tight text-foreground">Featured Works</h2>
             </div>
-            <Link href="/products" className="text-foreground text-[10px] font-bold uppercase tracking-[0.2em] border-b-2 border-primary/20 pb-1 hover:border-primary transition-all self-center md:self-auto">
+            <Link href="/products" className="text-foreground text-[10px] font-bold uppercase tracking-[0.2em] border-b-2 border-primary/20 pb-1 hover:border-primary transition-all">
               See All Gallery
             </Link>
           </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-8">
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -212,8 +193,30 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Trending Slider Section (Second Slider) */}
+      <section className="py-24 bg-white/50 border-y border-white">
+        <div className="container-normal">
+          <div className="text-center mb-16 space-y-2">
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">Trending Now</h4>
+            <h2 className="text-3xl lg:text-5xl font-black uppercase tracking-tight text-foreground">Most Loved Pieces</h2>
+          </div>
+          <Carousel 
+            opts={{ align: "start", loop: true }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {featuredProducts.concat(featuredProducts).map((product, index) => (
+                <CarouselItem key={`${product.id}-${index}`} className="pl-4 basis-1/2 sm:basis-1/3 lg:basis-1/5">
+                  <ProductCard product={product} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
+      </section>
+
       {/* Philosophy Section */}
-      <section className="py-24 bg-white/30">
+      <section className="py-24">
         <div className="container-normal">
           <div className="bg-white p-12 lg:p-24 rounded-[3rem] shadow-sm text-center border border-gray-100 space-y-8">
             <PanelsTopLeft className="h-10 w-10 text-primary/30 mx-auto" />
@@ -227,20 +230,20 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section className="py-32">
+      <section className="py-32 bg-secondary/30">
         <div className="container-normal">
-          <h4 className="text-[10px] font-bold text-center mb-24 uppercase tracking-[0.5em] text-primary text-center">The Experience</h4>
+          <h4 className="text-[10px] font-bold text-center mb-24 uppercase tracking-[0.5em] text-primary">The Experience</h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24">
             {[
               { id: '01', title: "Curate", desc: "Select from our gallery of hand-designed artisan creations.", icon: MousePointer2 },
-              { id: '02', title: "Connect", desc: "Direct consultation for bespoke modifications and orders via WhatsApp.", icon: WhatsAppIcon },
-              { id: '03', title: "Cherish", desc: "Bespoke delivery of a piece crafted specifically for your home.", icon: Truck }
+              { id: '02', title: "Connect", desc: "Direct consultation for bespoke modifications via WhatsApp.", icon: WhatsAppIcon },
+              { id: '03', title: "Cherish", desc: "Bespoke delivery of a piece crafted specifically for you.", icon: Truck }
             ].map((step) => {
               const Icon = step.icon;
               return (
                 <div key={step.id} className="flex flex-col items-center text-center gap-8 group">
                   <div className="size-16 rounded-2xl border border-primary/10 flex items-center justify-center text-[10px] font-black text-primary bg-white shadow-sm group-hover:bg-primary group-hover:text-white transition-all duration-500 group-hover:shadow-xl group-hover:shadow-primary/20">
-                    {typeof Icon === 'string' ? Icon : <Icon className="h-6 w-6 text-primary group-hover:text-white transition-colors" />}
+                    {typeof Icon === 'string' ? Icon : <Icon className="h-6 w-6 text-primary group-hover:text-white" />}
                   </div>
                   <div className="space-y-3">
                     <h5 className="font-bold text-lg uppercase tracking-widest text-foreground">{step.title}</h5>
@@ -258,19 +261,19 @@ export default function Home() {
         <div className="container-normal">
           <div className="bg-[#181113] text-white p-12 lg:p-24 rounded-[4rem] text-center space-y-10 relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 w-64 h-64 opacity-5 -mr-12 -mt-12 pointer-events-none">
-              <Sparkles className="w-full h-full" />
+              <Sparkles className="w-full h-full text-white" />
             </div>
             <div className="space-y-6">
-              <div className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase tracking-[0.3em] text-white/80">
+              <div className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase tracking-[0.3em] text-white">
                 AI Powered
               </div>
-              <h3 className="text-3xl lg:text-6xl font-black uppercase tracking-[0.1em] text-white text-center">Ask the Art Concierge</h3>
+              <h3 className="text-3xl lg:text-6xl font-black uppercase tracking-[0.1em] text-white">Ask the Art Concierge</h3>
               <p className="text-white/60 text-sm lg:text-lg font-light tracking-wide max-w-2xl mx-auto leading-relaxed">
-                Not sure which piece fits your aesthetic? Our AI Assistant can curate a selection based on your unique preferences and home decor style.
+                Not sure which piece fits your aesthetic? Our AI Assistant can curate a selection based on your unique style.
               </p>
             </div>
             <Link href="/discovery" className="inline-block">
-              <Button className="h-16 px-16 rounded-2xl text-[10px] font-bold uppercase tracking-widest gradient-primary border-none shadow-2xl shadow-primary/40 hover:scale-105 transition-transform">
+              <Button className="h-16 px-16 rounded-2xl text-[10px] font-bold uppercase tracking-widest gradient-primary border-none shadow-2xl shadow-primary/40 text-white">
                 Start Discovery
               </Button>
             </Link>

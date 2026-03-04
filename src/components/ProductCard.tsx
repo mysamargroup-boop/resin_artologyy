@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from 'next/image';
@@ -36,29 +37,35 @@ export function ProductCard({ product }: ProductCardProps) {
             alt={product.name}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"
+            data-ai-hint="handmade product"
           />
           <div className="absolute top-2 right-2">
             <Button 
               size="icon" 
               variant="secondary" 
-              className="rounded-full size-8 bg-white/80 backdrop-blur-sm shadow-sm text-charcoal/40 hover:text-primary transition-colors border-none"
+              className="rounded-full size-8 bg-white/80 backdrop-blur-sm shadow-sm text-foreground/40 hover:text-primary transition-colors border-none"
               onClick={handleWishlist}
             >
               <Heart className={`h-4 w-4 ${wishlisted ? 'fill-primary text-primary' : ''}`} />
             </Button>
           </div>
           {product.tags?.includes('Bestseller') && (
-            <div className="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded text-[8px] text-charcoal font-bold uppercase tracking-widest border border-gray-100">
+            <div className="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded text-[8px] text-foreground font-bold uppercase tracking-widest border border-gray-100">
               Bestseller
             </div>
           )}
         </div>
         
         <div className="px-1 pb-1 pt-2">
-          <p className="text-charcoal text-[11px] font-bold uppercase tracking-wide truncate">
+          <p className="text-foreground text-[11px] font-bold uppercase tracking-wide truncate">
             {product.name}
           </p>
-          <p className="text-primary text-[10px] font-semibold mt-1">₹{product.price}</p>
+          <div className="flex items-center gap-2 mt-1">
+            <p className="text-primary text-[10px] font-bold">₹{product.price}</p>
+            {product.originalPrice && (
+              <p className="text-muted-foreground text-[9px] line-through">₹{product.originalPrice}</p>
+            )}
+          </div>
         </div>
       </Link>
     </div>
