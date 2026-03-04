@@ -16,7 +16,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   const { id } = use(params);
   const { addToCart, addToWishlist, isWishlisted, removeFromWishlist } = useStore();
   
-  // Find product in dummy data store
   const productData = PlaceHolderImages.find(p => p.id === id);
   
   if (!productData) {
@@ -31,7 +30,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
     );
   }
 
-  // Construct UI product object with original price logic
   const category = productData.id.startsWith('fest') ? 'Festive' : productData.id.startsWith('home') ? 'Home Decor' : 'Wedding';
   const price = productData.id.startsWith('fest') ? 899 : productData.id.startsWith('home') ? 1299 : 3500;
   const originalPrice = Math.round(price * 1.35);
@@ -72,7 +70,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
   return (
     <div className="w-full overflow-x-hidden">
-      <div className="container mx-auto px-4 py-8 lg:py-12">
+      <div className="container mx-auto px-4 py-8 lg:py-12 max-w-7xl">
         {/* Breadcrumbs */}
         <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-8">
           <Link href="/" className="hover:text-primary transition-colors">Home</Link>
@@ -85,8 +83,8 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          <div className="space-y-4">
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-white bg-white">
+          <div className="space-y-4 w-full">
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-2 border-white bg-white w-full">
               <Image src={product.imageUrl} alt={product.name} fill className="object-cover" priority />
             </div>
             <div className="grid grid-cols-4 gap-3">
@@ -98,7 +96,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             </div>
           </div>
 
-          <div className="space-y-6 lg:space-y-8">
+          <div className="space-y-6 lg:space-y-8 w-full">
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Badge className="bg-primary/10 text-primary border-none px-3 py-1 rounded-full uppercase tracking-widest text-[9px] font-black">{product.category}</Badge>
@@ -107,7 +105,9 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 </div>
                 <span className="text-[10px] font-bold text-muted-foreground">(24)</span>
               </div>
-              <h1 className="text-2xl sm:text-4xl lg:text-7xl font-black font-headline tracking-tight uppercase leading-[1.1]">{product.name}</h1>
+              <h1 className="text-2xl sm:text-4xl lg:text-7xl font-black font-headline tracking-tight uppercase leading-[1.1] text-foreground">
+                {product.name}
+              </h1>
               <div className="flex items-center gap-3">
                 <p className="text-2xl lg:text-5xl font-black font-headline text-primary">₹{product.price}</p>
                 <p className="text-lg lg:text-2xl text-muted-foreground line-through decoration-primary/30 font-light italic">₹{product.originalPrice}</p>
@@ -125,29 +125,30 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             </div>
 
             {/* Action Buttons */}
-            <div className="space-y-4">
-              {/* Primary Actions */}
+            <div className="space-y-4 w-full">
+              {/* Primary Actions - Side by Side */}
               <div className="flex gap-3 w-full">
                 <Button 
                   size="lg" 
-                  className="h-14 lg:h-16 rounded-2xl text-[10px] sm:text-xs font-bold uppercase tracking-widest border border-primary text-primary hover:bg-primary/5 bg-transparent flex-1 shadow-lg shadow-primary/5 px-4" 
+                  variant="outline"
+                  className="h-14 lg:h-16 rounded-2xl text-[9px] sm:text-[10px] font-bold uppercase tracking-widest border-primary text-primary hover:bg-primary/5 bg-transparent flex-1 shadow-sm px-2" 
                   onClick={() => {addToCart(product); toast({title: "Added to bag", description: product.name});}}
                 >
-                  <ShoppingCart className="h-4 w-4 mr-1.5" />
+                  <ShoppingCart className="h-4 w-4 mr-1 sm:mr-1.5" />
                   Add to Bag
                 </Button>
                 <Button 
                   size="lg" 
-                  className="h-14 lg:h-16 rounded-2xl text-[10px] sm:text-xs font-bold uppercase tracking-widest gradient-primary flex-1 shadow-xl shadow-primary/20 px-4" 
+                  className="h-14 lg:h-16 rounded-2xl text-[9px] sm:text-[10px] font-bold uppercase tracking-widest gradient-primary flex-1 shadow-lg shadow-primary/20 px-2" 
                   onClick={() => {addToCart(product); window.location.href = '/cart';}}
                 >
-                  <Zap className="h-4 w-4 mr-1.5" />
+                  <Zap className="h-4 w-4 mr-1 sm:mr-1.5" />
                   Buy Now
                 </Button>
               </div>
 
-              {/* Utility Actions */}
-              <div className="flex items-center gap-2 sm:gap-4 pt-2 w-full overflow-hidden">
+              {/* Utility Actions - Properly Aligned Row */}
+              <div className="flex items-center gap-3 pt-2 w-full">
                 <Button 
                   size="icon" 
                   variant="outline" 
@@ -178,7 +179,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 
                 <div className="h-px flex-grow bg-primary/5 mx-1" />
                 
-                <Link href="https://wa.me/919876543210" target="_blank" className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-primary flex items-center hover:opacity-70 transition-opacity whitespace-nowrap">
+                <Link href="https://wa.me/919876543210" target="_blank" className="text-[9px] font-black uppercase tracking-widest text-primary flex items-center hover:opacity-70 transition-opacity whitespace-nowrap">
                   ASK THE ARTIST
                 </Link>
               </div>
