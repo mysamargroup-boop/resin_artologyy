@@ -22,25 +22,28 @@ export default function Home() {
   }, {});
 
   return (
-    <div className="flex flex-col w-full overflow-hidden space-y-16 lg:space-y-24">
+    <div className="flex flex-col w-full overflow-hidden">
       <MobileCategoryGrid />
       <DesktopCategoryGrid />
       <HeroSlider />
-      <MasterpieceGallery />
+      
+      <div className="space-y-16 lg:space-y-24 py-16 lg:py-24">
+        <MasterpieceGallery />
 
-      {Object.entries(productsByCategory).map(([catName, products], idx) => (
-        <ProductCollection 
-          key={catName} 
-          categoryName={catName} 
-          products={products} 
-          index={idx}
-        />
-      ))}
+        {Object.entries(productsByCategory).map(([catName, products], idx) => (
+          <ProductCollection 
+            key={catName} 
+            categoryName={catName} 
+            products={products} 
+            index={idx}
+          />
+        ))}
 
-      <InstagramFeed />
-      <Testimonials />
-      <OurStory />
-      <DiscoveryCTA />
+        <InstagramFeed />
+        <Testimonials />
+        <OurStory />
+        <DiscoveryCTA />
+      </div>
     </div>
   );
 }
