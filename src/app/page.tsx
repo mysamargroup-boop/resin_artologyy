@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Truck, ChevronRight, Star, Quote, Sparkles, Instagram, Gem } from 'lucide-react';
+import { ChevronRight, Star, Quote, Instagram, Gem } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/ProductCard';
 import {
@@ -107,30 +107,38 @@ export default function Home() {
       {/* Mobile Categories Section */}
       <section className="py-8 md:hidden">
         <div className="container-normal px-4">
-            <div className="grid grid-cols-4 gap-3">
-                {artisticCategories.slice(0, 4).map((cat, index) => (
-                    <Link key={index} href={`/products?category=${encodeURIComponent(cat.name)}`} className="group block text-center space-y-2">
-                        <div className="relative aspect-square rounded-2xl overflow-hidden shadow-md">
-                            <Image 
-                              src={cat.imageUrl} 
-                              alt={cat.name} 
-                              fill
-                              sizes="25vw"
-                              className="object-cover transition-transform duration-500 group-hover:scale-110" 
-                            />
-                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors"></div>
+            <div className="relative">
+              <div className="flex items-center gap-3 overflow-x-auto pb-4 scrollbar-hide">
+                {artisticCategories.map((cat, index) => (
+                    <Link 
+                      key={index} 
+                      href={`/products?category=${encodeURIComponent(cat.name)}`} 
+                      className="group block text-center space-y-2 shrink-0 w-20"
+                    >
+                        <div className="relative aspect-square rounded-full overflow-hidden shadow-md border-2 border-primary/20 bg-gradient-to-br from-yellow-300 to-rose-300 p-0.5">
+                            <div className="bg-background rounded-full w-full h-full p-1">
+                                <Image 
+                                  src={cat.imageUrl} 
+                                  alt={cat.name} 
+                                  fill
+                                  sizes="20vw"
+                                  className="object-cover rounded-full transition-transform duration-500 group-hover:scale-110" 
+                                />
+                            </div>
                         </div>
                          <span className="block text-[9px] font-bold text-muted-foreground group-hover:text-primary transition-colors leading-tight px-1">
                             {cat.name}
                         </span>
                     </Link>
                 ))}
+              </div>
+              <div className="absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-background to-transparent pointer-events-none" />
             </div>
         </div>
     </section>
 
       {/* Desktop Categories Squares Section */}
-      <section className="py-16 bg-secondary/30 border-b border-border hidden md:block">
+      <section className="py-12 bg-secondary/30 border-b border-border hidden md:block">
         <div className="container-normal px-4 text-center">
           <div className="flex flex-col items-center gap-2 mb-12">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary">Explore Our Craft</h4>
@@ -146,8 +154,7 @@ export default function Home() {
                   sizes="(max-width: 767px) 50vw, 25vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110" 
                 />
-                <div className="absolute inset-0 bg-black/50 group-hover:bg-black/70 transition-colors"></div>
-                <div className="absolute inset-0 flex items-center justify-center p-4">
+                <div className="absolute inset-0 bg-black/50 group-hover:bg-black/70 transition-colors flex items-center justify-center p-4">
                    <span className="block text-base sm:text-xl font-black uppercase tracking-widest text-white leading-tight drop-shadow-md text-center">
                     {cat.name}
                   </span>
@@ -159,41 +166,17 @@ export default function Home() {
       </section>
 
       {/* New 2-column Hero Slider */}
-      <section className="w-full overflow-hidden py-16">
+      <section className="w-full overflow-hidden py-12">
          <Carousel 
           setApi={setApi}
           plugins={[plugin.current]}
           className="w-full"
         >
-          <CarouselContent className="ml-0">
+          <CarouselContent className="-ml-4 md:ml-0">
             {heroSlides.map((slide, index) => (
-              <CarouselItem key={index} className="relative pl-0">
+              <CarouselItem key={index} className="relative pl-4 md:pl-0">
                 <div className="container-normal">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-                    {/* Left Column: Text */}
-                    <div className={cn(
-                      "text-center md:text-left space-y-6 pb-8 md:pb-0 transition-all duration-1000 ease-out order-2 md:order-1",
-                       current === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-                    )}>
-                       <div className="inline-block px-5 py-2 rounded-full border border-primary/30 text-[10px] font-black uppercase tracking-[0.4em] text-primary bg-primary/10 backdrop-blur-md">
-                          {slide.badge}
-                        </div>
-                        <h1 className="text-4xl lg:text-5xl font-black leading-none uppercase tracking-tight text-foreground drop-shadow-lg">
-                          {slide.title}
-                        </h1>
-                        <p className="text-sm lg:text-base text-muted-foreground font-light leading-relaxed max-w-lg mx-auto md:mx-0">
-                          {slide.desc}
-                        </p>
-                        <div className="pt-4 lg:pt-6 md:pb-8">
-                          <Link href={`/products?category=${encodeURIComponent(slide.categoryName)}`}>
-                            <Button className="h-12 px-8 md:h-14 lg:h-16 lg:px-12 rounded-2xl text-[11px] font-black uppercase tracking-[0.3em] gradient-primary border-none active:scale-95 transition-all hover:scale-105">
-                              Shop {slide.categoryName}
-                            </Button>
-                          </Link>
-                        </div>
-                    </div>
-
-                    {/* Right Column: Image */}
                     <div className="relative aspect-[16/9] w-full order-1 md:order-2">
                        <Image 
                         src={slide.image}
@@ -207,13 +190,34 @@ export default function Home() {
                         priority
                       />
                     </div>
+                    <div className={cn(
+                      "text-center md:text-left space-y-4 md:space-y-6 transition-all duration-1000 ease-out order-2 md:order-1",
+                       current === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+                    )}>
+                       <div className="inline-block px-5 py-2 rounded-full border border-primary/30 text-[10px] font-black uppercase tracking-[0.4em] text-primary bg-primary/10 backdrop-blur-md">
+                          {slide.badge}
+                        </div>
+                        <h1 className="text-3xl lg:text-4xl font-black leading-none uppercase tracking-tight text-foreground drop-shadow-lg">
+                          {slide.title}
+                        </h1>
+                        <p className="text-sm lg:text-base text-muted-foreground font-light leading-relaxed max-w-lg mx-auto md:mx-0">
+                          {slide.desc}
+                        </p>
+                        <div className="pt-2 md:pt-4 pb-4 md:pb-8">
+                          <Link href={`/products?category=${encodeURIComponent(slide.categoryName)}`}>
+                            <Button className="h-12 px-8 md:h-14 lg:px-12 rounded-2xl text-[11px] font-black uppercase tracking-[0.3em] gradient-primary border-none active:scale-95 transition-all hover:scale-105">
+                              Shop {slide.categoryName}
+                            </Button>
+                          </Link>
+                        </div>
+                    </div>
                   </div>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
           
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-20">
             {Array.from({ length: count }).map((_, i) => (
               <button
                 key={i}
@@ -232,8 +236,8 @@ export default function Home() {
       </section>
 
       {/* Masterpiece Gallery Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="container-normal px-4 text-center mb-16 space-y-4">
+      <section className="py-16 relative overflow-hidden">
+        <div className="container-normal px-4 text-center mb-12 space-y-4">
           <p className="text-[11px] font-black uppercase tracking-[0.6em] text-primary">Premium Spotlight</p>
           <h2 className="text-3xl lg:text-6xl font-black uppercase tracking-tight">The Masterpiece Gallery</h2>
         </div>
@@ -274,7 +278,7 @@ export default function Home() {
       {/* Product Collections Grid */}
       {Object.entries(productsByCategory).map(([catName, products], idx) => (
         <section key={catName} className={cn(
-          "py-24 relative overflow-hidden",
+          "py-16 relative overflow-hidden",
           idx % 2 === 0 ? "bg-secondary/20" : "bg-transparent"
         )}>
           <div className="container-normal relative z-10 px-4">
@@ -299,9 +303,9 @@ export default function Home() {
       ))}
 
       {/* Instagram Feed */}
-      <section className="py-24 bg-secondary/20">
+      <section className="py-16 bg-secondary/20">
         <div className="container-normal px-4">
-          <div className="text-center mb-16 space-y-6">
+          <div className="text-center mb-12 space-y-6">
             <Link 
               href="https://instagram.com/resinartologyy" 
               target="_blank" 
@@ -334,9 +338,9 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-secondary/50 overflow-hidden">
+      <section className="py-16 bg-secondary/50 overflow-hidden">
         <div className="container-normal px-4">
-          <div className="text-center mb-16 space-y-4">
+          <div className="text-center mb-12 space-y-4">
             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-primary">Our Collectors</p>
             <h2 className="text-3xl lg:text-6xl font-black uppercase tracking-tight">Kind Words & Stories</h2>
           </div>
@@ -368,7 +372,7 @@ export default function Home() {
       </section>
 
       {/* Signature & Our Story Section */}
-      <section className="py-24 overflow-hidden">
+      <section className="py-16 overflow-hidden">
         <div className="container-normal px-4 flex flex-col items-center text-center space-y-8">
            <h2 className="text-7xl lg:text-9xl font-cursive text-primary lowercase tracking-tight drop-shadow-sm select-none">
              Resin Artologyy
@@ -391,7 +395,7 @@ export default function Home() {
       </section>
 
       {/* Discovery CTA */}
-      <section className="py-24">
+      <section className="py-16">
         <div className="container-normal px-4">
           <div className="bg-secondary text-secondary-foreground p-12 lg:p-24 rounded-[3rem] lg:rounded-[5rem] text-center space-y-10 relative overflow-hidden shadow-2xl">
             <div className="absolute inset-0 opacity-10 pointer-events-none">
