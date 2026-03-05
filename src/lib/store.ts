@@ -8,18 +8,23 @@ import { Product, CartItem } from './types';
 export function useStore() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [wishlist, setWishlist] = useState<Product[]>([]);
+  const [couponCode, setCouponCode] = useState<string | null>(null);
 
   useEffect(() => {
     const savedCart = localStorage.getItem('sh_cart');
     const savedWishlist = localStorage.getItem('sh_wishlist');
+    const savedCoupon = localStorage.getItem('sh_coupon');
     if (savedCart) setCart(JSON.parse(savedCart));
     if (savedWishlist) setWishlist(JSON.parse(savedWishlist));
+    if (savedCoupon) setCouponCode(JSON.parse(savedCoupon));
 
     const handleStorage = () => {
       const updatedCart = localStorage.getItem('sh_cart');
       const updatedWishlist = localStorage.getItem('sh_wishlist');
+      const updatedCoupon = localStorage.getItem('sh_coupon');
       if (updatedCart) setCart(JSON.parse(updatedCart));
       if (updatedWishlist) setWishlist(JSON.parse(updatedWishlist));
+      setCouponCode(updatedCoupon ? JSON.parse(updatedCoupon) : null);
     };
 
     window.addEventListener('storage', handleStorage);
@@ -31,7 +36,11 @@ export function useStore() {
   }, []);
 
   const updateStorage = (key: string, value: any) => {
-    localStorage.setItem(key, JSON.stringify(value));
+    if (value === null || value === undefined) {
+      localStorage.removeItem(key);
+    } else {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
     window.dispatchEvent(new Event('sh_update'));
   };
 
@@ -52,14 +61,24 @@ export function useStore() {
   };
 
   const updateCartQuantity = (productId: string, delta: number) => {
-    const newCart = cart.map(item => {
+    let newCart = cart.map(item => {
       if (item.id === productId) {
-        const newQty = Math.max(1, item.quantity + delta);
+        const newQty = item.quantity + delta;
         return { ...item, quantity: newQty };
       }
       return item;
-    });
+    }).filter(item => item.quantity > 0);
     updateStorage('sh_cart', newCart);
+  };
+
+  const setCoupon = (code: string | null) => {
+    setCouponCode(code);
+    updateStorage('sh_coupon', code);
+  }
+
+  const clearCart = () => {
+    updateStorage('sh_cart', []);
+    updateStorage('sh_coupon', null);
   };
 
   const addToWishlist = (product: Product) => {
@@ -73,13 +92,11 @@ export function useStore() {
     updateStorage('sh_wishlist', newWishlist);
   };
 
-  const clearCart = () => {
-    updateStorage('sh_cart', []);
-  };
-
   return {
     cart,
     wishlist,
+    couponCode,
+    setCoupon,
     addToCart,
     removeFromCart,
     updateCartQuantity,

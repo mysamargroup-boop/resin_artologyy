@@ -29,7 +29,7 @@ interface WhatsAppCheckoutProps {
   coupon?: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onSuccess: () => void;
+  onSuccess: (customerDetails: any) => void;
 }
 
 export function WhatsAppCheckout({ items, total, savings, coupon, open, onOpenChange, onSuccess }: WhatsAppCheckoutProps) {
@@ -66,7 +66,7 @@ export function WhatsAppCheckout({ items, total, savings, coupon, open, onOpenCh
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${businessPhone}?text=${encodedMessage}`, '_blank');
-    onSuccess();
+    onSuccess(formData);
     onOpenChange(false);
   };
 

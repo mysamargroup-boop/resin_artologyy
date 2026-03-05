@@ -1,23 +1,41 @@
 
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, Sparkles, Ticket } from 'lucide-react';
 import { useStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
 import { WhatsAppCheckout } from '@/components/WhatsAppCheckout';
+import { OrderConfirmation } from '@/components/OrderConfirmation';
 import { toast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
+import { CartItem } from '@/lib/types';
 
 export default function CartPage() {
-  const { cart, removeFromCart, updateCartQuantity, clearCart } = useStore();
+  const { cart, removeFromCart, updateCartQuantity, clearCart, couponCode, setCoupon } = useStore();
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const [couponCode, setCouponCode] = useState('');
+  const [couponInput, setCouponInput] = useState('');
   const [appliedDiscount, setAppliedDiscount] = useState(0);
   const [isSparkling, setIsSparkling] = useState(false);
+  const [orderConfirmationData, setOrderConfirmationData] = useState<{
+    items: CartItem[];
+    total: number;
+    savings: number;
+    coupon?: string;
+    customerDetails: any;
+  } | null>(null);
+
+  useEffect(() => {
+    if (couponCode === 'SUMEGHA10') {
+      setAppliedDiscount(10);
+      setCouponInput(couponCode);
+    } else {
+      setAppliedDiscount(0);
+    }
+  }, [couponCode]);
 
   // Use sale_price for current value and regular_price for comparison
   const subtotal = cart.reduce((sum, item) => sum + (item.sale_price * item.quantity), 0);
@@ -28,31 +46,52 @@ export default function CartPage() {
   const totalSavings = (totalOriginal - subtotal) + discountFromCoupon;
 
   const handleApplyCoupon = () => {
-    if (couponCode.toUpperCase() === 'SUMEGHA10') {
-      setAppliedDiscount(10);
+    if (couponInput.toUpperCase() === 'SUMEGHA10') {
+      setCoupon('SUMEGHA10');
       setIsSparkling(true);
       toast({
         title: "Coupon Applied!",
         description: "You got an extra 10% off.",
         duration: 3000,
       });
-      // Celebration effect lasts for 3 seconds
       setTimeout(() => setIsSparkling(false), 3000);
-    } else if (couponCode.trim() !== '') {
-      toast({
-        variant: "destructive",
-        title: "Invalid Coupon",
-        description: "Please try SUMEGHA10 for a discount.",
-        duration: 3000,
-      });
+    } else {
+      setCoupon(null);
+      if (couponInput.trim() !== '') {
+        toast({
+          variant: "destructive",
+          title: "Invalid Coupon",
+          description: "The coupon code is invalid.",
+          duration: 3000,
+        });
+      }
     }
   };
-
+  
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       handleApplyCoupon();
     }
   };
+
+  const handleSuccessfulCheckout = (customerDetails: any) => {
+    setOrderConfirmationData({
+      items: cart,
+      total: finalTotal,
+      savings: totalSavings,
+      coupon: couponCode || undefined,
+      customerDetails,
+    });
+  };
+  
+  const closeConfirmation = () => {
+    setOrderConfirmationData(null);
+    clearCart();
+  };
+
+  if (orderConfirmationData) {
+    return <OrderConfirmation {...orderConfirmationData} onOpenChange={closeConfirmation} />
+  }
 
   if (cart.length === 0) {
     return (
@@ -169,8 +208,8 @@ export default function CartPage() {
                 <Input 
                   placeholder="COUPON CODE" 
                   className="rounded-xl border-primary/10 bg-primary/5 h-12 text-[10px] font-bold tracking-widest uppercase"
-                  value={couponCode}
-                  onChange={(e) => setCouponCode(e.target.value)}
+                  value={couponInput}
+                  onChange={(e) => setCouponInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                 />
                 <Button 
@@ -245,11 +284,8 @@ export default function CartPage() {
         items={cart} 
         total={finalTotal} 
         savings={totalSavings}
-        coupon={appliedDiscount > 0 ? couponCode : undefined}
-        onSuccess={() => {
-          clearCart();
-          toast({ title: "Order sent!", description: "Check WhatsApp to finalize with the artist." });
-        }}
+        coupon={couponCode || undefined}
+        onSuccess={handleSuccessfulCheckout}
       />
     </div>
   );

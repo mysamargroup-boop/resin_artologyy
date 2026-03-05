@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { ShoppingBag, Heart, Menu, X, Home, Shapes, Info, Phone, Gem, BookText, Trash2, Plus, Minus, ArrowRight } from 'lucide-react';
+import { ShoppingBag, Heart, Menu, X, Home, Shapes, Info, Phone, Gem, BookText, Trash2, Plus, Minus, ArrowRight, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { useStore } from '@/lib/store';
 import { Button } from '@/components/ui/button';
@@ -17,7 +17,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Separator } from '@/components/ui/separator';
+import categoriesData from "@/lib/categories.json";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg 
@@ -32,12 +32,13 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const pathname = usePathname();
   const { cart, wishlist, removeFromCart, updateCartQuantity } = useStore();
 
   const navLinks = [
     { name: 'Home', href: '/', icon: Home },
-    { name: 'Collections', href: '/collections', icon: Shapes },
+    { name: 'Collections', href: '/collections', icon: Shapes, hasMegaMenu: true },
     { name: 'Gallery', href: '/products', icon: Shapes },
     { name: 'Our Story', href: '/about', icon: Info },
     { name: 'Blog', href: '/blog', icon: BookText },
@@ -67,7 +68,7 @@ export function Header() {
           {/* Center: Logo Image (Absolute) */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <Link href="/" className="flex items-center group">
-              <h1 className="text-lg font-black font-display uppercase tracking-wider text-foreground whitespace-nowrap">
+              <h1 className="text-lg sm:text-xl font-black font-display uppercase tracking-wider text-foreground whitespace-nowrap">
                 Resin Artologyy
               </h1>
             </Link>
@@ -171,6 +172,53 @@ export function Header() {
         <nav className="hidden lg:flex items-center justify-center space-x-12 mt-4 pt-3 border-t border-border/50">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
+            if (link.hasMegaMenu) {
+              return (
+                <div 
+                  key={link.name} 
+                  className="relative"
+                  onMouseEnter={() => setIsMegaMenuOpen(true)} 
+                  onMouseLeave={() => setIsMegaMenuOpen(false)}
+                >
+                  <Link 
+                    href={link.href}
+                    className={cn(
+                      "flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.3em] transition-all relative group",
+                      (isActive || isMegaMenuOpen) ? "text-primary" : "text-muted-foreground hover:text-primary"
+                    )}
+                  >
+                    {link.name}
+                    <ChevronDown className={cn("h-3 w-3 transition-transform", isMegaMenuOpen && "rotate-180")} />
+                  </Link>
+                  {isMegaMenuOpen && (
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-max animate-in fade-in duration-300">
+                      <div className="bg-card rounded-2xl shadow-2xl border border-border/50 p-6 grid grid-cols-3 gap-x-12 gap-y-6">
+                        {categoriesData.categories.map(cat => (
+                          <div key={cat.id} className="space-y-3">
+                            <h3 className="font-bold text-primary uppercase tracking-widest text-[10px] border-b border-primary/20 pb-2">
+                              <Link href={`/products?category=${encodeURIComponent(cat.name)}`} onClick={() => setIsMegaMenuOpen(false)}>{cat.name}</Link>
+                            </h3>
+                            <ul className="space-y-2">
+                              {cat.subCategories.map(sub => (
+                                <li key={sub.name}>
+                                  <Link 
+                                    href={`/products?category=${encodeURIComponent(cat.name)}&subcategory=${encodeURIComponent(sub.name)}`}
+                                    onClick={() => setIsMegaMenuOpen(false)}
+                                    className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                                  >
+                                    {sub.name}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            }
             return (
               <Link 
                 key={link.name} 
