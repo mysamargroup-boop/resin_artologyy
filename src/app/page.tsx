@@ -112,11 +112,15 @@ export default function Home() {
 
   return (
     <div className="flex flex-col w-full overflow-hidden">
-      {/* Mobile-Only Top Category Slider */}
-      <section className="md:hidden py-4 bg-white/40 border-b border-white">
-        <div className="flex gap-4 overflow-x-auto scrollbar-hide px-4">
+      {/* Mobile-Only Top Category Slider with Blur Overlay */}
+      <section className="md:hidden py-4 bg-white/40 border-b border-white relative">
+        <div className="flex gap-4 overflow-x-auto scrollbar-hide px-4 pr-12 snap-x snap-mandatory">
           {categoriesData.categories.map((cat, index) => (
-            <Link key={index} href={`/products?category=${encodeURIComponent(cat.name)}`} className="flex flex-col items-center shrink-0 space-y-2 group">
+            <Link 
+              key={index} 
+              href={`/products?category=${encodeURIComponent(cat.name)}`} 
+              className="flex flex-col items-center shrink-0 space-y-2 group snap-center"
+            >
               <div className="relative p-[2px] bg-gradient-to-tr from-[#FFD700] via-[#FF69B4] to-[#cf1745] rounded-full shadow-sm">
                 <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white">
                   <Image 
@@ -127,12 +131,14 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-foreground/70 group-hover:text-primary transition-colors text-center w-auto leading-tight">
+              <span className="text-[9px] font-black uppercase tracking-tight text-foreground/70 group-hover:text-primary transition-colors text-center w-[72px] leading-tight">
                 {cat.name}
               </span>
             </Link>
           ))}
         </div>
+        {/* Right side blur overlay to indicate sliding */}
+        <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-background via-background/20 to-transparent pointer-events-none z-10" />
       </section>
 
       {/* Full-Width Hero Section */}
@@ -145,7 +151,7 @@ export default function Home() {
           <CarouselContent className="ml-0">
             {heroSlides.map((slide, index) => (
               <CarouselItem key={index} className="relative pl-0">
-                <div className="relative h-[60vh] sm:h-[65vh] min-h-[400px] w-full bg-black/5">
+                <div className="relative h-[50vh] lg:h-[60vh] min-h-[400px] w-full bg-black/5">
                   <div className="absolute inset-0 z-0">
                     <Image 
                       src={slide.image}
@@ -158,12 +164,12 @@ export default function Home() {
                       )}
                       priority
                     />
-                    <div className="absolute inset-0 bg-black/30" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/60" />
+                    <div className="absolute inset-0 bg-black/20" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/50" />
                   </div>
 
                   <div className={cn(
-                    "relative z-10 h-full flex items-center justify-center p-6 sm:p-12 pb-12 sm:pb-24 text-center transition-all duration-1000 ease-out",
+                    "relative z-10 h-full flex items-center justify-center p-6 sm:p-12 pb-20 sm:pb-32 text-center transition-all duration-1000 ease-out",
                     current === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
                   )}>
                     <div className="max-w-4xl w-full flex flex-col items-center space-y-6">
@@ -173,19 +179,19 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="space-y-1">
-                        <h1 className="text-3xl sm:text-5xl font-black leading-none uppercase tracking-tighter text-white drop-shadow-lg">
+                        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black leading-none uppercase tracking-tighter text-white drop-shadow-lg">
                           {slide.title}
                         </h1>
-                        <h2 className="text-3xl sm:text-5xl font-black leading-none uppercase tracking-tighter text-primary drop-shadow-lg">
+                        <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black leading-none uppercase tracking-tighter text-primary drop-shadow-lg">
                           {slide.highlight}
                         </h2>
                       </div>
-                      <p className="text-xs sm:text-sm text-white/90 font-light leading-relaxed max-w-2xl drop-shadow-md px-4">
+                      <p className="text-[10px] sm:text-xs lg:text-sm text-white/90 font-light leading-relaxed max-w-2xl drop-shadow-md px-4">
                         {slide.desc}
                       </p>
-                      <div className="pt-4">
+                      <div className="pt-4 lg:pt-8">
                         <Link href={`/products?category=${encodeURIComponent(slide.categoryName)}`}>
-                          <Button className="h-12 sm:h-14 px-8 sm:px-12 rounded-2xl text-[10px] sm:text-[11px] font-black uppercase tracking-[0.3em] gradient-primary border-none shadow-none active:scale-95 transition-all hover:scale-105">
+                          <Button className="h-12 lg:h-14 px-10 lg:px-14 rounded-2xl text-[10px] lg:text-[11px] font-black uppercase tracking-[0.3em] gradient-primary border-none shadow-none active:scale-95 transition-all hover:scale-105">
                             Shop {slide.categoryName}
                           </Button>
                         </Link>
@@ -216,7 +222,7 @@ export default function Home() {
         </Carousel>
       </section>
 
-      {/* Desktop Artistic Categories Grid */}
+      {/* Desktop Artistic Categories Grid - 3 columns on mobile (already covered by hidden sm: section above, but let's optimize the grid section below for 3 cols too) */}
       <section className="py-20 bg-white/40 border-y border-white">
         <div className="container-normal px-4 text-center">
           <div className="flex flex-col items-center gap-2 mb-12">
@@ -264,7 +270,7 @@ export default function Home() {
                 <CarouselItem key={index} className="pl-4 sm:pl-8 basis-[80%] sm:basis-[60%] lg:basis-[45%]">
                   <div className={cn(
                     "relative aspect-square sm:aspect-video rounded-[2.5rem] overflow-hidden transition-all duration-700 ease-in-out border-4 border-white",
-                    isActive ? "scale-100 blur-0 opacity-100 shadow-xl" : "scale-90 blur-md opacity-40"
+                    isActive ? "scale-100 blur-0 opacity-100 shadow-none" : "scale-90 blur-md opacity-40 shadow-none"
                   )}>
                     <Image src={slide.url} alt={slide.title} fill className="object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
