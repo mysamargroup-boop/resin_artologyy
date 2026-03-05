@@ -112,16 +112,40 @@ export default function Home() {
 
   return (
     <div className="flex flex-col w-full overflow-hidden">
-      <section className="relative w-full px-4 sm:px-6 pt-6 pb-24">
+      {/* Mobile-Only Top Category Slider */}
+      <section className="md:hidden py-4 bg-white/40 border-b border-white">
+        <div className="flex gap-4 overflow-x-auto scrollbar-hide px-4">
+          {categoriesData.categories.map((cat, index) => (
+            <Link key={index} href={`/products?category=${encodeURIComponent(cat.name)}`} className="flex flex-col items-center shrink-0 space-y-2 group">
+              <div className="relative p-[2px] bg-gradient-to-tr from-[#FFD700] via-[#FF69B4] to-[#cf1745] rounded-full shadow-sm">
+                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white">
+                  <Image 
+                    src={cat.imageUrl} 
+                    alt={cat.name} 
+                    fill 
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+              </div>
+              <span className="text-[9px] font-black uppercase tracking-widest text-foreground/70 group-hover:text-primary transition-colors text-center w-16 leading-tight truncate">
+                {cat.name.split(' ')[0]}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Full-Width Hero Section */}
+      <section className="relative w-full overflow-hidden">
         <Carousel 
           setApi={setApi}
           plugins={[plugin.current]}
-          className="w-full max-w-[1440px] mx-auto"
+          className="w-full"
         >
           <CarouselContent className="ml-0">
             {heroSlides.map((slide, index) => (
               <CarouselItem key={index} className="relative pl-0">
-                <div className="relative h-[65vh] sm:h-[75vh] min-h-[550px] w-full rounded-2xl overflow-hidden bg-black/5 border border-white/20">
+                <div className="relative h-[70vh] sm:h-[85vh] min-h-[500px] w-full bg-black/5">
                   <div className="absolute inset-0 z-0">
                     <Image 
                       src={slide.image}
@@ -139,25 +163,28 @@ export default function Home() {
                   </div>
 
                   <div className={cn(
-                    "relative z-10 h-full flex items-center justify-center p-8 text-center transition-all duration-1000",
-                    current === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                    "relative z-10 h-full flex items-center justify-center p-6 sm:p-12 text-center transition-all duration-1000",
+                    current === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   )}>
-                    <div className="max-w-4xl w-full flex flex-col items-center space-y-6 sm:space-y-8">
-                      <div className="inline-block px-5 py-2 rounded-full border border-white/30 text-[10px] font-black uppercase tracking-[0.4em] text-white bg-white/10 backdrop-blur-md">
-                        {slide.badge}
+                    <div className="max-w-4xl w-full flex flex-col items-center space-y-6 sm:space-y-10">
+                      <div className="flex flex-col items-center gap-4">
+                        <Sparkles className="h-8 w-8 text-primary animate-pulse" />
+                        <div className="inline-block px-5 py-2 rounded-full border border-white/30 text-[10px] font-black uppercase tracking-[0.4em] text-white bg-white/10 backdrop-blur-md">
+                          {slide.badge}
+                        </div>
                       </div>
-                      <div className="space-y-4">
-                        <h1 className="text-4xl sm:text-8xl font-black leading-none uppercase tracking-tighter text-white drop-shadow-sm">
+                      <div className="space-y-2 sm:space-y-4">
+                        <h1 className="text-3xl sm:text-8xl font-black leading-none uppercase tracking-tighter text-white drop-shadow-lg">
                           {slide.title}
                         </h1>
-                        <h2 className="text-4xl sm:text-8xl font-black leading-none uppercase tracking-tighter text-primary drop-shadow-sm">
+                        <h2 className="text-3xl sm:text-8xl font-black leading-none uppercase tracking-tighter text-primary drop-shadow-lg">
                           {slide.highlight}
                         </h2>
                       </div>
-                      <p className="text-sm sm:text-2xl text-white/90 font-light leading-relaxed max-w-2xl drop-shadow-md px-4">
+                      <p className="text-xs sm:text-xl text-white/90 font-light leading-relaxed max-w-2xl drop-shadow-md px-4">
                         {slide.desc}
                       </p>
-                      <div className="pt-6 sm:pt-10">
+                      <div className="pt-4 sm:pt-6">
                         <Link href={`/products?category=${encodeURIComponent(slide.categoryName)}`}>
                           <Button className="h-12 sm:h-16 px-8 sm:px-14 rounded-2xl text-[10px] sm:text-[11px] font-black uppercase tracking-[0.3em] gradient-primary border-none shadow-none active:scale-95 transition-all hover:scale-105">
                             Shop {slide.categoryName}
@@ -171,16 +198,16 @@ export default function Home() {
             ))}
           </CarouselContent>
           
-          <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
             {Array.from({ length: count }).map((_, i) => (
               <button
                 key={i}
-                className="relative h-1.5 w-10 bg-primary/20 rounded-full overflow-hidden transition-all duration-300"
+                className="relative h-1.5 w-10 bg-white/20 rounded-full overflow-hidden transition-all duration-300"
                 onClick={() => api?.scrollTo(i)}
               >
                 {current === i && (
                   <div 
-                    className="absolute top-0 left-0 h-full gradient-primary transition-all duration-100 ease-linear"
+                    className="absolute top-0 left-0 h-full bg-primary transition-all duration-100 ease-linear"
                     style={{ width: `${progress}%` }}
                   />
                 )}
@@ -190,16 +217,18 @@ export default function Home() {
         </Carousel>
       </section>
 
+      {/* Desktop Artistic Categories Grid */}
       <section className="py-20 bg-white/40 border-y border-white">
         <div className="container-normal px-4 text-center">
           <div className="flex flex-col items-center gap-2 mb-12">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary">Discover Our</h4>
             <h2 className="text-2xl lg:text-5xl font-black uppercase tracking-tight">Artistic Categories</h2>
           </div>
+          {/* Responsive grid: 3 columns on mobile, row/wrap on desktop */}
           <div className="grid grid-cols-3 sm:flex sm:flex-wrap items-center justify-center gap-4 sm:gap-12 pb-6 px-4">
             {categoriesData.categories.map((cat, index) => (
               <Link key={index} href={`/products?category=${encodeURIComponent(cat.name)}`} className="group block text-center space-y-4 w-full sm:w-48">
-                <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-white shadow-none transition-all duration-500 group-hover:scale-105 group-hover:border-primary/20">
+                <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-white transition-all duration-500 group-hover:scale-105 group-hover:border-primary/20">
                   <Image 
                     src={cat.imageUrl} 
                     alt={cat.name} 
@@ -217,7 +246,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* New Spotlight Slider Section */}
+      {/* Masterpiece Gallery Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="container-normal px-4 text-center mb-16 space-y-4">
           <p className="text-[11px] font-black uppercase tracking-[0.6em] text-primary">Premium Spotlight</p>
@@ -236,7 +265,7 @@ export default function Home() {
               return (
                 <CarouselItem key={index} className="pl-4 sm:pl-8 basis-[80%] sm:basis-[60%] lg:basis-[45%]">
                   <div className={cn(
-                    "relative aspect-square sm:aspect-video rounded-[2.5rem] overflow-hidden transition-all duration-700 border-4 border-white shadow-none",
+                    "relative aspect-square sm:aspect-video rounded-[2.5rem] overflow-hidden transition-all duration-700 border-4 border-white",
                     isActive ? "scale-100 blur-0 opacity-100" : "scale-90 blur-md opacity-40"
                   )}>
                     <Image src={slide.url} alt={slide.title} fill className="object-cover" />
@@ -257,6 +286,7 @@ export default function Home() {
         </Carousel>
       </section>
 
+      {/* Product Collections Grid */}
       {Object.entries(productsByCategory).map(([catName, products], idx) => (
         <section key={catName} className={cn(
           "py-24 relative overflow-hidden",
@@ -283,6 +313,7 @@ export default function Home() {
         </section>
       ))}
 
+      {/* Instagram Feed */}
       <section className="py-24 bg-white/40">
         <div className="container-normal px-4">
           <div className="text-center mb-16 space-y-6">
@@ -300,7 +331,7 @@ export default function Home() {
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
             {instagramPosts.map((post, i) => (
-              <a key={i} href="https://instagram.com/sumegha_handmades" target="_blank" className="relative aspect-square group overflow-hidden rounded-2xl shadow-none hover:shadow-xl transition-all">
+              <a key={i} href="https://instagram.com/sumegha_handmades" target="_blank" className="relative aspect-square group overflow-hidden rounded-2xl transition-all">
                 <Image 
                   src={post.imageUrl} 
                   alt={`Instagram post ${i + 1}`} 
@@ -317,6 +348,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonials */}
       <section className="py-24 bg-white/60 overflow-hidden">
         <div className="container-normal px-4">
           <div className="text-center mb-16 space-y-4">
@@ -350,6 +382,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Discovery CTA */}
       <section className="py-24">
         <div className="container-normal px-4">
           <div className="bg-[#181113] text-white p-12 lg:p-24 rounded-[3rem] lg:rounded-[5rem] text-center space-y-10 relative overflow-hidden shadow-2xl">
