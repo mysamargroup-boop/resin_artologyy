@@ -104,8 +104,33 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full overflow-hidden">
 
-      {/* Categories Squares Section */}
-      <section className="py-16 bg-secondary/30 border-b border-border">
+      {/* Mobile Categories Section */}
+      <section className="py-8 md:hidden">
+        <div className="container-normal px-4">
+            <div className="grid grid-cols-4 gap-3">
+                {artisticCategories.slice(0, 4).map((cat, index) => (
+                    <Link key={index} href={`/products?category=${encodeURIComponent(cat.name)}`} className="group block text-center space-y-2">
+                        <div className="relative aspect-square rounded-2xl overflow-hidden shadow-md">
+                            <Image 
+                              src={cat.imageUrl} 
+                              alt={cat.name} 
+                              fill
+                              sizes="25vw"
+                              className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                            />
+                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors"></div>
+                        </div>
+                         <span className="block text-[9px] font-bold text-muted-foreground group-hover:text-primary transition-colors leading-tight px-1">
+                            {cat.name}
+                        </span>
+                    </Link>
+                ))}
+            </div>
+        </div>
+    </section>
+
+      {/* Desktop Categories Squares Section */}
+      <section className="py-16 bg-secondary/30 border-b border-border hidden md:block">
         <div className="container-normal px-4 text-center">
           <div className="flex flex-col items-center gap-2 mb-12">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary">Explore Our Craft</h4>
@@ -113,7 +138,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
             {artisticCategories.map((cat, index) => (
-              <Link key={index} href={`/products?category=${encodeURIComponent(cat.name)}`} className="group block text-center space-y-4 relative aspect-square overflow-hidden rounded-3xl shadow-lg">
+              <Link key={index} href={`/products?category=${encodeURIComponent(cat.name)}`} className="group block relative aspect-square overflow-hidden rounded-3xl shadow-lg">
                 <Image 
                   src={cat.imageUrl} 
                   alt={cat.name} 
@@ -147,21 +172,21 @@ export default function Home() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                     {/* Left Column: Text */}
                     <div className={cn(
-                      "text-center md:text-left space-y-6 transition-all duration-1000 ease-out",
+                      "text-center md:text-left space-y-6 pb-8 md:pb-0 transition-all duration-1000 ease-out order-2 md:order-1",
                        current === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
                     )}>
                        <div className="inline-block px-5 py-2 rounded-full border border-primary/30 text-[10px] font-black uppercase tracking-[0.4em] text-primary bg-primary/10 backdrop-blur-md">
                           {slide.badge}
                         </div>
-                        <h1 className="text-4xl lg:text-6xl font-black leading-none uppercase tracking-tight text-foreground drop-shadow-lg">
+                        <h1 className="text-4xl lg:text-5xl font-black leading-none uppercase tracking-tight text-foreground drop-shadow-lg">
                           {slide.title}
                         </h1>
                         <p className="text-sm lg:text-base text-muted-foreground font-light leading-relaxed max-w-lg mx-auto md:mx-0">
                           {slide.desc}
                         </p>
-                        <div className="pt-4 lg:pt-6">
+                        <div className="pt-4 lg:pt-6 md:pb-8">
                           <Link href={`/products?category=${encodeURIComponent(slide.categoryName)}`}>
-                            <Button className="h-14 lg:h-16 px-10 lg:px-12 rounded-2xl text-[11px] font-black uppercase tracking-[0.3em] gradient-primary border-none active:scale-95 transition-all hover:scale-105">
+                            <Button className="h-12 px-8 md:h-14 lg:h-16 lg:px-12 rounded-2xl text-[11px] font-black uppercase tracking-[0.3em] gradient-primary border-none active:scale-95 transition-all hover:scale-105">
                               Shop {slide.categoryName}
                             </Button>
                           </Link>
@@ -169,7 +194,7 @@ export default function Home() {
                     </div>
 
                     {/* Right Column: Image */}
-                    <div className="relative aspect-video w-full">
+                    <div className="relative aspect-[16/9] w-full order-1 md:order-2">
                        <Image 
                         src={slide.image}
                         alt={slide.categoryName}

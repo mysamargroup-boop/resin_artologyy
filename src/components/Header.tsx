@@ -49,25 +49,27 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-lg border-b border-border/50">
-      <div className="container-normal py-2 lg:py-3">
-        {/* Main Header Row - 3 Column Grid for perfect alignment */}
-        <div className="grid grid-cols-3 items-center w-full">
-          {/* Left: Hamburger Button */}
+      <div className="container-normal relative py-2 lg:py-3">
+        {/* Main Header Row */}
+        <div className="relative flex items-center justify-between w-full h-14">
+          {/* Left Side (for hamburger) */}
           <div className="flex items-center justify-start">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="rounded-full hover:bg-secondary text-foreground lg:hidden h-10 w-10 -ml-2"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="rounded-full hover:bg-secondary text-foreground lg:hidden h-10 w-10 -ml-2"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </Button>
           </div>
 
-          {/* Center: Logo Image */}
-          <div className="flex justify-center">
+          {/* Center: Logo Image (Absolute) */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <Link href="/" className="flex items-center group">
-              <h1 className="text-lg sm:text-xl lg:text-2xl font-black font-display uppercase tracking-widest text-foreground whitespace-nowrap">Resin Artologyy</h1>
+              <h1 className="text-lg font-black font-display uppercase tracking-wider text-foreground whitespace-nowrap">
+                Resin Artologyy
+              </h1>
             </Link>
           </div>
 
