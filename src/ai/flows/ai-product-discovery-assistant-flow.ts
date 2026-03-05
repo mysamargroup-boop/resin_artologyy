@@ -43,7 +43,7 @@ const productDiscoveryPrompt = ai.definePrompt({
   name: 'productDiscoveryPrompt',
   input: { schema: ProductDiscoveryInputSchema },
   output: { schema: ProductDiscoveryOutputSchema },
-  prompt: `You are an AI product discovery assistant for "Sumegha Handmades", a business specializing in unique handmade art products.
+  prompt: `You are an AI product discovery assistant for "Resin Artologyy Handmades", a business specializing in unique handmade art products.
 Your goal is to understand the user's preferences and occasions, and then suggest relevant handmade products that fit their description.
 For each suggestion, provide a product name, a detailed description highlighting its handmade quality and relevance, an estimated sale_price, a regular_price (slightly higher), a placeholder image URL (from picsum.photos), and relevant categories.
 Ensure the image URL is a valid placeholder like https://picsum.photos/seed/ai-suggest-1/800/1000.

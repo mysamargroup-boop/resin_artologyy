@@ -29,7 +29,7 @@ export default function CartPage() {
   } | null>(null);
 
   useEffect(() => {
-    if (couponCode === 'SUMEGHA10') {
+    if (couponCode === 'Resin Artologyy10') {
       setAppliedDiscount(10);
       setCouponInput(couponCode);
     } else {
@@ -46,8 +46,8 @@ export default function CartPage() {
   const totalSavings = (totalOriginal - subtotal) + discountFromCoupon;
 
   const handleApplyCoupon = () => {
-    if (couponInput.toUpperCase() === 'SUMEGHA10') {
-      setCoupon('SUMEGHA10');
+    if (couponInput.toUpperCase() === 'Resin Artologyy10') {
+      setCoupon('Resin Artologyy10');
       setIsSparkling(true);
       toast({
         title: "Coupon Applied!",
@@ -223,7 +223,7 @@ export default function CartPage() {
               {appliedDiscount > 0 && (
                 <div className="flex items-center gap-2 text-[10px] font-black text-green-600 uppercase tracking-widest animate-in slide-in-from-left duration-300">
                   <Ticket className="h-3 w-3" />
-                  Code SUMEGHA10 Applied!
+                  Code Resin Artologyy10 Applied!
                 </div>
               )}
             </div>

@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sumegha Handmades Home Updated</title>
+<title>Resin Artologyy Handmades Home Updated</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -56,7 +56,7 @@
 <button class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 text-secondary transition-colors">
 <span class="material-symbols-outlined text-2xl">menu</span>
 </button>
-<h2 class="text-secondary text-lg font-serif font-bold leading-tight tracking-wide flex-1 text-center">Sumegha Handmades</h2>
+<h2 class="text-secondary text-lg font-serif font-bold leading-tight tracking-wide flex-1 text-center">Resin Artologyy Handmades</h2>
 <button class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 text-secondary transition-colors relative">
 <span class="material-symbols-outlined text-2xl">shopping_bag</span>
 <span class="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>
@@ -152,7 +152,7 @@
 <span class="material-symbols-outlined text-primary/50 text-4xl mb-2">spa</span>
 <h4 class="font-serif text-2xl font-bold text-secondary mb-3">About the Brand</h4>
 <p class="text-secondary/70 text-sm leading-relaxed mb-4 font-display">
-                    Sumegha Handmades began as a small passion project in a sunlit corner of my room. Every stroke of paint and every thread woven carries a piece of my heart, aiming to bring warmth and beauty into your everyday life.
+                    Resin Artologyy Handmades began as a small passion project in a sunlit corner of my room. Every stroke of paint and every thread woven carries a piece of my heart, aiming to bring warmth and beauty into your everyday life.
                 </p>
 <div class="w-16 h-1 bg-primary/20 mx-auto rounded-full"></div>
 </div>
@@ -193,7 +193,7 @@
 <div class="bg-secondary text-white py-12 px-6 rounded-t-3xl mt-4 relative overflow-hidden mb-16">
 <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-primary/20 blur-3xl pointer-events-none"></div>
 <div class="relative z-10 flex flex-col items-center text-center gap-6">
-<h3 class="font-serif text-2xl font-bold">Join the Sumegha Family</h3>
+<h3 class="font-serif text-2xl font-bold">Join the Resin Artologyy Family</h3>
 <p class="text-white/60 text-sm max-w-xs font-display">Be the first to know about new collections and exclusive handmade drops.</p>
 <div class="flex w-full max-w-xs gap-2">
 <input class="flex-1 rounded-[12px] bg-white/10 border border-white/20 text-white placeholder-white/40 px-4 py-2 text-sm focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 font-display" placeholder="Your email address" type="email"/>
@@ -216,7 +216,7 @@
 </a>
 </div>
 <div class="w-full border-t border-white/10 mt-4 pt-6 text-center">
-<p class="text-[10px] text-white/40 uppercase tracking-widest font-display">© 2023 Sumegha Handmades</p>
+<p class="text-[10px] text-white/40 uppercase tracking-widest font-display">© 2023 Resin Artologyy Handmades</p>
 </div>
 </div>
 </div>

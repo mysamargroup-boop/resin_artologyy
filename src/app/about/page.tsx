@@ -12,7 +12,7 @@ export default function AboutPage() {
     {
       year: "2025",
       title: "The Awakening",
-      description: "Sumegha Handmades was born from a small desk and a big dream to preserve traditional arts.",
+      description: "Resin Artologyy Handmades was born from a small desk and a big dream to preserve traditional arts.",
       icon: Star
     },
     {
@@ -63,7 +63,7 @@ export default function AboutPage() {
           <div className="relative w-40 h-40 lg:w-64 lg:h-64 rounded-full overflow-hidden border-[4px] border-white shadow-xl">
             <Image 
               src={artistPhoto || ''} 
-              alt="Sumegha - The Artist" 
+              alt="Resin Artologyy - The Artist" 
               fill
               sizes="(max-width: 1023px) 50vw, 33vw"
               className="object-cover"
@@ -72,13 +72,13 @@ export default function AboutPage() {
           </div>
           <div className="space-y-1">
             <h2 className="text-6xl lg:text-8xl font-cursive text-primary lowercase tracking-tight drop-shadow-sm select-none">
-              Sumegha
+              Resin Artologyy
             </h2>
             <p className="text-muted-foreground font-black uppercase tracking-[0.3em] text-[10px]">Founder & Creative Soul</p>
           </div>
           <div className="max-w-2xl space-y-6">
             <p className="text-foreground/80 text-base lg:text-xl leading-relaxed italic font-light">
-              "Sumegha Handmades is more than just a brand; it's a heartbeat. It started from a simple desire to preserve the warmth of human touch in an increasingly digital world. Every piece I craft carries a fragment of my soul and a whisper of tradition."
+              "Resin Artologyy Handmades is more than just a brand; it's a heartbeat. It started from a simple desire to preserve the warmth of human touch in an increasingly digital world. Every piece I craft carries a fragment of my soul and a whisper of tradition."
             </p>
             <p className="text-muted-foreground text-sm lg:text-base leading-relaxed font-medium">
               We specialize in creating artifacts that aren't just decor, but anchors for your memories. From the rhythmic placement of mirrors in Lippan art to the personalized stroke of a nameplate, our work is a celebration of patience, precision, and the beautiful imperfections of the handmade process.
@@ -155,7 +155,7 @@ export default function AboutPage() {
           </div>
           
           <div className="flex justify-center">
-            <Link href="https://instagram.com/sumegha_handmades" target="_blank">
+            <Link href="https://instagram.com/Resin Artologyy_handmades" target="_blank">
               <Button className="rounded-xl h-14 px-10 text-[10px] font-bold uppercase tracking-[0.2em] gradient-primary shadow-xl shadow-primary/20 transition-all hover:scale-105">
                 Explore Studio on Instagram
               </Button>

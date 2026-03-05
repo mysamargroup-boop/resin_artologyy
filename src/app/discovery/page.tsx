@@ -39,7 +39,7 @@ export default function DiscoveryPage() {
       <div className="text-center mb-16 space-y-6">
         <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold">
           <Sparkles className="h-4 w-4" />
-          <span>Powered by Sumegha AI</span>
+          <span>Powered by Resin Artologyy AI</span>
         </div>
         <h1 className="text-5xl lg:text-7xl font-black font-display">AI Art Concierge</h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -91,7 +91,7 @@ export default function DiscoveryPage() {
           <div className="bg-white p-8 rounded-[2rem] shadow-lg border border-primary/5">
             <h3 className="text-2xl font-display font-bold mb-4 flex items-center">
               <Sparkles className="h-6 w-6 mr-2 text-primary" />
-              Sumegha's Suggestion
+              Resin Artologyy's Suggestion
             </h3>
             <p className="text-lg leading-relaxed text-muted-foreground italic">"{result.assistantResponse}"</p>
           </div>

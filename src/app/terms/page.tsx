@@ -9,7 +9,7 @@ export default function TermsPage() {
   const sections = [
     {
       title: "1. Acceptance of Terms",
-      content: "By accessing and using Sumegha Handmades, you agree to be bound by these Terms and Conditions. Our products are handcrafted, meaning slight variations in color, texture, and finish are part of the artistic process and not considered defects."
+      content: "By accessing and using Resin Artologyy Handmades, you agree to be bound by these Terms and Conditions. Our products are handcrafted, meaning slight variations in color, texture, and finish are part of the artistic process and not considered defects."
     },
     {
       title: "2. Custom Orders",
@@ -21,7 +21,7 @@ export default function TermsPage() {
     },
     {
       title: "4. Intellectual Property",
-      content: "All designs, images, and content on this website are the intellectual property of Sumegha Handmades. Unauthorized reproduction or commercial use of our designs is strictly prohibited."
+      content: "All designs, images, and content on this website are the intellectual property of Resin Artologyy Handmades. Unauthorized reproduction or commercial use of our designs is strictly prohibited."
     }
   ];
 

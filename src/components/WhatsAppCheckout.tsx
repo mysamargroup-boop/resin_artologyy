@@ -50,7 +50,7 @@ export function WhatsAppCheckout({ items, total, savings, coupon, open, onOpenCh
     const businessPhone = "919876543210"; 
     const itemDetails = items.map(item => `- ${item.name} (Qty: ${item.quantity}, Price: ₹${item.sale_price * item.quantity})`).join('\n');
     
-    const message = `*New Order from Sumegha Handmades*\n\n` +
+    const message = `*New Order from Resin Artologyy Handmades*\n\n` +
       `*CUSTOMER DETAILS:*\n` +
       `- Name: ${formData.name}\n` +
       `- Email: ${formData.email}\n` +

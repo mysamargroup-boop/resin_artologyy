@@ -14,7 +14,7 @@ export default function BlogPage() {
       id: "1",
       title: "The Soul of Handmade: Why It Matters",
       excerpt: "In a world of mass production, find out why handcrafted pieces carry a unique energy and story within them.",
-      author: "Sumegha",
+      author: "Resin Artologyy",
       date: "January 12, 2026",
       category: "Philosophy",
       imageId: "blog-1"
@@ -23,7 +23,7 @@ export default function BlogPage() {
       id: "2",
       title: "Lippan Art: A Desert Masterpiece",
       excerpt: "Tracing the roots of Kutch's traditional mirror work and how we bring it into modern urban homes.",
-      author: "Sumegha",
+      author: "Resin Artologyy",
       date: "January 20, 2026",
       category: "Tradition",
       imageId: "blog-2"
@@ -32,7 +32,7 @@ export default function BlogPage() {
       id: "3",
       title: "Designing for Serenity",
       excerpt: "How to curate your living space with minimal but impactful art to create a sanctuary of peace.",
-      author: "Sumegha",
+      author: "Resin Artologyy",
       date: "January 28, 2026",
       category: "Design",
       imageId: "blog-3"
@@ -56,7 +56,7 @@ export default function BlogPage() {
           <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-primary">The Studio Journal</p>
           <h1 className="text-2xl lg:text-7xl font-black uppercase tracking-tight text-foreground">Stories & Insights</h1>
           <p className="text-muted-foreground text-sm lg:text-xl max-w-2xl mx-auto font-light leading-relaxed">
-            A deeper look into the artistry, traditions, and philosophy behind every Sumegha creation.
+            A deeper look into the artistry, traditions, and philosophy behind every Resin Artologyy creation.
           </p>
         </div>
 

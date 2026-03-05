@@ -37,7 +37,7 @@ const generateInvoiceHTML = (order: OrderConfirmationProps) => {
     return { ...item, sale_price: product.sale_price, total: itemTotal };
   });
 
-  const discountAmount = order.coupon ? (verifiedSubtotal * 0.10) : 0; // Assuming 10% for SUMEGHA10
+  const discountAmount = order.coupon ? (verifiedSubtotal * 0.10) : 0; // Assuming 10% for Resin Artologyy10
   const verifiedTotal = verifiedSubtotal - discountAmount;
 
   const today = new Date();

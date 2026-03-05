@@ -1,4 +1,4 @@
-# **App Name**: Sumegha Handmades
+# **App Name**: Resin Artologyy Handmades
 
 ## Core Features:
 

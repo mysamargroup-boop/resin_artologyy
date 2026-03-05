@@ -99,7 +99,7 @@ export default function CollectionProductDetailPage({ params }: { params: Promis
   };
 
   const handleWhatsAppShare = () => {
-    const text = `Check out this beautiful ${product.name} at Sumegha Handmades: ${window.location.href}`;
+    const text = `Check out this beautiful ${product.name} at Resin Artologyy Handmades: ${window.location.href}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
   };
 

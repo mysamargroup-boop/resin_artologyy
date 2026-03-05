@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
     {
       title: "3. WhatsApp Communication",
       icon: Lock,
-      content: "Communications on WhatsApp are subject to WhatsApp's own privacy policy. Sumegha Handmades ensures that your personal chat history and order details shared there are treated with the utmost confidentiality and are never shared with third parties for marketing purposes."
+      content: "Communications on WhatsApp are subject to WhatsApp's own privacy policy. Resin Artologyy Handmades ensures that your personal chat history and order details shared there are treated with the utmost confidentiality and are never shared with third parties for marketing purposes."
     },
     {
       title: "4. Data Security",

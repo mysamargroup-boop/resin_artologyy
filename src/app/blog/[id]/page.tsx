@@ -14,8 +14,8 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
     {
       id: "1",
       title: "The Soul of Handmade: Why It Matters",
-      content: "Handmade art is not just a product; it is an experience, a piece of an artist's soul shared with the world. In today's fast-paced world of mass production, choosing something handcrafted means choosing a story, a connection, and a commitment to authenticity.\n\nEvery brushstroke, every mirror placed in a Lippan art piece, and every stitch in a custom bridal trunk carries with it hours of dedication. When you bring a Sumegha Handmade creation into your home, you aren't just buying decor; you are preserving a legacy of craftsmanship that has been passed down through generations.",
-      author: "Sumegha",
+      content: "Handmade art is not just a product; it is an experience, a piece of an artist's soul shared with the world. In today's fast-paced world of mass production, choosing something handcrafted means choosing a story, a connection, and a commitment to authenticity.\n\nEvery brushstroke, every mirror placed in a Lippan art piece, and every stitch in a custom bridal trunk carries with it hours of dedication. When you bring a Resin Artologyy Handmade creation into your home, you aren't just buying decor; you are preserving a legacy of craftsmanship that has been passed down through generations.",
+      author: "Resin Artologyy",
       date: "January 12, 2026",
       category: "Philosophy",
       image: "https://picsum.photos/seed/blog1/1200/600"
@@ -23,8 +23,8 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
     {
       id: "2",
       title: "Lippan Art: A Desert Masterpiece",
-      content: "Originating from the salt marshes of Kutch, Lippan art (or Mud and Mirror work) is a traditional mural craft that has graced the walls of bhungas (mud huts) for centuries. The shimmering mirrors against the earthy clay create a mesmerizing play of light.\n\nAt Sumegha Handmades, we take this ancient desert craft and reimagine it for modern urban spaces. Our circular canvases and contemporary color palettes ensure that this heritage art form finds its place in the most minimalist of homes, bringing with it a touch of rustic royalty.",
-      author: "Sumegha",
+      content: "Originating from the salt marshes of Kutch, Lippan art (or Mud and Mirror work) is a traditional mural craft that has graced the walls of bhungas (mud huts) for centuries. The shimmering mirrors against the earthy clay create a mesmerizing play of light.\n\nAt Resin Artologyy Handmades, we take this ancient desert craft and reimagine it for modern urban spaces. Our circular canvases and contemporary color palettes ensure that this heritage art form finds its place in the most minimalist of homes, bringing with it a touch of rustic royalty.",
+      author: "Resin Artologyy",
       date: "January 20, 2026",
       category: "Tradition",
       image: "https://picsum.photos/seed/blog2/1200/600"
@@ -33,7 +33,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
       id: "3",
       title: "Designing for Serenity",
       content: "Your home should be your sanctuary. The art you choose plays a vital role in setting the tone of your living space. Designing for serenity isn't about filling every corner; it's about choosing pieces that breathe and bring peace.\n\nMinimalist art with organic textures, like our ceramic vases or subtle wall hangings, can anchor a room without overwhelming it. We believe that art should invite stillness, providing a visual resting place in a world that never stops moving.",
-      author: "Sumegha",
+      author: "Resin Artologyy",
       date: "January 28, 2026",
       category: "Design",
       image: "https://picsum.photos/seed/blog3/1200/600"
@@ -105,7 +105,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
 
             <aside className="lg:w-72 space-y-8">
               <div className="bg-white p-8 rounded-[2.5rem] border border-primary/5 shadow-sm space-y-6">
-                <h4 className="text-[10px] font-black uppercase tracking-widest text-primary">About Sumegha</h4>
+                <h4 className="text-[10px] font-black uppercase tracking-widest text-primary">About Resin Artologyy</h4>
                 <div className="relative w-20 h-20 rounded-full overflow-hidden mb-4">
                   <Image src="https://picsum.photos/seed/artist/200/200" alt="Artist" fill className="object-cover" />
                 </div>
