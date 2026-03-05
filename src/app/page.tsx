@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Truck, ChevronRight, Star, Quote, Sparkles, Instagram } from 'lucide-react';
+import { Truck, ChevronRight, Star, Quote, Sparkles, Instagram, Gem } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ProductCard } from '@/components/ProductCard';
 import {
@@ -21,7 +21,9 @@ import { Product } from "@/lib/types";
 
 export default function Home() {
   const [api, setApi] = React.useState<CarouselApi>();
+  const [spotlightApi, setSpotlightApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
+  const [spotlightCurrent, setSpotlightCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
   const [progress, setProgress] = React.useState(0);
 
@@ -31,17 +33,27 @@ export default function Home() {
     Autoplay({ delay: SLIDE_DURATION, stopOnInteraction: false })
   );
 
+  const spotlightPlugin = React.useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: false })
+  );
+
   React.useEffect(() => {
     if (!api) return;
-
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap());
-
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
       setProgress(0);
     });
   }, [api]);
+
+  React.useEffect(() => {
+    if (!spotlightApi) return;
+    setSpotlightCurrent(spotlightApi.selectedScrollSnap());
+    spotlightApi.on("select", () => {
+      setSpotlightCurrent(spotlightApi.selectedScrollSnap());
+    });
+  }, [spotlightApi]);
 
   React.useEffect(() => {
     if (!api) return;
@@ -81,6 +93,12 @@ export default function Home() {
   ];
 
   const instagramPosts = placeholderData.placeholderImages.filter(img => img.id.startsWith('insta-'));
+  const spotlightImages = [
+    { url: "https://picsum.photos/seed/spot1/1000/1000", icon: Sparkles, title: "Artisanal Details" },
+    { url: "https://picsum.photos/seed/spot2/1000/1000", icon: Gem, title: "Premium Finishes" },
+    { url: "https://picsum.photos/seed/spot3/1000/1000", icon: Star, title: "Bespoke Creations" },
+    { url: "https://picsum.photos/seed/spot4/1000/1000", icon: Sparkles, title: "Handcrafted Love" },
+  ];
 
   const heroSlides = categoriesData.categories.map((cat, idx) => ({
     badge: "COLLECTION HIGHLIGHT",
@@ -177,9 +195,9 @@ export default function Home() {
             <h4 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary">Discover Our</h4>
             <h2 className="text-2xl lg:text-5xl font-black uppercase tracking-tight">Artistic Categories</h2>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 pb-6 px-4">
+          <div className="grid grid-cols-3 sm:flex sm:flex-wrap items-center justify-center gap-4 sm:gap-12 pb-6 px-4">
             {categoriesData.categories.map((cat, index) => (
-              <Link key={index} href={`/products?category=${encodeURIComponent(cat.name)}`} className="group block shrink-0 text-center space-y-4 w-32 sm:w-48">
+              <Link key={index} href={`/products?category=${encodeURIComponent(cat.name)}`} className="group block text-center space-y-4 w-full sm:w-48">
                 <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-white shadow-md transition-all duration-500 group-hover:scale-105 group-hover:shadow-xl group-hover:border-primary/20">
                   <Image 
                     src={cat.imageUrl} 
@@ -189,13 +207,57 @@ export default function Home() {
                     className="object-cover" 
                   />
                 </div>
-                <span className="block text-[10px] font-black uppercase tracking-widest text-foreground/70 group-hover:text-primary leading-tight px-2">
+                <span className="block text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-foreground/70 group-hover:text-primary leading-tight px-1 truncate sm:whitespace-normal">
                   {cat.name}
                 </span>
               </Link>
             ))}
           </div>
         </div>
+      </section>
+
+      {/* New Spotlight Slider Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="container-normal px-4 text-center mb-16 space-y-4">
+          <p className="text-[11px] font-black uppercase tracking-[0.6em] text-primary">Premium Spotlight</p>
+          <h2 className="text-3xl lg:text-6xl font-black uppercase tracking-tight">The Masterpiece Gallery</h2>
+        </div>
+        
+        <Carousel 
+          setApi={setSpotlightApi}
+          plugins={[spotlightPlugin.current]}
+          opts={{ align: "center", loop: true }}
+          className="w-full max-w-[1440px] mx-auto"
+        >
+          <CarouselContent className="-ml-4 sm:-ml-8">
+            {spotlightImages.map((slide, index) => {
+              const isActive = spotlightCurrent === index;
+              const Icon = slide.icon;
+              return (
+                <CarouselItem key={index} className="pl-4 sm:pl-8 basis-[80%] sm:basis-[60%] lg:basis-[45%]">
+                  <div className={cn(
+                    "relative aspect-square sm:aspect-video rounded-[2.5rem] overflow-hidden transition-all duration-700 border-4 border-white shadow-2xl",
+                    isActive ? "scale-100 blur-0 opacity-100" : "scale-90 blur-md opacity-40"
+                  )}>
+                    <Image src={slide.url} alt={slide.title} fill className="object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <div className={cn(
+                      "absolute inset-0 flex flex-col items-center justify-center space-y-4 transition-all duration-500 delay-200",
+                      isActive ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                    )}>
+                      <div className="bg-white/20 backdrop-blur-md p-6 rounded-full border border-white/30 shadow-2xl">
+                        <Icon className="h-12 w-12 text-white drop-shadow-lg" />
+                      </div>
+                      <h3 className="text-2xl sm:text-4xl font-black uppercase tracking-tighter text-white drop-shadow-md">
+                        {slide.title}
+                      </h3>
+                    </div>
+                  </div>
+                </CarouselItem>
+              );
+            })}
+          </CarouselContent>
+        </Carousel>
       </section>
 
       {Object.entries(productsByCategory).map(([catName, products], idx) => (

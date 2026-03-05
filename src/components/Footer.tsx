@@ -10,6 +10,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import categoriesData from "@/lib/categories.json";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg 
@@ -23,6 +24,15 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 export function Footer() {
+  const shopLinks = [
+    { name: "All Works", href: "/products" },
+    { name: "AI Art Concierge", href: "/discovery" },
+    ...categoriesData.categories.map(cat => ({
+      name: cat.name,
+      href: `/products?category=${encodeURIComponent(cat.name)}`
+    }))
+  ];
+
   const footerData = [
     {
       title: "Company",
@@ -34,10 +44,7 @@ export function Footer() {
     },
     {
       title: "Shop",
-      links: [
-        { name: "All Works", href: "/products" },
-        { name: "AI Concierge", href: "/discovery" },
-      ]
+      links: shopLinks
     },
     {
       title: "Legal",
