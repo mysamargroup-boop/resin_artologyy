@@ -1,4 +1,8 @@
 
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { BottomNav } from '@/components/BottomNav';
+import { TopBar } from '@/components/TopBar';
 import { MobileCategoryGrid } from '@/components/home/MobileCategoryGrid';
 import { DesktopCategoryGrid } from '@/components/home/DesktopCategoryGrid';
 import { HeroSlider } from '@/components/home/HeroSlider';
@@ -23,6 +27,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col w-full overflow-hidden">
+      <TopBar />
+      <Header />
       <MobileCategoryGrid />
       <DesktopCategoryGrid />
       <HeroSlider />
@@ -44,6 +50,8 @@ export default function Home() {
         <OurStory />
         <DiscoveryCTA />
       </div>
+      <Footer />
+      <BottomNav />
     </div>
   );
 }
