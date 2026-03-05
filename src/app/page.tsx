@@ -26,9 +26,8 @@ export default function Home() {
   const [current, setCurrent] = React.useState(0);
   const [spotlightCurrent, setSpotlightCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
-  const [progress, setProgress] = React.useState(0);
 
-  const SLIDE_DURATION = 7000;
+  const SLIDE_DURATION = 5000;
 
   const plugin = React.useRef(
     Autoplay({ delay: SLIDE_DURATION, stopOnInteraction: false })
@@ -44,7 +43,6 @@ export default function Home() {
     setCurrent(api.selectedScrollSnap());
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
-      setProgress(0);
     });
   }, [api]);
 
@@ -55,15 +53,7 @@ export default function Home() {
       setSpotlightCurrent(spotlightApi.selectedScrollSnap());
     });
   }, [spotlightApi]);
-
-  React.useEffect(() => {
-    if (!api) return;
-    const interval = setInterval(() => {
-      setProgress((prev) => (prev >= 100 ? 0 : prev + (100 / (SLIDE_DURATION / 100))));
-    }, 100);
-    return () => clearInterval(interval);
-  }, [api, current]);
-
+  
   const productsByCategory: Record<string, Product[]> = productsData.products.reduce((acc: Record<string, Product[]>, product: Product) => {
     if (!acc[product.category]) {
       acc[product.category] = [];
@@ -103,47 +93,49 @@ export default function Home() {
 
   const heroSlides = categoriesData.categories.map((cat, idx) => ({
     badge: "FEATURED COLLECTION",
-    title: cat.name.split(' ')[0].toUpperCase(),
-    highlight: cat.name.split(' ').slice(1).join(' ').toUpperCase(),
+    title: cat.name,
     categoryName: cat.name,
     desc: cat.description,
     image: cat.imageUrl || `https://picsum.photos/seed/hero-${idx}/1920/1080`
   }));
 
+  const artisticCategories = categoriesData.categories.slice(0, 4);
+
   return (
     <div className="flex flex-col w-full overflow-hidden">
-      {/* Mobile-Only Top Category Slider with Blur Overlay */}
-      <section className="md:hidden py-4 bg-white/40 border-b border-white relative">
-        <div className="flex gap-4 overflow-x-auto scrollbar-hide px-4 pr-12 snap-x snap-mandatory">
-          {categoriesData.categories.map((cat, index) => (
-            <Link 
-              key={index} 
-              href={`/products?category=${encodeURIComponent(cat.name)}`} 
-              className="flex flex-col items-center shrink-0 space-y-2 group snap-center"
-            >
-              <div className="relative p-[2px] bg-gradient-to-tr from-teal-300 via-blue-400 to-indigo-500 rounded-full shadow-sm">
-                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white">
-                  <Image 
-                    src={cat.imageUrl} 
-                    alt={cat.name} 
-                    fill 
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+
+      {/* Categories Squares Section */}
+      <section className="py-16 bg-white/40 border-b border-white">
+        <div className="container-normal px-4 text-center">
+          <div className="flex flex-col items-center gap-2 mb-12">
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary">Explore Our Craft</h4>
+            <h2 className="text-2xl lg:text-5xl font-black uppercase tracking-tight">Artistic Categories</h2>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {artisticCategories.map((cat, index) => (
+              <Link key={index} href={`/products?category=${encodeURIComponent(cat.name)}`} className="group block text-center space-y-4 relative aspect-square overflow-hidden rounded-3xl shadow-lg">
+                <Image 
+                  src={cat.imageUrl} 
+                  alt={cat.name} 
+                  fill
+                  sizes="(max-width: 767px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110" 
+                />
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors"></div>
+                <div className="absolute inset-0 flex items-center justify-center p-4">
+                   <span className="block text-base sm:text-xl font-black uppercase tracking-widest text-white leading-tight drop-shadow-md text-center">
+                    {cat.name}
+                  </span>
                 </div>
-              </div>
-              <span className="text-[9px] font-black uppercase tracking-tight text-foreground/70 group-hover:text-primary transition-colors text-center w-[72px] leading-tight">
-                {cat.name}
-              </span>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
-        {/* Right side blur overlay to indicate sliding */}
-        <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-background via-background/20 to-transparent pointer-events-none z-10" />
       </section>
 
-      {/* Full-Width Hero Section */}
-      <section className="relative w-full overflow-hidden">
-        <Carousel 
+      {/* New 2-column Hero Slider */}
+      <section className="w-full overflow-hidden py-16">
+         <Carousel 
           setApi={setApi}
           plugins={[plugin.current]}
           className="w-full"
@@ -151,51 +143,44 @@ export default function Home() {
           <CarouselContent className="ml-0">
             {heroSlides.map((slide, index) => (
               <CarouselItem key={index} className="relative pl-0">
-                <div className="relative h-[50vh] lg:h-[50vh] min-h-[400px] w-full bg-black/5">
-                  <div className="absolute inset-0 z-0">
-                    <Image 
-                      src={slide.image}
-                      alt={slide.categoryName}
-                      fill
-                      sizes="100vw"
-                      className={cn(
-                        "object-cover transition-all duration-1000 ease-in-out",
-                        current === index ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-110"
-                      )}
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-black/30" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/50" />
-                  </div>
-
-                  <div className={cn(
-                    "relative z-10 h-full flex items-center justify-center p-6 sm:p-12 pb-12 sm:pb-24 text-center transition-all duration-1000 ease-out",
-                    current === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-                  )}>
-                    <div className="max-w-4xl w-full flex flex-col items-center space-y-4">
-                      <div className="flex flex-col items-center gap-4">
-                        <div className="inline-block px-5 py-2 rounded-full border border-white/30 text-[10px] font-black uppercase tracking-[0.4em] text-white bg-white/10 backdrop-blur-md">
+                <div className="container-normal">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    {/* Left Column: Text */}
+                    <div className={cn(
+                      "text-center md:text-left space-y-6 transition-all duration-1000 ease-out",
+                       current === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+                    )}>
+                       <div className="inline-block px-5 py-2 rounded-full border border-primary/30 text-[10px] font-black uppercase tracking-[0.4em] text-primary bg-primary/10 backdrop-blur-md">
                           {slide.badge}
                         </div>
-                      </div>
-                      <div className="space-y-1">
-                        <h1 className="text-xl sm:text-3xl lg:text-4xl font-black leading-none uppercase tracking-tighter text-white drop-shadow-lg">
+                        <h1 className="text-4xl lg:text-6xl font-black leading-none uppercase tracking-tight text-foreground drop-shadow-lg">
                           {slide.title}
                         </h1>
-                        <h2 className="text-xl sm:text-3xl lg:text-4xl font-black leading-none uppercase tracking-tighter text-primary drop-shadow-lg">
-                          {slide.highlight}
-                        </h2>
-                      </div>
-                      <p className="text-[10px] sm:text-xs lg:text-sm text-white/90 font-light leading-relaxed max-w-2xl drop-shadow-md px-4">
-                        {slide.desc}
-                      </p>
-                      <div className="pt-4 lg:pt-6">
-                        <Link href={`/products?category=${encodeURIComponent(slide.categoryName)}`}>
-                          <Button className="h-12 lg:h-14 px-8 lg:px-12 rounded-2xl text-[10px] lg:text-[11px] font-black uppercase tracking-[0.3em] gradient-primary border-none active:scale-95 transition-all hover:scale-105">
-                            Shop {slide.categoryName}
-                          </Button>
-                        </Link>
-                      </div>
+                        <p className="text-sm lg:text-base text-foreground/70 font-light leading-relaxed max-w-lg mx-auto md:mx-0">
+                          {slide.desc}
+                        </p>
+                        <div className="pt-4 lg:pt-6">
+                          <Link href={`/products?category=${encodeURIComponent(slide.categoryName)}`}>
+                            <Button className="h-14 lg:h-16 px-10 lg:px-12 rounded-2xl text-[11px] font-black uppercase tracking-[0.3em] gradient-primary border-none active:scale-95 transition-all hover:scale-105">
+                              Shop {slide.categoryName}
+                            </Button>
+                          </Link>
+                        </div>
+                    </div>
+
+                    {/* Right Column: Image */}
+                    <div className="relative aspect-square md:aspect-[4/5] w-full">
+                       <Image 
+                        src={slide.image}
+                        alt={slide.categoryName}
+                        fill
+                        sizes="(max-width: 767px) 100vw, 50vw"
+                        className={cn(
+                          "object-cover rounded-3xl shadow-2xl transition-all duration-1000 ease-in-out",
+                          current === index ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-110"
+                        )}
+                        priority
+                      />
                     </div>
                   </div>
                 </div>
@@ -203,51 +188,22 @@ export default function Home() {
             ))}
           </CarouselContent>
           
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-3 z-20">
             {Array.from({ length: count }).map((_, i) => (
               <button
                 key={i}
-                className="relative h-1.5 w-10 bg-white/20 rounded-full overflow-hidden transition-all duration-300"
+                className="relative h-1.5 w-10 bg-primary/10 rounded-full overflow-hidden transition-all duration-300"
                 onClick={() => api?.scrollTo(i)}
               >
                 {current === i && (
                   <div 
                     className="absolute top-0 left-0 h-full bg-primary transition-all duration-100 ease-linear"
-                    style={{ width: `${progress}%` }}
                   />
                 )}
               </button>
             ))}
           </div>
         </Carousel>
-      </section>
-
-      {/* Desktop Artistic Categories Grid - 3 columns on mobile (already covered by hidden sm: section above, but let's optimize the grid section below for 3 cols too) */}
-      <section className="py-20 bg-white/40 border-y border-white">
-        <div className="container-normal px-4 text-center">
-          <div className="flex flex-col items-center gap-2 mb-12">
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary">Discover Our</h4>
-            <h2 className="text-2xl lg:text-5xl font-black uppercase tracking-tight">Artistic Categories</h2>
-          </div>
-          <div className="grid grid-cols-3 sm:flex sm:flex-wrap items-center justify-center gap-4 sm:gap-12 pb-6 px-4">
-            {categoriesData.categories.map((cat, index) => (
-              <Link key={index} href={`/products?category=${encodeURIComponent(cat.name)}`} className="group block text-center space-y-4 w-full sm:w-48">
-                <div className="relative aspect-square rounded-2xl overflow-hidden border-2 border-white transition-all duration-500 group-hover:scale-105 group-hover:border-primary/20">
-                  <Image 
-                    src={cat.imageUrl} 
-                    alt={cat.name} 
-                    fill
-                    sizes="(max-width: 639px) 30vw, 20vw"
-                    className="object-cover" 
-                  />
-                </div>
-                <span className="block text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-foreground/70 group-hover:text-primary leading-tight px-1">
-                  {cat.name}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* Masterpiece Gallery Section */}
@@ -269,7 +225,7 @@ export default function Home() {
               return (
                 <CarouselItem key={index} className="pl-4 sm:pl-8 basis-[80%] sm:basis-[60%] lg:basis-[45%]">
                   <div className={cn(
-                    "relative aspect-square sm:aspect-video rounded-[2.5rem] overflow-hidden transition-all duration-700 ease-in-out border-4 border-white",
+                    "relative aspect-square rounded-[2.5rem] overflow-hidden transition-all duration-700 ease-in-out border-4 border-white",
                     isActive ? "scale-100 blur-0 opacity-100" : "scale-90 blur-md opacity-40"
                   )}>
                     <Image src={slide.url} alt={slide.title} fill className="object-cover" />

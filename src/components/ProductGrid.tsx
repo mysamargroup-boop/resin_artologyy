@@ -31,7 +31,10 @@ export default function ProductGrid() {
     if (searchModeParam === 'true' && searchInputRef.current) {
       searchInputRef.current.focus();
     }
-  }, [searchModeParam]);
+    if (categoryParam) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [searchModeParam, categoryParam]);
 
   const categories = ['All', ...categoriesData.categories.map(c => c.name)];
 
@@ -39,8 +42,10 @@ export default function ProductGrid() {
 
   const filteredProducts = allProducts.filter(p => {
     const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
-    const matchesSearch = p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          p.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = searchTerm === '' || p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          p.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          p.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          (p.tags && p.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())));
     return matchesCategory && matchesSearch;
   });
 
@@ -56,15 +61,15 @@ export default function ProductGrid() {
           
           <div className="flex flex-col gap-8 w-full max-w-3xl">
             <div className="relative group max-w-2xl mx-auto w-full">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground transition-colors group-focus-within:text-primary pointer-events-none" />
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground transition-colors group-focus-within:text-primary pointer-events-none z-10" />
               <input 
                 ref={searchInputRef}
-                placeholder="Search unique art..." 
-                className="w-full pl-12 pr-12 h-14 rounded-2xl border border-primary/10 bg-white/50 backdrop-blur-sm focus:bg-white shadow-sm outline-none px-4 transition-all"
+                placeholder="Search for 'ocean art' or 'wedding frames'..." 
+                className="w-full pl-14 pr-12 h-16 rounded-full border border-primary/10 bg-white/50 backdrop-blur-sm focus:bg-white shadow-lg outline-none px-4 transition-all text-base"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <Mic className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
+              <Mic className="absolute right-6 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground hover:text-primary cursor-pointer transition-colors" />
             </div>
 
             <div className="relative w-full">
@@ -76,10 +81,10 @@ export default function ProductGrid() {
                       key={cat} 
                       variant="ghost"
                       className={cn(
-                        "rounded-full h-11 px-8 text-[10px] font-black uppercase tracking-widest transition-all shrink-0 border border-transparent",
+                        "rounded-full h-11 px-6 text-[10px] font-black uppercase tracking-[0.2em] transition-all shrink-0 border-2",
                         isActive 
-                          ? "bg-primary text-white shadow-lg shadow-primary/30" 
-                          : "bg-[#FDF6F9] text-foreground/80 hover:bg-primary/5"
+                          ? "bg-primary border-primary text-white shadow-lg shadow-primary/30" 
+                          : "bg-white/60 border-primary/10 text-foreground/80 hover:bg-white hover:border-primary/30"
                       )}
                       onClick={() => setSelectedCategory(cat)}
                     >
@@ -94,7 +99,7 @@ export default function ProductGrid() {
         </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-8">
             {Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="space-y-4 p-4 bg-white rounded-3xl shadow-sm border border-primary/5">
                 <Skeleton className="aspect-square w-full rounded-2xl" />
@@ -110,7 +115,7 @@ export default function ProductGrid() {
             ))}
           </div>
         ) : filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-8">
             {filteredProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -122,7 +127,7 @@ export default function ProductGrid() {
             </div>
             <div className="space-y-2">
               <p className="text-xl font-black uppercase tracking-tight">No Results Found</p>
-              <p className="text-muted-foreground text-xs font-light max-w-xs mx-auto">Try adjusting your filters or search terms.</p>
+              <p className="text-muted-foreground text-xs font-light max-w-xs mx-auto">Try adjusting your filters or search terms to find your perfect piece.</p>
             </div>
             <Button 
               variant="link" 
