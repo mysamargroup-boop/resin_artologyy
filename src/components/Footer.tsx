@@ -129,14 +129,14 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="hidden md:grid md:grid-cols-4 gap-12 py-12 border-t border-border text-sm font-bold uppercase tracking-[0.3em] text-muted-foreground lg:pl-12">
+        <div className="hidden md:grid md:grid-cols-4 gap-8 py-12 border-t border-border">
           {footerData.map((section) => (
             <div key={section.title} className="space-y-6">
-              <h4 className="text-foreground/70 text-[9px] lg:text-[10px] tracking-[0.5em] mb-4">{section.title}</h4>
+              <h4 className="text-primary font-black uppercase tracking-[0.3em] text-[10px] mb-6">{section.title}</h4>
               <ul className="space-y-4">
                 {section.links.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} className="hover:text-primary transition-colors text-[11px] lg:text-sm">{link.name}</Link>
+                    <Link href={link.href} className="hover:text-primary transition-colors text-xs text-muted-foreground">{link.name}</Link>
                   </li>
                 ))}
               </ul>
@@ -148,14 +148,14 @@ export function Footer() {
           <Accordion type="single" collapsible className="w-full">
             {footerData.map((section, idx) => (
               <AccordionItem key={section.title} value={`item-${idx}`} className="border-border">
-                <AccordionTrigger className="text-[14px] font-bold uppercase tracking-widest text-muted-foreground hover:no-underline py-5 px-4">
+                <AccordionTrigger className="text-[14px] font-bold uppercase tracking-widest text-primary hover:no-underline py-5 px-4">
                   {section.title}
                 </AccordionTrigger>
                 <AccordionContent>
                   <ul className="flex flex-col gap-4 py-3 px-6">
                     {section.links.map((link) => (
                       <li key={link.name}>
-                        <Link href={link.href} className="text-[12px] text-muted-foreground uppercase tracking-widest hover:text-primary transition-colors">
+                        <Link href={link.href} className="text-xs text-muted-foreground uppercase tracking-widest hover:text-primary transition-colors">
                           {link.name}
                         </Link>
                       </li>
@@ -187,3 +187,5 @@ export function Footer() {
     </footer>
   );
 }
+
+    

@@ -29,8 +29,8 @@ export function ProductCollection({ categoryName, products, index }: ProductColl
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
-          {products.slice(0, 4).map((product) => (
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-2 sm:gap-4">
+          {products.slice(0, 5).map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
@@ -38,3 +38,5 @@ export function ProductCollection({ categoryName, products, index }: ProductColl
     </section>
   );
 }
+
+    

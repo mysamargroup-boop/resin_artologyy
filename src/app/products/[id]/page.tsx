@@ -75,7 +75,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   const recommendedProducts = useMemo(() => 
     (productsData.products as Product[])
       .filter(p => p.id !== id && p.category === product.category)
-      .slice(0, 4),
+      .slice(0, 5),
   [id, product.category]);
 
   const mockReviews = [
@@ -321,7 +321,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     </div>
                   </div>
                 </div>
-                <p className="text-sm italic text-muted-foreground leading-relaxed">"{review.comment}"</p>
+                <p className="text-sm italic text-foreground/70 leading-relaxed">"{review.comment}"</p>
               </div>
             ))}
           </div>
@@ -332,7 +332,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             <div className="text-center">
               <h2 className="text-2xl lg:text-3xl font-black font-headline tracking-tight uppercase">Recommended Pieces</h2>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-2 sm:gap-4">
               {recommendedProducts.map(p => <ProductCard key={p.id} product={p} />)}
             </div>
           </div>
@@ -341,3 +341,5 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
     </div>
   );
 }
+
+    

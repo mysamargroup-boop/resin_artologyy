@@ -100,8 +100,8 @@ export default function ProductGrid() {
         </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
-            {Array.from({ length: 8 }).map((_, i) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4">
+            {Array.from({ length: 10 }).map((_, i) => (
               <div key={i} className="space-y-4 p-4 bg-card rounded-2xl shadow-sm border border-primary/5">
                 <Skeleton className="aspect-square w-full rounded-xl" />
                 <div className="space-y-3">
@@ -116,7 +116,7 @@ export default function ProductGrid() {
             ))}
           </div>
         ) : filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4">
             {filteredProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -143,3 +143,5 @@ export default function ProductGrid() {
     </div>
   );
 }
+
+    
