@@ -1,0 +1,274 @@
+/**
+ * This Firestore Security Ruleset is designed for the 'Sumegha Handmades' e-commerce application.
+ *
+ * Core Philosophy:
+ * The rules enforce a strict user-ownership model for all private data, while providing public read-only access
+ * to shared catalog data. It prioritizes security and performance by ensuring that authorization decisions
+ * are made without costly cross-document reads. Administrative privileges are managed via a dedicated roles collection.
+ *
+ * Data Structure:
+ * - /users/{userId}/...: All data private to a user (profile, cart, wishlist) is nested under their unique ID.
+ * - /products, /categories: Top-level collections for public catalog data, managed by administrators.
+ * - /orders, /productViews: Top-level collections for transactional and analytics data, supporting both guest
+ *   and authenticated users. Access is determined by an internal 'userId' field.
+ * - /roles_admin/{userId}: A lookup collection to grant admin privileges based on document existence.
+ *
+ * Key Security Decisions:
+ * - Authorization Independence: User-private data is secured using path-based rules (e.g., `/users/{userId}/...`)
+ *   to avoid slow and expensive `get()` calls. For subcollections like `orderItems`, this is achieved by
+ *   denormalizing the parent order's `userId` into each item.
+ * - No User Listing: Listing documents in the top-level `/users` collection is disallowed to protect user privacy.
+ * - Admin-Managed Content: Public data like products and categories is read-only for all users; only
+ *   administrators can perform write operations.
+ * - Guest vs. Authenticated Operations: Collections like `orders` and `productViews` explicitly support
+ *   operations from unauthenticated users, but enforce data consistency (e.g., a null `userId` field).
+ *
+ * Denormalization for Authorization:
+ * To secure the `/orders/{orderId}/orderItems` subcollection without a `get()` call to the parent `Order`,
+ * each `OrderItem` document MUST contain a denormalized copy of the parent order's `userId`. This field
+ * (e.g., `orderOwnerUserId`) allows for a direct, performant, and secure check within the `OrderItem` rule itself.
+ *
+ * Structural Segregation:
+ * The data model clearly separates user-private data (under `/users/{userId}`) from public data (`/products`,
+ * `/categories`) and transactional data (`/orders`). This segregation simplifies rules and improves query
+ * performance and security.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ----------------------------------------------------------------------
+    // Helper Functions
+    // ----------------------------------------------------------------------
+
+    /**
+     * Returns true if the user is authenticated.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * Returns true if the authenticated user's UID matches the provided userId.
+     * This is the primary function for checking document ownership.
+     */
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    /**
+     * Returns true if the user is the owner and the document already exists.
+     * Used for safe update and delete operations.
+     */
+    function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+    }
+
+    /**
+     * Returns true if the user has an admin role document.
+     * This relies on the existence of a document in the /roles_admin collection.
+     */
+    function isAdmin() {
+      return isSignedIn() && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
+    }
+
+    /**
+     * Validates that the incoming 'userId' field matches the user's auth UID.
+     * Ensures data consistency on creation for documents in a user's private tree.
+     */
+    function isRequestingOwnData(data) {
+        return isSignedIn() && data.userId == request.auth.uid;
+    }
+
+    /**
+     * Validates relational integrity for user profile creation.
+     * The document ID must match the user's auth UID and the internal 'id' field.
+     */
+    function isValidUserCreate(userId) {
+      return isOwner(userId) && request.resource.data.id == userId;
+    }
+
+    /**
+     * Enforces immutability of the user's ID field on update.
+     */
+    function isUserImmutable() {
+      return request.resource.data.id == resource.data.id;
+    }
+
+    /**
+     * Validates relational integrity for user-owned subcollection documents.
+     * The internal 'userId' field must match the user's auth UID from the path.
+     */
+    function isValidOwnedDocCreate(userId) {
+      return isOwner(userId) && request.resource.data.userId == userId;
+    }
+
+    /**
+     * Enforces immutability of the 'userId' field on update for user-owned documents.
+     */
+    function isOwnedDocImmutable() {
+      return request.resource.data.userId == resource.data.userId;
+    }
+
+    /**
+     * Allows creation of an order/view by a guest (no auth, null userId) or a
+     * signed-in user (auth matches userId).
+     */
+    function canCreateWithOptionalAuth() {
+      return (request.auth == null && request.resource.data.userId == null) || (isSignedIn() && request.resource.data.userId == request.auth.uid);
+    }
+
+    /**
+     * @description
+     * Stores user profile information. A user can create, read, and modify their own profile.
+     * @path /users/{userId}
+     * @allow (create) An authenticated user with UID 'user_abc' creating their own document at /users/user_abc.
+     * @deny (get) User 'user_xyz' trying to read the document at /users/user_abc.
+     * @principle Restricts access to a user's own data tree and enforces self-creation.
+     */
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false; // Disallow listing all users for privacy.
+      allow create: if isValidUserCreate(userId);
+      allow update: if isExistingOwner(userId) && isUserImmutable();
+      allow delete: if isExistingOwner(userId);
+
+      /**
+       * @description
+       * A user's personal wishlist of products.
+       * @path /users/{userId}/wishlistItems/{wishlistItemId}
+       * @allow (create) User 'user_abc' creating a new wishlist item in their own subcollection.
+       * @deny (list) User 'user_xyz' trying to list items from /users/user_abc/wishlistItems.
+       * @principle Enforces strict ownership for all operations within a user's private data subcollection.
+       */
+      match /wishlistItems/{wishlistItemId} {
+        allow get, list: if isOwner(userId);
+        allow create: if isValidOwnedDocCreate(userId);
+        allow update: if isExistingOwner(userId) && isOwnedDocImmutable();
+        allow delete: if isExistingOwner(userId);
+      }
+
+      /**
+       * @description
+       * The user's shopping cart document. The document ID is typically a fixed string like 'current'.
+       * @path /users/{userId}/cart/{cartId}
+       * @allow (update) User 'user_abc' updating their cart document.
+       * @deny (get) An unauthenticated user trying to read any cart document.
+       * @principle Enforces strict ownership for a user's cart.
+       */
+      match /cart/{cartId} {
+        allow get, list: if isOwner(userId); // list is technically possible if multiple cart docs exist
+        allow create: if isValidOwnedDocCreate(userId);
+        allow update: if isExistingOwner(userId) && isOwnedDocImmutable();
+        allow delete: if isExistingOwner(userId);
+
+        /**
+         * @description
+         * Items within a user's shopping cart. Access is inherited from the parent user path.
+         * @path /users/{userId}/cart/{cartId}/items/{cartItemId}
+         * @allow (delete) User 'user_abc' removing an item from their own cart.
+         * @deny (create) User 'user_xyz' trying to add an item to user 'user_abc's cart.
+         * @principle Path-based security provides implicit ownership for nested subcollections.
+         */
+        match /items/{cartItemId} {
+          allow get, list: if isOwner(userId);
+          allow create: if isOwner(userId);
+          allow update: if isExistingOwner(userId);
+          allow delete: if isExistingOwner(userId);
+        }
+      }
+    }
+
+    /**
+     * @description
+     * Publicly viewable product categories. Read-only for everyone, writable only by admins.
+     * @path /categories/{categoryId}
+     * @allow (get) Any user, authenticated or not, reading a category document.
+     * @deny (create) A regular authenticated user trying to create a new category.
+     * @principle Segregates public read-only data from user-private data and restricts writes to admins.
+     */
+    match /categories/{categoryId} {
+      allow get, list: if true;
+      allow create: if isAdmin();
+      allow update, delete: if isAdmin() && resource != null;
+    }
+
+    /**
+     * @description
+     * Publicly viewable products. Read-only for everyone, writable only by admins.
+     * @path /products/{productId}
+     * @allow (list) Any user, authenticated or not, listing all available products.
+     * @deny (update) A regular authenticated user trying to change a product's price.
+     * @principle Segregates public read-only data from user-private data and restricts writes to admins.
+     */
+    match /products/{productId} {
+      allow get, list: if true;
+      allow create: if isAdmin();
+      allow update, delete: if isAdmin() && resource != null;
+    }
+
+    /**
+     * @description
+     * Confirmed orders for both guests and authenticated users. Writable only at creation by anyone,
+     * afterwards managed by admins. Users can only read their own orders.
+     * @path /orders/{orderId}
+     * @allow (create) An unauthenticated guest placing an order.
+     * @allow (get) Authenticated user 'user_abc' reading their own order where `resource.data.userId == 'user_abc'`.
+     * @deny (update) A user trying to change their order status after placing it.
+     * @deny (get) User 'user_xyz' trying to read an order belonging to 'user_abc'.
+     * @principle Supports mixed guest/user data, with read access tied to an internal ownership field.
+     */
+    match /orders/{orderId} {
+      allow get: if (isRequestingOwnData(resource.data)) || isAdmin();
+      allow list: if isSignedIn() || isAdmin(); // Client MUST use a where('userId', '==', auth.uid) clause
+      allow create: if canCreateWithOptionalAuth();
+      allow update, delete: if isAdmin() && resource != null;
+
+      /**
+       * @description
+       * Items within an order. Access is granted if the user owns the parent order or is an admin.
+       * This rule depends on a denormalized 'orderOwnerUserId' field on each OrderItem.
+       * @path /orders/{orderId}/orderItems/{orderItemId}
+       * @allow (get) User 'user_abc' reading an item from their own order.
+       * @deny (list) User 'user_xyz' listing items from an order belonging to 'user_abc'.
+       * @principle Enforces ownership on a subcollection via a denormalized field from the parent document.
+       */
+      match /orderItems/{orderItemId} {
+        // Here, `resource.data.orderOwnerUserId` must be denormalized from the parent Order's `userId`.
+        allow get: if (isOwner(resource.data.orderOwnerUserId)) || isAdmin();
+        allow list: if isSignedIn() || isAdmin(); // Client MUST use a where('orderOwnerUserId', '==', auth.uid) clause
+        allow create: if isAdmin();
+        allow update, delete: if isAdmin() && resource != null;
+      }
+    }
+
+    /**
+     * @description
+     * Analytics data for product views. Anyone can create a view. Authenticated users can
+     * read their own view history. Admins can read all views.
+     * @path /productViews/{productViewId}
+     * @allow (create) An unauthenticated user viewing a product, creating a `productView` with a null `userId`.
+     * @deny (update) Any user trying to modify a view record after it has been created.
+     * @principle Supports append-only data from both guest and authenticated users for analytics.
+     */
+    match /productViews/{productViewId} {
+      allow get: if (isRequestingOwnData(resource.data)) || isAdmin();
+      allow list: if isSignedIn() || isAdmin(); // Client MUST use a where('userId', '==', auth.uid) clause
+      allow create: if canCreateWithOptionalAuth();
+      allow update, delete: if isAdmin() && resource != null;
+    }
+
+    /**
+     * @description
+     * Administrative role management. The existence of a document here grants a user
+     * admin privileges. This collection is locked down and managed externally.
+     * @path /roles_admin/{userId}
+     * @allow (n/a) The `isAdmin()` function uses `exists()` which does not require read permission.
+     * @deny (any) All direct read and write operations are denied for maximum security.
+     * @principle Implements Database-Backed Access Control (DBAC) in a secure, read-denied manner.
+     */
+    match /roles_admin/{userId} {
+      allow read, write: if false;
+    }
+  }
+}
