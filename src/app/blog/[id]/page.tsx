@@ -1,3 +1,4 @@
+
 "use client";
 
 import { use } from 'react';
@@ -52,7 +53,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
           </Button>
         </Link>
 
-        <article className="max-w-4xl mx-auto space-y-12">
+        <article className="max-w-5xl mx-auto space-y-12">
           <div className="space-y-6 text-center lg:text-left">
             <span className="px-4 py-1.5 rounded-full bg-primary/10 text-[10px] font-black uppercase tracking-widest text-primary">
               {blog.category}
@@ -83,7 +84,7 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
             />
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-12 pt-8">
+          <div className="flex flex-col gap-12 pt-8">
             <div className="flex-grow space-y-8">
               <div className="prose prose-pink max-w-none">
                 <p className="text-lg lg:text-xl text-foreground/70 leading-relaxed font-light whitespace-pre-line">
@@ -102,20 +103,24 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
                 </Button>
               </div>
             </div>
-
-            <aside className="lg:w-72 space-y-8">
-              <div className="bg-white p-8 rounded-[2.5rem] border border-primary/5 shadow-sm space-y-6">
-                <h4 className="text-[10px] font-black uppercase tracking-widest text-primary">About Resin Artologyy</h4>
-                <div className="relative w-20 h-20 rounded-full overflow-hidden mb-4">
-                  <Image src="https://picsum.photos/seed/artist/200/200" alt="Artist" fill className="object-cover" />
-                </div>
-                <p className="text-xs text-foreground/60 leading-relaxed font-light italic">
-                  "Every piece in our gallery is a chapter of a larger story about tradition, patience, and the beauty of the human touch."
-                </p>
-              </div>
-            </aside>
           </div>
         </article>
+
+        <aside className="py-24 text-center">
+            <div className="max-w-2xl mx-auto space-y-8 p-12 bg-secondary/50 rounded-[3rem] border border-primary/5 shadow-lg">
+                <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-primary">About the Artist</h4>
+                <div className="relative w-32 h-32 rounded-full overflow-hidden mx-auto shadow-xl border-4 border-white">
+                    <Image src="https://picsum.photos/seed/artist/200/200" alt="Artist" fill className="object-cover" />
+                </div>
+                <div className="space-y-4">
+                    <h3 className="text-4xl font-cursive text-foreground lowercase">Resin Artologyy</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed font-light italic">
+                    "Every piece in our gallery is a chapter of a larger story about tradition, patience, and the beauty of the human touch."
+                    </p>
+                </div>
+            </div>
+        </aside>
+
       </div>
     </div>
   );

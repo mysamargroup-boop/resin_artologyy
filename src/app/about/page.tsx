@@ -76,7 +76,7 @@ export default function AboutPage() {
             </h2>
             <p className="text-muted-foreground font-black uppercase tracking-[0.3em] text-[10px]">Founder & Creative Soul</p>
           </div>
-          <div className="max-w-2xl space-y-6">
+          <div className="max-w-3xl space-y-6">
             <p className="text-foreground/80 text-base lg:text-xl leading-relaxed italic font-light">
               "Resin Artologyy Handmades is more than just a brand; it's a heartbeat. It started from a simple desire to preserve the warmth of human touch in an increasingly digital world. Every piece I craft carries a fragment of my soul and a whisper of tradition."
             </p>

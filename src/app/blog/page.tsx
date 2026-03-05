@@ -60,7 +60,7 @@ export default function BlogPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 px-4 pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 px-4 pb-20">
           {blogs.map((blog) => (
             <Link key={blog.id} href={`/blog/${blog.id}`} className="group bg-card rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-primary/5 block">
               <div className="relative aspect-[4/3] overflow-hidden">
