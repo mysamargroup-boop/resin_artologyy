@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useSearchParams } from 'next/navigation';
@@ -65,7 +66,7 @@ export default function ProductGrid() {
               <input 
                 ref={searchInputRef}
                 placeholder="Search for 'ocean art' or 'wedding frames'..." 
-                className="w-full pl-14 pr-12 h-16 rounded-full border border-primary/10 bg-white/50 backdrop-blur-sm focus:bg-white shadow-lg outline-none px-4 transition-all text-base"
+                className="w-full pl-14 pr-12 h-16 rounded-full border border-primary/10 bg-card/80 backdrop-blur-sm focus:bg-white shadow-lg outline-none px-4 transition-all text-base"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -83,8 +84,8 @@ export default function ProductGrid() {
                       className={cn(
                         "rounded-full h-11 px-6 text-[10px] font-black uppercase tracking-[0.2em] transition-all shrink-0 border-2",
                         isActive 
-                          ? "bg-primary border-primary text-white shadow-lg shadow-primary/30" 
-                          : "bg-white/60 border-primary/10 text-foreground/80 hover:bg-white hover:border-primary/30"
+                          ? "bg-primary border-primary text-primary-foreground shadow-lg shadow-primary/30" 
+                          : "bg-card border-primary/10 text-foreground/80 hover:bg-white hover:border-primary/30"
                       )}
                       onClick={() => setSelectedCategory(cat)}
                     >
@@ -99,10 +100,10 @@ export default function ProductGrid() {
         </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
             {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="space-y-4 p-4 bg-white rounded-3xl shadow-sm border border-primary/5">
-                <Skeleton className="aspect-square w-full rounded-2xl" />
+              <div key={i} className="space-y-4 p-4 bg-card rounded-2xl shadow-sm border border-primary/5">
+                <Skeleton className="aspect-square w-full rounded-xl" />
                 <div className="space-y-3">
                   <div className="flex justify-between">
                     <Skeleton className="h-3 w-20 rounded-full" />
@@ -115,13 +116,13 @@ export default function ProductGrid() {
             ))}
           </div>
         ) : filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
             {filteredProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
         ) : (
-          <div className="text-center py-32 bg-white/40 rounded-[3rem] border-2 border-dashed border-primary/10 space-y-6">
+          <div className="text-center py-32 bg-secondary/50 rounded-[3rem] border-2 border-dashed border-primary/10 space-y-6">
             <div className="w-20 h-20 bg-primary/5 rounded-full flex items-center justify-center mx-auto">
               <Search className="h-10 w-10 text-primary/30" />
             </div>

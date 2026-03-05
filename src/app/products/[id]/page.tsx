@@ -1,3 +1,4 @@
+
 "use client";
 
 import { use, useState, useMemo, useEffect } from 'react';
@@ -150,12 +151,12 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 <CarouselContent>
                   {galleryImages.map((img, idx) => (
                     <CarouselItem key={idx}>
-                      <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl border-2 border-white bg-white w-full">
+                      <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl border-2 border-white bg-card w-full">
                         <Image src={img} alt={product.name} fill className="object-cover" priority={idx === 0} />
                         {idx === 0 && (
                           <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
                             {discount > 0 && (
-                              <Badge className="bg-primary text-white border-none px-3 py-1 rounded-full uppercase tracking-widest text-[9px] font-black shadow-lg">
+                              <Badge className="bg-primary text-primary-foreground border-none px-3 py-1 rounded-full uppercase tracking-widest text-[9px] font-black shadow-lg">
                                 {discount}% OFF
                               </Badge>
                             )}
@@ -189,10 +190,10 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 </div>
                 
                 <div className="flex items-center gap-2">
-                  <Button size="icon" variant="outline" className={cn("h-10 w-10 rounded-full border-primary/10 transition-all", wishlisted ? 'bg-primary/10 text-primary border-primary/20' : 'bg-white hover:bg-primary/5')} onClick={() => wishlisted ? removeFromWishlist(product.id) : addToWishlist(product)}>
+                  <Button size="icon" variant="outline" className={cn("h-10 w-10 rounded-full border-primary/10 transition-all", wishlisted ? 'bg-primary/10 text-primary border-primary/20' : 'bg-card hover:bg-primary/5')} onClick={() => wishlisted ? removeFromWishlist(product.id) : addToWishlist(product)}>
                     <Heart className={cn("h-4 w-4", wishlisted && "fill-primary text-primary")} />
                   </Button>
-                  <Button size="icon" variant="outline" className="h-10 w-10 rounded-full border-primary/10 bg-white hover:bg-primary/5 transition-all" onClick={handleShare}>
+                  <Button size="icon" variant="outline" className="h-10 w-10 rounded-full border-primary/10 bg-card hover:bg-primary/5 transition-all" onClick={handleShare}>
                     <Share2 className="h-4 w-4" />
                   </Button>
                 </div>
@@ -210,7 +211,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                   )}
                 </div>
                 {isFreeDelivery && (
-                  <div className="flex items-center gap-2 px-4 py-2 bg-green-50 rounded-full border border-green-100 text-green-700">
+                  <div className="flex items-center gap-2 px-4 py-2 bg-green-500/10 rounded-full border border-green-500/20 text-green-700">
                     <Truck className="h-4 w-4" />
                     <span className="text-[10px] font-black uppercase tracking-widest">Free Delivery</span>
                   </div>
@@ -219,28 +220,28 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             </div>
 
             {/* Compact Trust Badges Section */}
-            <div className="bg-white/60 backdrop-blur-md rounded-2xl border border-primary/5 shadow-sm p-4 grid grid-cols-3 divide-x divide-primary/10">
+            <div className="bg-secondary/40 backdrop-blur-md rounded-2xl border border-primary/5 shadow-sm p-4 grid grid-cols-3 divide-x divide-primary/10">
               <div className="flex flex-col items-center justify-center text-center px-2 gap-1.5">
-                <div className="p-1.5 bg-amber-50 rounded-full">
+                <div className="p-1.5 bg-amber-500/10 rounded-full">
                   <Medal className="h-4 w-4 text-amber-500" />
                 </div>
-                <span className="text-[8px] font-black uppercase tracking-widest text-foreground/60 leading-tight">Award Winning Artist</span>
+                <span className="text-[8px] font-black uppercase tracking-widest text-muted-foreground leading-tight">Award Winning Artist</span>
               </div>
               <div className="flex flex-col items-center justify-center text-center px-2 gap-1.5">
-                <div className="p-1.5 bg-green-50 rounded-full">
+                <div className="p-1.5 bg-green-500/10 rounded-full">
                   <Leaf className="h-4 w-4 text-green-600" />
                 </div>
-                <span className="text-[8px] font-black uppercase tracking-widest text-foreground/60 leading-tight">Eco Friendly Materials</span>
+                <span className="text-[8px] font-black uppercase tracking-widest text-muted-foreground leading-tight">Eco Friendly Materials</span>
               </div>
               <div className="flex flex-col items-center justify-center text-center px-2 gap-1.5">
-                <div className="p-1.5 bg-blue-50 rounded-full">
+                <div className="p-1.5 bg-blue-500/10 rounded-full">
                   <ShieldCheck className="h-4 w-4 text-blue-500" />
                 </div>
-                <span className="text-[8px] font-black uppercase tracking-widest text-foreground/60 leading-tight">Authenticity Guaranteed</span>
+                <span className="text-[8px] font-black uppercase tracking-widest text-muted-foreground leading-tight">Authenticity Guaranteed</span>
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white/40 backdrop-blur-sm border border-primary/5 space-y-4">
+            <div className="p-6 rounded-2xl bg-secondary/30 backdrop-blur-sm border border-primary/5 space-y-4">
               <h3 className="font-bold text-[11px] uppercase tracking-widest flex items-center text-foreground">
                 <Sparkles className="h-4 w-4 mr-2 text-primary" />
                 Artist's Story & Details
@@ -274,7 +275,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 </Button>
               </div>
 
-              <Button variant="outline" className="w-full h-12 rounded-2xl border-green-100 bg-green-50/30 text-green-700 font-bold text-[11px] uppercase tracking-widest gap-2" onClick={handleWhatsAppShare}>
+              <Button variant="outline" className="w-full h-12 rounded-2xl border-green-600/20 bg-green-500/10 text-green-700 font-bold text-[11px] uppercase tracking-widest gap-2" onClick={handleWhatsAppShare}>
                 <WhatsAppIcon className="h-4 w-4" />
                 Inquire via WhatsApp
               </Button>
@@ -311,7 +312,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {mockReviews.map((review, idx) => (
-              <div key={idx} className="bg-white/40 p-8 rounded-3xl border border-primary/5 shadow-sm space-y-4">
+              <div key={idx} className="bg-secondary/30 p-8 rounded-3xl border border-primary/5 shadow-sm space-y-4">
                 <div className="flex justify-between items-start">
                   <div className="space-y-1">
                     <p className="font-black text-sm uppercase">{review.name}</p>
@@ -320,7 +321,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     </div>
                   </div>
                 </div>
-                <p className="text-sm italic text-foreground/70 leading-relaxed">"{review.comment}"</p>
+                <p className="text-sm italic text-muted-foreground leading-relaxed">"{review.comment}"</p>
               </div>
             ))}
           </div>
@@ -331,7 +332,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             <div className="text-center">
               <h2 className="text-2xl lg:text-3xl font-black font-headline tracking-tight uppercase">Recommended Pieces</h2>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
               {recommendedProducts.map(p => <ProductCard key={p.id} product={p} />)}
             </div>
           </div>

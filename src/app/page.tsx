@@ -105,7 +105,7 @@ export default function Home() {
     <div className="flex flex-col w-full overflow-hidden">
 
       {/* Categories Squares Section */}
-      <section className="py-16 bg-card/40 border-b border-border">
+      <section className="py-16 bg-secondary/30 border-b border-border">
         <div className="container-normal px-4 text-center">
           <div className="flex flex-col items-center gap-2 mb-12">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary">Explore Our Craft</h4>
@@ -156,7 +156,7 @@ export default function Home() {
                         <h1 className="text-4xl lg:text-6xl font-black leading-none uppercase tracking-tight text-foreground drop-shadow-lg">
                           {slide.title}
                         </h1>
-                        <p className="text-sm lg:text-base text-foreground/70 font-light leading-relaxed max-w-lg mx-auto md:mx-0">
+                        <p className="text-sm lg:text-base text-muted-foreground font-light leading-relaxed max-w-lg mx-auto md:mx-0">
                           {slide.desc}
                         </p>
                         <div className="pt-4 lg:pt-6">
@@ -250,7 +250,7 @@ export default function Home() {
       {Object.entries(productsByCategory).map(([catName, products], idx) => (
         <section key={catName} className={cn(
           "py-24 relative overflow-hidden",
-          idx % 2 === 0 ? "bg-card/20" : "bg-card/40"
+          idx % 2 === 0 ? "bg-secondary/20" : "bg-transparent"
         )}>
           <div className="container-normal relative z-10 px-4">
             <div className="flex items-center justify-between mb-12">
@@ -264,7 +264,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
               {products.slice(0, 4).map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
@@ -274,7 +274,7 @@ export default function Home() {
       ))}
 
       {/* Instagram Feed */}
-      <section className="py-24 bg-card/40">
+      <section className="py-24 bg-secondary/20">
         <div className="container-normal px-4">
           <div className="text-center mb-16 space-y-6">
             <Link 
@@ -286,7 +286,7 @@ export default function Home() {
               @resinartologyy
             </Link>
             <h2 className="text-3xl lg:text-6xl font-black uppercase tracking-tight">On the Gram</h2>
-            <p className="text-foreground/50 text-base max-w-xl mx-auto leading-relaxed">Follow our creative journey and see how our art comes to life.</p>
+            <p className="text-muted-foreground text-base max-w-xl mx-auto leading-relaxed">Follow our creative journey and see how our art comes to life.</p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
@@ -309,7 +309,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-card/60 overflow-hidden">
+      <section className="py-24 bg-secondary/50 overflow-hidden">
         <div className="container-normal px-4">
           <div className="text-center mb-16 space-y-4">
             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-primary">Our Collectors</p>
@@ -343,17 +343,17 @@ export default function Home() {
       </section>
 
       {/* Signature & Our Story Section */}
-      <section className="py-24 bg-card/40 overflow-hidden">
+      <section className="py-24 overflow-hidden">
         <div className="container-normal px-4 flex flex-col items-center text-center space-y-8">
            <h2 className="text-7xl lg:text-9xl font-cursive text-primary lowercase tracking-tight drop-shadow-sm select-none">
              Resin Artologyy
            </h2>
            <div className="max-w-2xl space-y-4">
-             <p className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40">The Heart Behind the Art</p>
+             <p className="text-[10px] font-black uppercase tracking-[0.4em] text-muted-foreground">The Heart Behind the Art</p>
              <p className="text-xl lg:text-3xl font-light text-foreground/80 leading-relaxed italic">
                "Every piece we craft preserves a moment, a memory, a feeling."
              </p>
-             <p className="text-sm lg:text-base text-foreground/60 leading-relaxed font-medium">
+             <p className="text-sm lg:text-base text-muted-foreground leading-relaxed font-medium">
               What started as a simple desire to preserve the warmth of human touch has evolved into a legacy of craftsmanship. Our work is a celebration of patience, precision, and the beautiful imperfections of the handmade process.
              </p>
            </div>
@@ -368,16 +368,16 @@ export default function Home() {
       {/* Discovery CTA */}
       <section className="py-24">
         <div className="container-normal px-4">
-          <div className="bg-card text-white p-12 lg:p-24 rounded-[3rem] lg:rounded-[5rem] text-center space-y-10 relative overflow-hidden shadow-2xl">
+          <div className="bg-secondary text-secondary-foreground p-12 lg:p-24 rounded-[3rem] lg:rounded-[5rem] text-center space-y-10 relative overflow-hidden shadow-2xl">
             <div className="absolute inset-0 opacity-10 pointer-events-none">
               <Image src={placeholderData.placeholderImages.find(img => img.id === 'hero-pattern')?.imageUrl || ''} alt="pattern" fill className="object-cover" />
             </div>
             <div className="relative z-10 space-y-6">
-              <div className="inline-block px-4 py-2 rounded-full bg-white/10 border border-white/20 text-[10px] font-black uppercase tracking-widest">
+              <div className="inline-block px-4 py-2 rounded-full bg-black/5 border border-black/10 text-[10px] font-black uppercase tracking-widest">
                 AI Powered Art Concierge
               </div>
-              <h3 className="text-3xl lg:text-7xl font-black uppercase tracking-tight text-white leading-tight">Your Personal Curator</h3>
-              <p className="text-white/60 text-base lg:text-2xl font-light max-w-2xl mx-auto leading-relaxed">
+              <h3 className="text-3xl lg:text-7xl font-black uppercase tracking-tight text-foreground leading-tight">Your Personal Curator</h3>
+              <p className="text-muted-foreground text-base lg:text-2xl font-light max-w-2xl mx-auto leading-relaxed">
                 Describe your vision, and let our AI curate the perfect resin piece for you.
               </p>
               <div className="pt-6">

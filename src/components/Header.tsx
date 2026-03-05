@@ -57,7 +57,7 @@ export function Header() {
             <Button 
               variant="ghost" 
               size="icon" 
-              className="rounded-full hover:bg-foreground/5 text-foreground lg:hidden h-10 w-10 -ml-2"
+              className="rounded-full hover:bg-secondary text-foreground lg:hidden h-10 w-10 -ml-2"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -74,8 +74,8 @@ export function Header() {
           {/* Right: Icons */}
           <div className="flex justify-end items-center gap-1 -mr-2">
             <Link href="/wishlist">
-              <Button variant="ghost" size="icon" className="rounded-full hover:bg-foreground/5 text-foreground relative h-10 w-10 sm:h-12 sm:w-12 transition-transform hover:scale-110">
-                <Heart className="h-7 w-7 sm:h-9 sm:w-9" />
+              <Button variant="ghost" size="icon" className="rounded-full hover:bg-secondary text-foreground relative h-10 w-10 sm:h-12 sm:w-12 transition-transform hover:scale-110">
+                <Heart className="h-5 w-5 sm:h-6 sm:w-6" />
                 {wishlist.length > 0 && (
                   <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[8px] font-bold text-primary-foreground border-2 border-background">
                     {wishlist.length}
@@ -86,8 +86,8 @@ export function Header() {
             
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full hover:bg-foreground/5 text-foreground relative h-10 w-10 sm:h-12 sm:w-12 transition-transform hover:scale-110">
-                  <ShoppingBag className="h-7 w-7 sm:h-9 sm:w-9" />
+                <Button variant="ghost" size="icon" className="rounded-full hover:bg-secondary text-foreground relative h-10 w-10 sm:h-12 sm:w-12 transition-transform hover:scale-110">
+                  <ShoppingBag className="h-5 w-5 sm:h-6 sm:w-6" />
                   {cart.length > 0 && (
                     <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[8px] font-bold text-primary-foreground border-2 border-background">
                       {cart.length}
@@ -175,7 +175,7 @@ export function Header() {
                 href={link.href}
                 className={cn(
                   "text-[11px] font-bold uppercase tracking-[0.3em] transition-all relative group",
-                  isActive ? "text-primary" : "text-foreground/60 hover:text-primary"
+                  isActive ? "text-primary" : "text-muted-foreground hover:text-primary"
                 )}
               >
                 {link.name}

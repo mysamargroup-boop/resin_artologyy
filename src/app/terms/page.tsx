@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -38,24 +39,24 @@ export default function TermsPage() {
             <Scale className="h-8 w-8 text-primary" />
           </div>
           <h1 className="text-3xl lg:text-6xl font-black uppercase tracking-tight text-foreground">Terms & Conditions</h1>
-          <p className="text-foreground/50 text-sm font-light uppercase tracking-widest">Last Updated: January 2026</p>
+          <p className="text-muted-foreground text-sm font-light uppercase tracking-widest">Last Updated: January 2026</p>
         </div>
 
-        <div className="bg-white/40 backdrop-blur-xl rounded-[3rem] p-8 lg:p-16 border border-primary/5 shadow-sm space-y-12">
+        <div className="bg-card backdrop-blur-xl rounded-[3rem] p-8 lg:p-16 border border-primary/5 shadow-sm space-y-12">
           {sections.map((section, idx) => (
             <div key={idx} className="space-y-4">
               <h3 className="text-xl font-black uppercase tracking-tight text-primary flex items-center gap-3">
                 <FileText className="h-5 w-5 opacity-50" />
                 {section.title}
               </h3>
-              <p className="text-foreground/70 leading-relaxed font-light text-base lg:text-lg">
+              <p className="text-muted-foreground leading-relaxed font-light text-base lg:text-lg">
                 {section.content}
               </p>
             </div>
           ))}
           
           <div className="pt-8 border-t border-primary/10 text-center">
-            <p className="text-sm text-foreground/40 italic">
+            <p className="text-sm text-muted-foreground italic">
               If you have any questions regarding these terms, please contact us via the help section.
             </p>
           </div>

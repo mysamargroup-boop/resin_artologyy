@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -31,7 +32,7 @@ export default function WishlistPage() {
         <p className="text-muted-foreground text-lg">Your curated collection of handmade dreams.</p>
       </div>
       
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-2 sm:gap-4">
         {wishlist.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}

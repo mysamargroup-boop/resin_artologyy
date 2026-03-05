@@ -17,7 +17,7 @@ export function BottomNav() {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-t from-pink-50/95 to-white/95 backdrop-blur-2xl border-t border-primary/5 md:hidden h-20 shadow-[0_-8px_40px_rgba(199,29,133,0.1)]">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-secondary/90 backdrop-blur-2xl border-t border-primary/10 md:hidden h-20 shadow-[0_-8px_40px_rgba(199,29,133,0.05)]">
       <div className="flex justify-around items-center h-full px-1 relative">
         <div className="flex justify-around w-[42%] gap-1">
           {navItems.slice(0, 2).map((item) => {
@@ -29,8 +29,8 @@ export function BottomNav() {
                 href={item.href}
                 className="flex flex-col items-center justify-center gap-1 group transition-all duration-300 flex-1"
               >
-                <Icon className={cn("h-5 w-5 transition-colors", isActive ? "text-primary" : "text-gray-400")} />
-                <span className={cn("text-[7px] font-bold tracking-tight transition-colors", isActive ? "text-primary" : "text-gray-400")}>
+                <Icon className={cn("h-5 w-5 transition-colors", isActive ? "text-primary" : "text-muted-foreground")} />
+                <span className={cn("text-[7px] font-bold tracking-tight transition-colors", isActive ? "text-primary" : "text-muted-foreground")}>
                   {item.name}
                 </span>
               </Link>
@@ -56,8 +56,8 @@ export function BottomNav() {
                 href={item.href}
                 className="flex flex-col items-center justify-center gap-1 group transition-all duration-300 flex-1"
               >
-                <Icon className={cn("h-5 w-5 transition-colors", isActive ? "text-primary" : "text-gray-400")} />
-                <span className={cn("text-[7px] font-bold tracking-tight transition-colors", isActive ? "text-primary" : "text-gray-400")}>
+                <Icon className={cn("h-5 w-5 transition-colors", isActive ? "text-primary" : "text-muted-foreground")} />
+                <span className={cn("text-[7px] font-bold tracking-tight transition-colors", isActive ? "text-primary" : "text-muted-foreground")}>
                   {item.name}
                 </span>
               </Link>

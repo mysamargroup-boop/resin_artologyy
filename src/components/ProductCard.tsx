@@ -39,9 +39,9 @@ export function ProductCard({ product }: ProductCardProps) {
   const productUrl = `/collections/${categorySlug}/${subCategorySlug}/${product.id}`;
 
   return (
-    <div className="group flex flex-col gap-3 bg-white/50 p-3 rounded-3xl shadow-sm hover:shadow-lg hover:bg-white transition-all duration-300 border border-primary/5 w-full">
+    <div className="group flex flex-col gap-3 bg-card p-3 rounded-2xl shadow-sm hover:shadow-lg hover:bg-white transition-all duration-300 border border-primary/5 w-full">
       <Link href={productUrl} className="block">
-        <div className="relative w-full aspect-square bg-gray-50 rounded-2xl overflow-hidden">
+        <div className="relative w-full aspect-square bg-secondary rounded-xl overflow-hidden">
           <Image
             src={product.imageUrl}
             alt={product.name}
@@ -55,7 +55,7 @@ export function ProductCard({ product }: ProductCardProps) {
             <Button
               size="icon"
               variant="secondary"
-              className="rounded-full size-9 bg-white/80 backdrop-blur-sm shadow-md text-foreground/40 hover:text-primary transition-all border-none"
+              className="rounded-full size-9 bg-white/80 backdrop-blur-sm shadow-md text-muted-foreground hover:text-primary transition-all border-none"
               onClick={handleWishlist}
             >
               <Heart className={cn("h-4 w-4 transition-colors", wishlisted && "fill-primary text-primary")} />
@@ -63,7 +63,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
 
           {discountPercentage > 0 && (
-            <div className="absolute top-3 left-3 bg-primary text-white text-[9px] font-black px-2.5 py-1 rounded-full shadow-lg uppercase tracking-widest border-2 border-white/50">
+            <div className="absolute top-3 left-3 bg-primary text-primary-foreground text-[9px] font-black px-2.5 py-1 rounded-full shadow-lg uppercase tracking-widest border-2 border-white/50">
               {discountPercentage}% OFF
             </div>
           )}
@@ -77,7 +77,7 @@ export function ProductCard({ product }: ProductCardProps) {
             </div>
             <div className="flex items-center gap-1 text-amber-400">
               <Star className="h-3.5 w-3.5 fill-current" />
-              <span className="text-xs font-bold text-foreground/60">{product.rating || 5}.0</span>
+              <span className="text-xs font-bold text-muted-foreground">{product.rating || 5}.0</span>
             </div>
           </div>
 

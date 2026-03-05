@@ -45,7 +45,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen pb-24">
-      <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4 px-6">
+      <div className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-gray-100 py-4 px-6">
         <div className="flex items-center justify-between max-w-lg mx-auto w-full">
           <Link href="/">
             <Button variant="ghost" size="icon" className="text-primary hover:bg-primary/5 -ml-2">
@@ -62,7 +62,7 @@ export default function ContactPage() {
           <div className="w-40 h-40 rounded-full bg-primary/5 flex items-center justify-center relative z-10">
             <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary/40" />
             <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary/40" />
-            <div className="bg-white shadow-xl rounded-full p-6">
+            <div className="bg-card shadow-xl rounded-full p-6">
               <Headphones className="h-12 w-12 text-primary" />
             </div>
           </div>
@@ -71,7 +71,7 @@ export default function ContactPage() {
 
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-display font-black text-foreground">Get in Touch</h2>
-          <p className="text-foreground/60 text-base leading-relaxed max-w-sm">
+          <p className="text-muted-foreground text-base leading-relaxed max-w-sm">
             Reach out for custom flower preservation, hand casting kits, and unique resin decor.
           </p>
         </div>
@@ -88,7 +88,7 @@ export default function ContactPage() {
               >
                 <WhatsAppIcon className="h-7 w-7 text-foreground" />
               </Button>
-              <span className="text-[10px] font-bold text-foreground/50 uppercase tracking-widest">WhatsApp</span>
+              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">WhatsApp</span>
             </div>
             <div className="flex flex-col items-center gap-3">
               <Button 
@@ -99,7 +99,7 @@ export default function ContactPage() {
               >
                 <Instagram className="h-7 w-7 text-foreground" />
               </Button>
-              <span className="text-[10px] font-bold text-foreground/50 uppercase tracking-widest">Instagram</span>
+              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Instagram</span>
             </div>
             <div className="flex flex-col items-center gap-3">
               <Button 
@@ -110,7 +110,7 @@ export default function ContactPage() {
               >
                 <Mail className="h-7 w-7 text-foreground" />
               </Button>
-              <span className="text-[10px] font-bold text-foreground/50 uppercase tracking-widest">Email</span>
+              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Email</span>
             </div>
           </div>
         </div>
@@ -119,11 +119,11 @@ export default function ContactPage() {
           <h3 className="text-xs font-bold text-primary uppercase tracking-[0.3em]">Resin Art FAQs</h3>
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border-none bg-white/50 backdrop-blur-sm rounded-3xl px-6 py-2 shadow-sm">
+              <AccordionItem key={index} value={`item-${index}`} className="border-none bg-card/70 backdrop-blur-sm rounded-3xl px-6 py-2 shadow-sm">
                 <AccordionTrigger className="hover:no-underline text-left font-display font-bold text-foreground">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-foreground/60 leading-relaxed pt-2">
+                <AccordionContent className="text-muted-foreground leading-relaxed pt-2">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -141,7 +141,7 @@ export default function ContactPage() {
             />
             <div className="absolute inset-0 bg-primary/10 pointer-events-none" />
             <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4 p-6 text-center">
-              <div className="bg-white p-3 rounded-full shadow-lg">
+              <div className="bg-card p-3 rounded-full shadow-lg">
                 <MapPin className="h-8 w-8 text-primary" />
               </div>
               <div className="space-y-2">

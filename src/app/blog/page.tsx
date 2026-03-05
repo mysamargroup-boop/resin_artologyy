@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -54,14 +55,14 @@ export default function BlogPage() {
         <div className="text-center space-y-4 px-4">
           <p className="text-[11px] font-bold uppercase tracking-[0.5em] text-primary">The Studio Journal</p>
           <h1 className="text-2xl lg:text-7xl font-black uppercase tracking-tight text-foreground">Stories & Insights</h1>
-          <p className="text-foreground/50 text-sm lg:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-muted-foreground text-sm lg:text-xl max-w-2xl mx-auto font-light leading-relaxed">
             A deeper look into the artistry, traditions, and philosophy behind every Sumegha creation.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 px-4 pb-20">
           {blogs.map((blog) => (
-            <Link key={blog.id} href={`/blog/${blog.id}`} className="group bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-primary/5 block">
+            <Link key={blog.id} href={`/blog/${blog.id}`} className="group bg-card rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-primary/5 block">
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image 
                   src={blog.image} 
@@ -70,14 +71,14 @@ export default function BlogPage() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute top-6 left-6">
-                  <span className="px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md text-[10px] font-black uppercase tracking-widest text-primary shadow-sm">
+                  <span className="px-4 py-1.5 rounded-full bg-card/90 backdrop-blur-md text-[10px] font-black uppercase tracking-widest text-primary shadow-sm">
                     {blog.category}
                   </span>
                 </div>
               </div>
               
               <div className="p-8 lg:p-10 space-y-6">
-                <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-foreground/40">
+                <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Calendar className="h-3 w-3" />
                     {blog.date}
@@ -92,7 +93,7 @@ export default function BlogPage() {
                   {blog.title}
                 </h3>
                 
-                <p className="text-foreground/60 text-sm leading-relaxed font-light line-clamp-2">
+                <p className="text-muted-foreground text-sm leading-relaxed font-light line-clamp-2">
                   {blog.excerpt}
                 </p>
               </div>
@@ -100,13 +101,13 @@ export default function BlogPage() {
           ))}
         </div>
 
-        <div className="mx-4 bg-[#181113] p-12 lg:p-20 rounded-[4rem] text-center space-y-8 relative overflow-hidden">
+        <div className="mx-4 bg-primary/10 p-12 lg:p-20 rounded-[4rem] text-center space-y-8 relative overflow-hidden">
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             {heroPattern && <Image src={heroPattern.imageUrl} alt="pattern" fill className="object-cover" />}
           </div>
           <div className="relative z-10 space-y-4">
-            <h3 className="text-2xl lg:text-4xl font-black uppercase tracking-widest text-white">Never Miss a Story</h3>
-            <p className="text-white/60 text-sm font-light max-w-lg mx-auto">Get notified about new articles, collection drops, and artist insights directly in your inbox.</p>
+            <h3 className="text-2xl lg:text-4xl font-black uppercase tracking-widest text-primary-foreground">Never Miss a Story</h3>
+            <p className="text-primary-foreground/60 text-sm font-light max-w-lg mx-auto">Get notified about new articles, collection drops, and artist insights directly in your inbox.</p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto pt-4">
               <Input className="bg-white/10 border-white/20 text-white placeholder:text-white/40 h-14 rounded-xl" placeholder="Email Address" />
               <Button className="h-14 px-10 gradient-primary text-[10px] font-bold uppercase tracking-widest">Subscribe</Button>

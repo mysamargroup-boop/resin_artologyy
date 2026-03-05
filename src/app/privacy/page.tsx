@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -42,10 +43,10 @@ export default function PrivacyPolicyPage() {
             <ShieldCheck className="h-8 w-8" />
           </div>
           <h1 className="text-3xl lg:text-6xl font-black uppercase tracking-tight text-foreground">Privacy Policy</h1>
-          <p className="text-foreground/50 text-sm font-light uppercase tracking-widest">Effective Date: January 2026</p>
+          <p className="text-muted-foreground text-sm font-light uppercase tracking-widest">Effective Date: January 2026</p>
         </div>
 
-        <div className="bg-white/40 backdrop-blur-xl rounded-[3rem] p-8 lg:p-16 border border-primary/5 shadow-sm space-y-12">
+        <div className="bg-card backdrop-blur-xl rounded-[3rem] p-8 lg:p-16 border border-primary/5 shadow-sm space-y-12">
           {sections.map((section, idx) => {
             const Icon = section.icon;
             return (
@@ -54,7 +55,7 @@ export default function PrivacyPolicyPage() {
                   <Icon className="h-5 w-5 opacity-50" />
                   {section.title}
                 </h3>
-                <p className="text-foreground/70 leading-relaxed font-light text-base lg:text-lg">
+                <p className="text-muted-foreground leading-relaxed font-light text-base lg:text-lg">
                   {section.content}
                 </p>
               </div>
@@ -62,7 +63,7 @@ export default function PrivacyPolicyPage() {
           })}
           
           <div className="pt-8 border-t border-primary/10 text-center">
-            <p className="text-sm text-foreground/40 italic">
+            <p className="text-sm text-muted-foreground italic">
               Your trust is our most valued masterpiece. If you have questions about how we handle your data, please reach out to us.
             </p>
           </div>

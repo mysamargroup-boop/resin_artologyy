@@ -71,17 +71,17 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-card text-foreground rounded-t-[3rem] lg:rounded-t-[4rem] pt-16 lg:pt-20 pb-12">
+    <footer className="bg-secondary/40 text-foreground rounded-t-[3rem] lg:rounded-t-[4rem] pt-16 lg:pt-20 pb-12">
       <div className="container-normal px-8 lg:px-12">
         <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-16 mb-16 lg:mb-20">
           <div className="text-center lg:text-left space-y-6 lg:space-y-8 max-w-md w-full">
             <h3 className="text-base lg:text-lg font-black uppercase tracking-[0.3em] lg:tracking-[0.4em] text-foreground">Join the Inner Circle</h3>
-            <p className="text-foreground/40 text-[9px] lg:text-[10px] font-light tracking-[0.2em] leading-relaxed uppercase">
+            <p className="text-muted-foreground text-[9px] lg:text-[10px] font-light tracking-[0.2em] leading-relaxed uppercase">
               Experience new collections, limited drops, and exclusive releases.
             </p>
             <div className="flex flex-col sm:flex-row w-full gap-3 mt-4">
               <Input 
-                className="bg-foreground/5 border-foreground/10 text-foreground placeholder:text-foreground/40 text-[10px] lg:text-sm font-display tracking-widest uppercase h-12 lg:h-14 rounded-xl flex-grow px-6 border focus:ring-primary/50" 
+                className="bg-card/5 border-border text-foreground placeholder:text-muted-foreground text-[10px] lg:text-sm font-display tracking-widest uppercase h-12 lg:h-14 rounded-xl flex-grow px-6 border focus:ring-primary/50" 
                 placeholder="Email Address"
                 type="email"
               />
@@ -93,19 +93,19 @@ export function Footer() {
           
           <div className="flex flex-col items-center lg:items-end gap-10 w-full lg:w-auto">
             <div className="flex flex-wrap justify-center gap-6 lg:gap-8 items-center">
-              <Link href="https://instagram.com/resinartologyy" target="_blank" className="text-foreground/40 hover:text-primary transition-all hover:scale-110">
+              <Link href="https://instagram.com/resinartologyy" target="_blank" className="text-muted-foreground hover:text-primary transition-all hover:scale-110">
                 <Instagram className="h-6 w-6 lg:h-7 lg:w-7" />
               </Link>
-              <Link href="#" className="text-foreground/40 hover:text-primary transition-all hover:scale-110">
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-all hover:scale-110">
                 <Facebook className="h-6 w-6 lg:h-7 lg:w-7" />
               </Link>
-              <Link href="#" className="text-foreground/40 hover:text-primary transition-all hover:scale-110">
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-all hover:scale-110">
                 <Twitter className="h-6 w-6 lg:h-7 lg:w-7" />
               </Link>
-              <Link href="https://youtube.com/@resinartologyy" target="_blank" className="text-foreground/40 hover:text-primary transition-all hover:scale-110">
+              <Link href="https://youtube.com/@resinartologyy" target="_blank" className="text-muted-foreground hover:text-primary transition-all hover:scale-110">
                 <Youtube className="h-6 w-6 lg:h-7 lg:w-7" />
               </Link>
-              <Link href="#" className="text-foreground/40 hover:text-primary transition-all hover:scale-110">
+              <Link href="#" className="text-muted-foreground hover:text-primary transition-all hover:scale-110">
                 <WhatsAppIcon className="h-6 w-6 lg:h-7 lg:w-7" />
               </Link>
             </div>
@@ -129,10 +129,10 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="hidden md:grid md:grid-cols-4 gap-12 py-12 border-t border-foreground/10 text-sm font-bold uppercase tracking-[0.3em] text-foreground/70 lg:pl-12">
+        <div className="hidden md:grid md:grid-cols-4 gap-12 py-12 border-t border-border text-sm font-bold uppercase tracking-[0.3em] text-muted-foreground lg:pl-12">
           {footerData.map((section) => (
             <div key={section.title} className="space-y-6">
-              <h4 className="text-foreground/30 text-[9px] lg:text-[10px] tracking-[0.5em] mb-4">{section.title}</h4>
+              <h4 className="text-foreground/70 text-[9px] lg:text-[10px] tracking-[0.5em] mb-4">{section.title}</h4>
               <ul className="space-y-4">
                 {section.links.map((link) => (
                   <li key={link.name}>
@@ -144,18 +144,18 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="md:hidden border-t border-foreground/10 py-2">
+        <div className="md:hidden border-t border-border py-2">
           <Accordion type="single" collapsible className="w-full">
             {footerData.map((section, idx) => (
-              <AccordionItem key={section.title} value={`item-${idx}`} className="border-foreground/10">
-                <AccordionTrigger className="text-[14px] font-bold uppercase tracking-widest text-foreground/60 hover:no-underline py-5 px-4">
+              <AccordionItem key={section.title} value={`item-${idx}`} className="border-border">
+                <AccordionTrigger className="text-[14px] font-bold uppercase tracking-widest text-muted-foreground hover:no-underline py-5 px-4">
                   {section.title}
                 </AccordionTrigger>
                 <AccordionContent>
                   <ul className="flex flex-col gap-4 py-3 px-6">
                     {section.links.map((link) => (
                       <li key={link.name}>
-                        <Link href={link.href} className="text-[12px] text-foreground/70 uppercase tracking-widest hover:text-primary transition-colors">
+                        <Link href={link.href} className="text-[12px] text-muted-foreground uppercase tracking-widest hover:text-primary transition-colors">
                           {link.name}
                         </Link>
                       </li>
@@ -167,11 +167,11 @@ export function Footer() {
           </Accordion>
         </div>
 
-        <div className="mt-10 pt-8 border-t border-foreground/10 flex flex-col items-center gap-4 text-center px-4">
+        <div className="mt-10 pt-8 border-t border-border flex flex-col items-center gap-4 text-center px-4">
           <p className="text-[9px] text-foreground uppercase tracking-[0.5em] font-medium leading-relaxed">
             © 2026 Resin Artologyy. Crafted with Precision.
           </p>
-          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-foreground/20">
+          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
             <span>•</span>
             <Link 
               href="https://instagram.com/shubham__nema" 

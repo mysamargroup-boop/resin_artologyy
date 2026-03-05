@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -102,7 +103,7 @@ export default function CartPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
         <div className="lg:col-span-2 space-y-6">
           {cart.map((item) => (
-            <div key={item.id} className="flex flex-row items-center gap-6 p-4 lg:p-6 bg-white/50 backdrop-blur-sm rounded-[2rem] shadow-sm border border-primary/5 transition-all hover:shadow-md hover:bg-white group">
+            <div key={item.id} className="flex flex-row items-center gap-6 p-4 lg:p-6 bg-card/70 backdrop-blur-sm rounded-[2rem] shadow-sm border border-primary/5 transition-all hover:shadow-md hover:bg-card group">
               <div className="relative w-24 h-32 sm:w-32 sm:h-40 flex-shrink-0 rounded-[1.5rem] overflow-hidden shadow-sm border border-primary/5">
                 <Image src={item.imageUrl} alt={item.name} fill className="object-cover transition-transform group-hover:scale-105" />
               </div>
@@ -135,7 +136,7 @@ export default function CartPage() {
                     <Button 
                       variant="ghost" 
                       size="icon" 
-                      className="h-8 w-8 rounded-full hover:bg-white transition-colors" 
+                      className="h-8 w-8 rounded-full hover:bg-card transition-colors" 
                       onClick={() => updateCartQuantity(item.id, -1)}
                     >
                       <Minus className="h-3 w-3" />
@@ -144,7 +145,7 @@ export default function CartPage() {
                     <Button 
                       variant="ghost" 
                       size="icon" 
-                      className="h-8 w-8 rounded-full hover:bg-white transition-colors" 
+                      className="h-8 w-8 rounded-full hover:bg-card transition-colors" 
                       onClick={() => updateCartQuantity(item.id, 1)}
                     >
                       <Plus className="h-3 w-3" />
@@ -160,7 +161,7 @@ export default function CartPage() {
         </div>
 
         <div className="lg:col-span-1 space-y-6">
-          <div className="bg-white rounded-[2.5rem] p-8 shadow-2xl border border-primary/10 space-y-8">
+          <div className="bg-card rounded-[2.5rem] p-8 shadow-2xl border border-primary/10 space-y-8">
             <h2 className="text-xl font-display font-black uppercase tracking-tight text-foreground">Order Summary</h2>
             
             <div className="space-y-4">
@@ -206,7 +207,7 @@ export default function CartPage() {
               
               {totalSavings > 0 && (
                 <div className={cn(
-                  "flex justify-between items-center p-4 bg-green-50 rounded-2xl border border-green-100 transition-all",
+                  "flex justify-between items-center p-4 bg-green-500/10 rounded-2xl border border-green-500/20 transition-all",
                   isSparkling && "scale-105 shadow-lg shadow-green-100"
                 )}>
                   <span className="text-[10px] font-black text-green-700 uppercase tracking-widest flex items-center">

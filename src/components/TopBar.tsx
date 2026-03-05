@@ -11,7 +11,7 @@ export function TopBar() {
   ];
 
   return (
-    <div className="bg-card text-foreground py-2 px-4 overflow-hidden relative">
+    <div className="bg-secondary text-secondary-foreground py-2 px-4 overflow-hidden relative">
       <div className="flex items-center justify-center gap-8 md:gap-16 animate-in fade-in slide-in-from-top duration-500">
         {items.map((item, idx) => {
           const Icon = item.icon;

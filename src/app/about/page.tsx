@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -46,7 +47,7 @@ export default function AboutPage() {
         <div className="relative flex items-center justify-center mb-8">
           <div className="absolute left-0">
             <Link href="/">
-              <Button variant="ghost" size="icon" className="rounded-full bg-white/50 shadow-sm h-10 w-10">
+              <Button variant="ghost" size="icon" className="rounded-full bg-card/50 shadow-sm h-10 w-10">
                 <ArrowLeft className="h-5 w-5" />
               </Button>
             </Link>
@@ -73,13 +74,13 @@ export default function AboutPage() {
             <h2 className="text-6xl lg:text-8xl font-cursive text-primary lowercase tracking-tight drop-shadow-sm select-none">
               Sumegha
             </h2>
-            <p className="text-foreground/50 font-black uppercase tracking-[0.3em] text-[10px]">Founder & Creative Soul</p>
+            <p className="text-muted-foreground font-black uppercase tracking-[0.3em] text-[10px]">Founder & Creative Soul</p>
           </div>
           <div className="max-w-2xl space-y-6">
             <p className="text-foreground/80 text-base lg:text-xl leading-relaxed italic font-light">
               "Sumegha Handmades is more than just a brand; it's a heartbeat. It started from a simple desire to preserve the warmth of human touch in an increasingly digital world. Every piece I craft carries a fragment of my soul and a whisper of tradition."
             </p>
-            <p className="text-foreground/70 text-sm lg:text-base leading-relaxed font-medium">
+            <p className="text-muted-foreground text-sm lg:text-base leading-relaxed font-medium">
               We specialize in creating artifacts that aren't just decor, but anchors for your memories. From the rhythmic placement of mirrors in Lippan art to the personalized stroke of a nameplate, our work is a celebration of patience, precision, and the beautiful imperfections of the handmade process.
             </p>
           </div>
@@ -98,13 +99,13 @@ export default function AboutPage() {
               const Icon = item.icon;
               return (
                 <div key={index} className="relative">
-                  <div className="absolute -left-[32px] top-0 w-6 h-6 rounded-full bg-white shadow-md flex items-center justify-center z-10 border border-primary/10">
+                  <div className="absolute -left-[32px] top-0 w-6 h-6 rounded-full bg-card shadow-md flex items-center justify-center z-10 border border-primary/10">
                     <Icon className="h-3 w-3 text-primary" />
                   </div>
                   <div className="space-y-1 pt-0.5">
                     <p className="text-primary font-black text-[10px] tracking-[0.2em]">{item.year}</p>
                     <h4 className="text-lg font-black text-foreground uppercase tracking-tight">{item.title}</h4>
-                    <p className="text-foreground/70 text-xs leading-relaxed font-medium">{item.description}</p>
+                    <p className="text-muted-foreground text-xs leading-relaxed font-medium">{item.description}</p>
                   </div>
                 </div>
               );
@@ -113,14 +114,14 @@ export default function AboutPage() {
         </div>
 
         {/* Signature Creations */}
-        <div className="bg-white/60 backdrop-blur-md p-8 rounded-[2rem] border border-primary/10 shadow-sm space-y-6 max-w-4xl mx-auto">
+        <div className="bg-secondary/60 backdrop-blur-md p-8 rounded-[2rem] border border-primary/10 shadow-sm space-y-6 max-w-4xl mx-auto">
           <div className="flex items-center gap-3 text-primary">
             <Palette className="h-5 w-5" />
             <span className="text-[10px] font-black uppercase tracking-[0.4em]">Signature Creations</span>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {signatureCreations.map((item, i) => (
-              <div key={i} className="flex items-center gap-2 p-3 bg-white/80 rounded-xl shadow-sm border border-primary/5">
+              <div key={i} className="flex items-center gap-2 p-3 bg-card/80 rounded-xl shadow-sm border border-primary/5">
                 <Sparkles className="h-3 w-3 text-primary shrink-0" />
                 <span className="text-[10px] font-bold uppercase tracking-tight text-foreground/80">{item}</span>
               </div>
