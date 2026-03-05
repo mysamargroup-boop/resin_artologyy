@@ -5,11 +5,10 @@
       "id": "cat-fp",
       "name": "Flower Preservation",
       "slug": "flower-preservation",
-      "description": "Immortalize your precious moments. From wedding bouquets to memorial flowers, preserved forever in crystal-clear resin.",
+      "description": "Immortalize your precious moments. From wedding bouquets to anniversary flowers, preserved forever in crystal-clear resin.",
       "imageUrl": "https://picsum.photos/seed/cat-flower/800/1000",
       "subCategories": [
         { "name": "Wedding Bouquets", "imageUrl": "https://picsum.photos/seed/sub-wedding/500/500" },
-        { "name": "Memorial Keepsakes", "imageUrl": "https://picsum.photos/seed/sub-memorial/500/500" },
         { "name": "Decorative Frames", "imageUrl": "https://picsum.photos/seed/sub-frames/500/500" },
         { "name": "Resin Coasters", "imageUrl": "https://picsum.photos/seed/sub-coasters/500/500" }
       ]
@@ -34,6 +33,22 @@
         { "name": "Lamps", "imageUrl": "https://picsum.photos/seed/sub-lamps/500/500" },
         { "name": "Geode Art", "imageUrl": "https://picsum.photos/seed/sub-geode/500/500" }
       ]
+    },
+    {
+      "id": "cat-mk",
+      "name": "Memorial Keepsakes",
+      "slug": "memorial-keepsakes",
+      "description": "Cherish the memory of your loved ones with a beautiful, handcrafted memorial piece, preserving ashes or personal items in resin.",
+      "imageUrl": "https://picsum.photos/seed/sub-memorial/800/1000",
+      "subCategories": []
+    },
+    {
+        "id": "cat-rj",
+        "name": "Resin Jewelry",
+        "slug": "resin-jewelry",
+        "description": "Wearable art. Unique, handcrafted resin jewelry featuring delicate botanicals and shimmering colors.",
+        "imageUrl": "https://picsum.photos/seed/cat-jewelry/800/1000",
+        "subCategories": []
     },
     {
       "id": "cat-co",
