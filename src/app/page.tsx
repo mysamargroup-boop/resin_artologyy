@@ -166,7 +166,7 @@ export default function Home() {
          <Carousel 
           setApi={setApi}
           plugins={[plugin.current]}
-          className="w-full"
+          className="w-full relative"
         >
           <CarouselContent className="-ml-4 md:ml-0">
             {heroSlides.map((slide, index) => (
@@ -213,11 +213,11 @@ export default function Home() {
             ))}
           </CarouselContent>
           
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:left-1/4 md:bottom-10 md:-translate-x-1/2 flex gap-3 z-20">
             {Array.from({ length: count }).map((_, i) => (
               <button
                 key={i}
-                className="relative h-1.5 w-10 bg-primary/10 rounded-full overflow-hidden transition-all duration-300"
+                className="relative h-1.5 w-10 bg-white/20 backdrop-blur-sm rounded-full overflow-hidden transition-all duration-300"
                 onClick={() => api?.scrollTo(i)}
               >
                 {current === i && (
