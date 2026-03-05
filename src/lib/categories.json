@@ -34,6 +34,22 @@
         { "name": "Lamps", "imageUrl": "https://picsum.photos/seed/sub-lamps/500/500" },
         { "name": "Geode Art", "imageUrl": "https://picsum.photos/seed/sub-geode/500/500" }
       ]
+    },
+    {
+      "id": "cat-co",
+      "name": "Custom Orders",
+      "slug": "custom-orders",
+      "description": "Have a unique idea? We can bring your vision to life with a fully custom resin art piece tailored to you.",
+      "imageUrl": "https://picsum.photos/seed/cat-custom/800/1000",
+      "subCategories": []
+    },
+    {
+      "id": "cat-gv",
+      "name": "Gift Vouchers",
+      "slug": "gift-vouchers",
+      "description": "The perfect gift for any occasion. Let your loved ones choose their own piece of everlasting art.",
+      "imageUrl": "https://picsum.photos/seed/cat-giftcard/800/1000",
+      "subCategories": []
     }
   ]
 }

@@ -85,10 +85,10 @@ export default function Home() {
 
   const instagramPosts = placeholderData.placeholderImages.filter(img => img.id.startsWith('insta-'));
   const spotlightImages = [
-    { url: "https://picsum.photos/seed/spot1/1000/1000", title: "Artisanal Details" },
-    { url: "https://picsum.photos/seed/spot2/1000/1000", title: "Premium Finishes" },
-    { url: "https://picsum.photos/seed/spot3/1000/1000", title: "Bespoke Creations" },
-    { url: "https://picsum.photos/seed/spot4/1000/1000", title: "Handcrafted Love" },
+    { url: "https://picsum.photos/seed/spot1/1200/800", title: "Artisanal Details" },
+    { url: "https://picsum.photos/seed/spot2/1200/800", title: "Premium Finishes" },
+    { url: "https://picsum.photos/seed/spot3/1200/800", title: "Bespoke Creations" },
+    { url: "https://picsum.photos/seed/spot4/1200/800", title: "Handcrafted Love" },
   ];
 
   const heroSlides = categoriesData.categories.map((cat, idx) => ({
@@ -99,19 +99,19 @@ export default function Home() {
     image: cat.imageUrl || `https://picsum.photos/seed/hero-${idx}/1920/1080`
   }));
 
-  const artisticCategories = categoriesData.categories.slice(0, 4);
+  const artisticCategories = categoriesData.categories.slice(0, 5);
 
   return (
     <div className="flex flex-col w-full overflow-hidden">
 
       {/* Categories Squares Section */}
-      <section className="py-16 bg-white/40 border-b border-white">
+      <section className="py-16 bg-card/40 border-b border-border">
         <div className="container-normal px-4 text-center">
           <div className="flex flex-col items-center gap-2 mb-12">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.5em] text-primary">Explore Our Craft</h4>
             <h2 className="text-2xl lg:text-5xl font-black uppercase tracking-tight">Artistic Categories</h2>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
             {artisticCategories.map((cat, index) => (
               <Link key={index} href={`/products?category=${encodeURIComponent(cat.name)}`} className="group block text-center space-y-4 relative aspect-square overflow-hidden rounded-3xl shadow-lg">
                 <Image 
@@ -121,7 +121,7 @@ export default function Home() {
                   sizes="(max-width: 767px) 50vw, 25vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110" 
                 />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors"></div>
+                <div className="absolute inset-0 bg-black/50 group-hover:bg-black/70 transition-colors"></div>
                 <div className="absolute inset-0 flex items-center justify-center p-4">
                    <span className="block text-base sm:text-xl font-black uppercase tracking-widest text-white leading-tight drop-shadow-md text-center">
                     {cat.name}
@@ -169,14 +169,14 @@ export default function Home() {
                     </div>
 
                     {/* Right Column: Image */}
-                    <div className="relative aspect-square md:aspect-[4/5] w-full">
+                    <div className="relative aspect-video w-full">
                        <Image 
                         src={slide.image}
                         alt={slide.categoryName}
                         fill
                         sizes="(max-width: 767px) 100vw, 50vw"
                         className={cn(
-                          "object-cover rounded-3xl shadow-2xl transition-all duration-1000 ease-in-out",
+                          "object-cover rounded-3xl transition-all duration-1000 ease-in-out",
                           current === index ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-110"
                         )}
                         priority
@@ -225,7 +225,7 @@ export default function Home() {
               return (
                 <CarouselItem key={index} className="pl-4 sm:pl-8 basis-[80%] sm:basis-[60%] lg:basis-[45%]">
                   <div className={cn(
-                    "relative aspect-square rounded-[2.5rem] overflow-hidden transition-all duration-700 ease-in-out border-4 border-white",
+                    "relative aspect-video rounded-[2.5rem] overflow-hidden transition-all duration-700 ease-in-out border-4 border-foreground/5",
                     isActive ? "scale-100 blur-0 opacity-100" : "scale-90 blur-md opacity-40"
                   )}>
                     <Image src={slide.url} alt={slide.title} fill className="object-cover" />
@@ -250,7 +250,7 @@ export default function Home() {
       {Object.entries(productsByCategory).map(([catName, products], idx) => (
         <section key={catName} className={cn(
           "py-24 relative overflow-hidden",
-          idx % 2 === 0 ? "bg-white/20" : "bg-white/40"
+          idx % 2 === 0 ? "bg-card/20" : "bg-card/40"
         )}>
           <div className="container-normal relative z-10 px-4">
             <div className="flex items-center justify-between mb-12">
@@ -274,7 +274,7 @@ export default function Home() {
       ))}
 
       {/* Instagram Feed */}
-      <section className="py-24 bg-white/40">
+      <section className="py-24 bg-card/40">
         <div className="container-normal px-4">
           <div className="text-center mb-16 space-y-6">
             <Link 
@@ -309,7 +309,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-white/60 overflow-hidden">
+      <section className="py-24 bg-card/60 overflow-hidden">
         <div className="container-normal px-4">
           <div className="text-center mb-16 space-y-4">
             <p className="text-[11px] font-black uppercase tracking-[0.6em] text-primary">Our Collectors</p>
@@ -343,7 +343,7 @@ export default function Home() {
       </section>
 
       {/* Signature & Our Story Section */}
-      <section className="py-24 bg-white/40 overflow-hidden">
+      <section className="py-24 bg-card/40 overflow-hidden">
         <div className="container-normal px-4 flex flex-col items-center text-center space-y-8">
            <h2 className="text-7xl lg:text-9xl font-cursive text-primary lowercase tracking-tight drop-shadow-sm select-none">
              Resin Artologyy
@@ -368,7 +368,7 @@ export default function Home() {
       {/* Discovery CTA */}
       <section className="py-24">
         <div className="container-normal px-4">
-          <div className="bg-[#1a2c38] text-white p-12 lg:p-24 rounded-[3rem] lg:rounded-[5rem] text-center space-y-10 relative overflow-hidden shadow-2xl">
+          <div className="bg-card text-white p-12 lg:p-24 rounded-[3rem] lg:rounded-[5rem] text-center space-y-10 relative overflow-hidden shadow-2xl">
             <div className="absolute inset-0 opacity-10 pointer-events-none">
               <Image src={placeholderData.placeholderImages.find(img => img.id === 'hero-pattern')?.imageUrl || ''} alt="pattern" fill className="object-cover" />
             </div>

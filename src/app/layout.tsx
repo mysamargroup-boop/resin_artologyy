@@ -32,9 +32,9 @@ export default function RootLayout({
         {/* Global Background Overlays */}
         <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
           <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute bottom-[10%] right-[-5%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[100px]" />
-          <div className="absolute top-[30%] right-[10%] w-[30%] h-[30%] bg-blue-200/20 rounded-full blur-[80px]" />
-          <div className="absolute bottom-[20%] left-[5%] w-[25%] h-[25%] bg-teal-100/10 rounded-full blur-[60px]" />
+          <div className="absolute bottom-[10%] right-[-5%] w-[40%] h-[40%] bg-accent/5 rounded-full blur-[100px]" />
+          <div className="absolute top-[30%] right-[10%] w-[30%] h-[30%] bg-primary/10 rounded-full blur-[80px]" />
+          <div className="absolute bottom-[20%] left-[5%] w-[25%] h-[25%] bg-accent/10 rounded-full blur-[60px]" />
         </div>
 
         <TopBar />

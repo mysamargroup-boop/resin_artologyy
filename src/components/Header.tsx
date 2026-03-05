@@ -48,7 +48,7 @@ export function Header() {
   const subtotal = cart.reduce((sum, item) => sum + (item.sale_price * item.quantity), 0);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-lg border-b border-gray-100">
+    <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-lg border-b border-border/50">
       <div className="container-normal py-2 lg:py-3">
         {/* Main Header Row - 3 Column Grid for perfect alignment */}
         <div className="grid grid-cols-3 items-center w-full">
@@ -57,7 +57,7 @@ export function Header() {
             <Button 
               variant="ghost" 
               size="icon" 
-              className="rounded-full hover:bg-black/5 text-foreground lg:hidden h-10 w-10 -ml-2"
+              className="rounded-full hover:bg-foreground/5 text-foreground lg:hidden h-10 w-10 -ml-2"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -67,17 +67,17 @@ export function Header() {
           {/* Center: Logo Image */}
           <div className="flex justify-center">
             <Link href="/" className="flex items-center group">
-              <h1 className="text-xl lg:text-2xl font-black font-display uppercase tracking-widest text-foreground">Resin Artologyy</h1>
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-black font-display uppercase tracking-widest text-foreground whitespace-nowrap">Resin Artologyy</h1>
             </Link>
           </div>
 
           {/* Right: Icons */}
           <div className="flex justify-end items-center gap-1 -mr-2">
             <Link href="/wishlist">
-              <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 text-foreground relative h-10 w-10 sm:h-12 sm:w-12 transition-transform hover:scale-110">
+              <Button variant="ghost" size="icon" className="rounded-full hover:bg-foreground/5 text-foreground relative h-10 w-10 sm:h-12 sm:w-12 transition-transform hover:scale-110">
                 <Heart className="h-7 w-7 sm:h-9 sm:w-9" />
                 {wishlist.length > 0 && (
-                  <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[8px] font-bold text-white border-2 border-white">
+                  <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[8px] font-bold text-primary-foreground border-2 border-background">
                     {wishlist.length}
                   </span>
                 )}
@@ -86,16 +86,16 @@ export function Header() {
             
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full hover:bg-black/5 text-foreground relative h-10 w-10 sm:h-12 sm:w-12 transition-transform hover:scale-110">
+                <Button variant="ghost" size="icon" className="rounded-full hover:bg-foreground/5 text-foreground relative h-10 w-10 sm:h-12 sm:w-12 transition-transform hover:scale-110">
                   <ShoppingBag className="h-7 w-7 sm:h-9 sm:w-9" />
                   {cart.length > 0 && (
-                    <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[8px] font-bold text-white border-2 border-white">
+                    <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[8px] font-bold text-primary-foreground border-2 border-background">
                       {cart.length}
                     </span>
                   )}
                 </Button>
               </SheetTrigger>
-              <SheetContent className="w-full sm:max-w-md p-0 rounded-l-[2rem] border-none shadow-2xl flex flex-col">
+              <SheetContent className="w-full sm:max-w-md p-0 rounded-l-[2rem] border-none shadow-2xl flex flex-col bg-card text-card-foreground">
                 <SheetHeader className="p-6 pb-2">
                   <SheetTitle className="text-2xl font-black uppercase tracking-tight flex items-center gap-2">
                     <ShoppingBag className="h-6 w-6 text-primary" />
@@ -116,7 +116,7 @@ export function Header() {
                       <div className="space-y-6 py-4">
                         {cart.map((item) => (
                           <div key={item.id} className="flex gap-4 group">
-                            <div className="relative h-24 w-20 rounded-xl overflow-hidden border border-primary/5 shrink-0">
+                            <div className="relative h-24 w-20 rounded-xl overflow-hidden border border-border shrink-0">
                               <Image src={item.imageUrl} alt={item.name} fill className="object-cover" />
                             </div>
                             <div className="flex-1 flex flex-col justify-between py-1">
@@ -130,10 +130,10 @@ export function Header() {
                                 <p className="text-sm font-black text-primary">₹{item.sale_price}</p>
                               </div>
                               <div className="flex items-center justify-between">
-                                <div className="flex items-center bg-primary/5 rounded-full p-0.5 border border-primary/10">
-                                  <button onClick={() => updateCartQuantity(item.id, -1)} className="p-1 hover:bg-white rounded-full transition-colors"><Minus className="h-3 w-3" /></button>
+                                <div className="flex items-center bg-primary/5 rounded-full p-0.5 border border-border">
+                                  <button onClick={() => updateCartQuantity(item.id, -1)} className="p-1 hover:bg-card rounded-full transition-colors"><Minus className="h-3 w-3" /></button>
                                   <span className="w-6 text-center text-[10px] font-black">{item.quantity}</span>
-                                  <button onClick={() => updateCartQuantity(item.id, 1)} className="p-1 hover:bg-white rounded-full transition-colors"><Plus className="h-3 w-3" /></button>
+                                  <button onClick={() => updateCartQuantity(item.id, 1)} className="p-1 hover:bg-card rounded-full transition-colors"><Plus className="h-3 w-3" /></button>
                                 </div>
                                 <span className="text-[10px] font-black text-foreground/40">₹{item.sale_price * item.quantity}</span>
                               </div>
@@ -142,7 +142,7 @@ export function Header() {
                         ))}
                       </div>
                     </ScrollArea>
-                    <div className="p-6 bg-white border-t border-primary/5 space-y-4">
+                    <div className="p-6 bg-background border-t border-border space-y-4">
                       <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-muted-foreground">
                         <span>Subtotal</span>
                         <span>₹{subtotal}</span>
@@ -166,7 +166,7 @@ export function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center justify-center space-x-12 mt-4 pt-3 border-t border-gray-50">
+        <nav className="hidden lg:flex items-center justify-center space-x-12 mt-4 pt-3 border-t border-border/50">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -191,7 +191,7 @@ export function Header() {
 
       {/* Mobile Nav Overlay */}
       {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-100 p-8 animate-in slide-in-from-top duration-300 lg:hidden shadow-2xl z-50">
+        <div className="absolute top-full left-0 w-full bg-background/95 backdrop-blur-xl border-b border-border p-8 animate-in slide-in-from-top duration-300 lg:hidden shadow-2xl z-50">
           <nav className="flex flex-col space-y-2">
             {navLinks.map((link) => {
               const Icon = link.icon;
