@@ -5,33 +5,33 @@
 
 @layer base {
   :root {
-    --background: 350 20% 12%;
-    --foreground: 350 10% 95%;
+    --background: 0 0% 98%;
+    --foreground: 20 15% 25%;
 
-    --card: 350 20% 16%;
-    --card-foreground: 350 10% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 15% 25%;
     
-    --popover: 350 20% 10%;
-    --popover-foreground: 350 10% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 15% 25%;
 
-    --primary: 350 85% 65%; /* Reddish Maroon */
-    --primary-foreground: 0 0% 100%;
+    --primary: 40 90% 55%; /* Golden Yellow */
+    --primary-foreground: 30 50% 10%; /* Dark Brown */
 
-    --secondary: 350 20% 22%;
-    --secondary-foreground: 350 10% 95%;
+    --secondary: 40 20% 96%; /* Cream */
+    --secondary-foreground: 20 15% 25%;
 
-    --muted: 350 20% 30%;
-    --muted-foreground: 350 10% 70%;
+    --muted: 40 20% 90%;
+    --muted-foreground: 20 10% 45%;
 
-    --accent: 40 95% 65%; /* Golden */
-    --accent-foreground: 40 20% 10%;
+    --accent: 350 90% 70%; /* Soft Rose */
+    --accent-foreground: 350 50% 15%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 350 20% 35%;
-    --input: 350 20% 35%;
-    --ring: 40 95% 65%;
+    --border: 40 20% 88%;
+    --input: 40 20% 88%;
+    --ring: 40 90% 55%;
     --radius: 1rem;
   }
 }
@@ -42,7 +42,7 @@
   }
   body {
     @apply bg-background text-foreground font-display antialiased;
-    background: linear-gradient(180deg, hsl(350 20% 15%) 0%, hsl(350 25% 8%) 100%);
+    background: linear-gradient(180deg, hsl(40 30% 97%) 0%, hsl(350 40% 97%) 100%);
     min-height: 100vh;
   }
   h1, h2, h3, h4, h5, h6 {
@@ -59,7 +59,7 @@
 }
 
 .gradient-primary {
-  @apply bg-gradient-to-br from-primary via-rose-500 to-accent text-white font-bold transition-all duration-300 shadow-lg shadow-primary/20;
+  @apply bg-gradient-to-br from-yellow-400 via-amber-500 to-rose-400 text-amber-950 font-bold transition-all duration-300 shadow-lg shadow-amber-500/20;
 }
 
 .container-normal {

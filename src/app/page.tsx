@@ -22,7 +22,7 @@ export default function Home() {
   }, {});
 
   return (
-    <div className="flex flex-col w-full overflow-hidden">
+    <div className="flex flex-col w-full overflow-hidden space-y-16 lg:space-y-24">
       <MobileCategoryGrid />
       <DesktopCategoryGrid />
       <HeroSlider />
