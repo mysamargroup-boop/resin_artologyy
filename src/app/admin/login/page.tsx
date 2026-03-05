@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth, useUser } from '@/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -20,6 +20,13 @@ function AdminLoginPageContent() {
   const router = useRouter();
   const auth = useAuth();
   const { user, isUserLoading } = useUser();
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      setEmail('admin@example.com');
+      setPassword('password');
+    }
+  }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
