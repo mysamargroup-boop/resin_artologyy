@@ -129,14 +129,14 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="hidden md:grid md:grid-cols-4 gap-8 py-12 border-t border-border">
+        <div className="hidden md:grid md:grid-cols-4 gap-x-16 gap-y-12 py-12 border-t border-border">
           {footerData.map((section) => (
             <div key={section.title} className="space-y-6">
               <h4 className="text-primary font-black uppercase tracking-[0.3em] text-[10px] mb-6">{section.title}</h4>
               <ul className="space-y-4">
                 {section.links.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} className="hover:text-primary transition-colors text-xs text-muted-foreground">{link.name}</Link>
+                    <Link href={link.href} className="hover:text-primary transition-colors text-[12px] font-light text-muted-foreground">{link.name}</Link>
                   </li>
                 ))}
               </ul>
@@ -155,7 +155,7 @@ export function Footer() {
                   <ul className="flex flex-col gap-4 py-3 px-6">
                     {section.links.map((link) => (
                       <li key={link.name}>
-                        <Link href={link.href} className="text-xs text-muted-foreground uppercase tracking-widest hover:text-primary transition-colors">
+                        <Link href={link.href} className="text-[12px] text-muted-foreground uppercase tracking-wider hover:text-primary transition-colors">
                           {link.name}
                         </Link>
                       </li>

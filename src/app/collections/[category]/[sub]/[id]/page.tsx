@@ -75,12 +75,12 @@ export default function CollectionProductDetailPage({ params }: { params: Promis
   const recommendedProducts = useMemo(() => 
     (productsData.products as Product[])
       .filter(p => p.id !== id && p.category === product.category)
-      .slice(0, 4),
+      .slice(0, 5),
   [id, product.category]);
 
   const mockReviews = [
-    { name: "Priya D.", rating: 5, comment: "Beyond beautiful. This added so much character to our doorway.", date: "3 weeks ago" },
-    { name: "Suresh K.", rating: 5, comment: "Quality is top notch. Delivery was also very quick and safe.", date: "1 month ago" },
+    { name: "Priya D.", rating: 5, comment: "Beyond beautiful. This added so much character to our doorway. The craftsmanship is just impeccable.", date: "3 weeks ago", avatar: "https://picsum.photos/seed/review1/100/100" },
+    { name: "Suresh K.", rating: 5, comment: "Quality is top notch. Delivery was also very quick and safe. The packaging was beautiful too.", date: "1 month ago", avatar: "https://picsum.photos/seed/review2/100/100" },
   ];
 
   const handleShare = async () => {
@@ -119,12 +119,20 @@ export default function CollectionProductDetailPage({ params }: { params: Promis
   return (
     <div className="w-full overflow-x-hidden">
       <div className="container mx-auto px-4 py-8 lg:py-12 max-w-7xl">
-        <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-8">
+        <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-8 flex-wrap">
           <Link href="/" className="hover:text-primary transition-colors">Home</Link>
           <ChevronRight className="h-3 w-3" />
           <Link href="/products" className="hover:text-primary transition-colors">Gallery</Link>
           <ChevronRight className="h-3 w-3" />
-          <span className="text-primary">{product.category}</span>
+          <Link href={`/products?category=${encodeURIComponent(product.category)}`} className="hover:text-primary transition-colors">{product.category}</Link>
+          {product.subcategory && (
+            <>
+              <ChevronRight className="h-3 w-3" />
+              <Link href={`/products?category=${encodeURIComponent(product.category)}&subcategory=${encodeURIComponent(product.subcategory)}`} className="hover:text-primary transition-colors">{product.subcategory}</Link>
+            </>
+          )}
+          <ChevronRight className="h-3 w-3" />
+          <span className="text-primary">{product.name}</span>
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start mb-24">
@@ -313,14 +321,20 @@ export default function CollectionProductDetailPage({ params }: { params: Promis
             {mockReviews.map((review, idx) => (
               <div key={idx} className="bg-secondary/30 p-8 rounded-3xl border border-primary/5 shadow-sm space-y-4">
                 <div className="flex justify-between items-start">
-                  <div className="space-y-1">
-                    <p className="font-black text-sm uppercase">{review.name}</p>
-                    <div className="flex text-amber-400">
-                      {Array.from({ length: review.rating }).map((_, i) => <Star key={i} className="h-3 w-3 fill-current" />)}
+                  <div className="flex items-center gap-4">
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden">
+                      <Image src={review.avatar} alt={review.name} fill className="object-cover" />
+                    </div>
+                    <div>
+                      <p className="font-black text-sm uppercase">{review.name}</p>
+                      <div className="flex text-amber-400 mt-1">
+                        {Array.from({ length: review.rating }).map((_, i) => <Star key={i} className="h-3 w-3 fill-current" />)}
+                      </div>
                     </div>
                   </div>
+                  <span className="text-xs text-muted-foreground font-light">{review.date}</span>
                 </div>
-                <p className="text-sm italic text-foreground/70 leading-relaxed">"{review.comment}"</p>
+                <p className="text-sm italic text-foreground/70 leading-relaxed pt-2">"{review.comment}"</p>
               </div>
             ))}
           </div>
@@ -331,7 +345,7 @@ export default function CollectionProductDetailPage({ params }: { params: Promis
             <div className="text-center">
               <h2 className="text-2xl lg:text-3xl font-black font-headline tracking-tight uppercase">Recommended Pieces</h2>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-2 sm:gap-4">
               {recommendedProducts.map(p => <ProductCard key={p.id} product={p} />)}
             </div>
           </div>
@@ -340,3 +354,5 @@ export default function CollectionProductDetailPage({ params }: { params: Promis
     </div>
   );
 }
+
+    
