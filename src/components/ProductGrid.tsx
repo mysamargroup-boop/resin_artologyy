@@ -102,7 +102,7 @@ export default function ProductGrid() {
         {isLoading ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-4">
             {Array.from({ length: 10 }).map((_, i) => (
-              <div key={i} className="space-y-4 p-4 bg-card rounded-2xl shadow-sm border border-primary/5">
+              <div key={i} className="space-y-4 p-4 bg-card rounded-2xl shadow-sm border border-border/10">
                 <Skeleton className="aspect-square w-full rounded-xl" />
                 <div className="space-y-3">
                   <div className="flex justify-between">
@@ -143,5 +143,3 @@ export default function ProductGrid() {
     </div>
   );
 }
-
-    
