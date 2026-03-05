@@ -94,10 +94,10 @@ export default function Home() {
 
   const instagramPosts = placeholderData.placeholderImages.filter(img => img.id.startsWith('insta-'));
   const spotlightImages = [
-    { url: "https://picsum.photos/seed/spot1/1000/1000", icon: Sparkles, title: "Artisanal Details" },
-    { url: "https://picsum.photos/seed/spot2/1000/1000", icon: Gem, title: "Premium Finishes" },
-    { url: "https://picsum.photos/seed/spot3/1000/1000", icon: Star, title: "Bespoke Creations" },
-    { url: "https://picsum.photos/seed/spot4/1000/1000", icon: Sparkles, title: "Handcrafted Love" },
+    { url: "https://picsum.photos/seed/spot1/1000/1000", title: "Artisanal Details" },
+    { url: "https://picsum.photos/seed/spot2/1000/1000", title: "Premium Finishes" },
+    { url: "https://picsum.photos/seed/spot3/1000/1000", title: "Bespoke Creations" },
+    { url: "https://picsum.photos/seed/spot4/1000/1000", title: "Handcrafted Love" },
   ];
 
   const heroSlides = categoriesData.categories.map((cat, idx) => ({
@@ -141,7 +141,7 @@ export default function Home() {
                     "relative z-10 h-full flex items-center justify-center p-8 text-center transition-all duration-1000 delay-300",
                     current === index ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-4 blur-sm"
                   )}>
-                    <div className="max-w-4xl w-full flex flex-col items-center space-y-8">
+                    <div className="max-w-4xl w-full flex flex-col items-center space-y-6 sm:space-y-8">
                       <div className="inline-block px-5 py-2 rounded-full border border-white/30 text-[10px] font-black uppercase tracking-[0.4em] text-white bg-white/10 backdrop-blur-md">
                         {slide.badge}
                       </div>
@@ -153,12 +153,12 @@ export default function Home() {
                           {slide.highlight}
                         </h2>
                       </div>
-                      <p className="text-base sm:text-2xl text-white/90 font-light leading-relaxed max-w-2xl drop-shadow-lg px-4">
+                      <p className="text-sm sm:text-2xl text-white/90 font-light leading-relaxed max-w-2xl drop-shadow-lg px-4">
                         {slide.desc}
                       </p>
-                      <div className="pt-10">
+                      <div className="pt-6 sm:pt-10">
                         <Link href={`/products?category=${encodeURIComponent(slide.categoryName)}`}>
-                          <Button className="h-16 px-14 rounded-2xl text-[11px] font-black uppercase tracking-[0.3em] gradient-primary border-none shadow-2xl shadow-primary/50 active:scale-95 transition-all hover:scale-105">
+                          <Button className="h-12 sm:h-16 px-8 sm:px-14 rounded-2xl text-[10px] sm:text-[11px] font-black uppercase tracking-[0.3em] gradient-primary border-none shadow-2xl shadow-primary/50 active:scale-95 transition-all hover:scale-105">
                             Shop {slide.categoryName}
                           </Button>
                         </Link>
@@ -232,7 +232,6 @@ export default function Home() {
           <CarouselContent className="-ml-4 sm:-ml-8">
             {spotlightImages.map((slide, index) => {
               const isActive = spotlightCurrent === index;
-              const Icon = slide.icon;
               return (
                 <CarouselItem key={index} className="pl-4 sm:pl-8 basis-[80%] sm:basis-[60%] lg:basis-[45%]">
                   <div className={cn(
@@ -245,9 +244,6 @@ export default function Home() {
                       "absolute inset-0 flex flex-col items-center justify-center space-y-4 transition-all duration-500 delay-200",
                       isActive ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                     )}>
-                      <div className="bg-white/20 backdrop-blur-md p-6 rounded-full border border-white/30 shadow-2xl">
-                        <Icon className="h-12 w-12 text-white drop-shadow-lg" />
-                      </div>
                       <h3 className="text-2xl sm:text-4xl font-black uppercase tracking-tighter text-white drop-shadow-md">
                         {slide.title}
                       </h3>
