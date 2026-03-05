@@ -26,20 +26,20 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 export default function ContactPage() {
   const faqs = [
     {
-      question: "Do you take custom orders for Lippan art?",
-      answer: "Yes, we specialize in bespoke Lippan art and personalized mural pieces. You can customize the color palette, size, and mirror patterns to match your home's aesthetic."
+      question: "Can I preserve my own flowers in a resin piece?",
+      answer: "Absolutely! We specialize in preserving your special flowers, like wedding bouquets or memorial flowers, in custom resin art. Contact us to start the process."
     },
     {
-      question: "How long does shipping take for handcrafted items?",
-      answer: "Since each piece is created by hand with meticulous care, please allow 7-10 business days for preparation. International shipping may take 15-20 days."
+      question: "How long does a custom order take?",
+      answer: "Since each piece is created by hand with meticulous care, custom orders like flower preservation can take 2-4 weeks, depending on the complexity. Hand casting kits are ready to ship."
     },
     {
-      question: "Can I see the progress of my custom order?",
-      answer: "Absolutely! For major custom commissions like name plates or large murals, we share progress shots on WhatsApp so you can witness your art coming to life."
+      question: "How does the hand casting process work?",
+      answer: "Our kits are beginner-friendly! They come with non-toxic molding material and high-quality casting stone. You simply create a mold of the hands and then pour the casting mixture. It's a fun and memorable DIY experience."
     },
     {
       question: "Is international delivery available?",
-      answer: "Yes, we ship our handmade treasures worldwide. Shipping costs and delivery times vary based on the destination. Contact us for a specific quote."
+      answer: "Yes, we ship our resin treasures worldwide. Shipping costs and delivery times vary based on the destination. Contact us for a specific quote for your location."
     }
   ];
 
@@ -72,7 +72,7 @@ export default function ContactPage() {
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-display font-black text-foreground">Get in Touch</h2>
           <p className="text-foreground/60 text-base leading-relaxed max-w-sm">
-            Reach out for custom Lippan art, personalized name plates, and traditional handmade decor.
+            Reach out for custom flower preservation, hand casting kits, and unique resin decor.
           </p>
         </div>
 
@@ -95,7 +95,7 @@ export default function ContactPage() {
                 variant="outline" 
                 size="icon" 
                 className="h-16 w-16 rounded-full border-primary/10 hover:border-primary hover:bg-primary/5 shadow-sm transition-all"
-                onClick={() => window.open('https://instagram.com/sumegha_handmades', '_blank')}
+                onClick={() => window.open('https://instagram.com/resinartologyy', '_blank')}
               >
                 <Instagram className="h-7 w-7 text-foreground" />
               </Button>
@@ -106,7 +106,7 @@ export default function ContactPage() {
                 variant="outline" 
                 size="icon" 
                 className="h-16 w-16 rounded-full border-primary/10 hover:border-primary hover:bg-primary/5 shadow-sm transition-all"
-                onClick={() => window.open('mailto:hello@sumegha.com', '_blank')}
+                onClick={() => window.open('mailto:hello@resinartologyy.com', '_blank')}
               >
                 <Mail className="h-7 w-7 text-foreground" />
               </Button>
@@ -116,7 +116,7 @@ export default function ContactPage() {
         </div>
 
         <div className="w-full space-y-8 pt-8">
-          <h3 className="text-xs font-bold text-primary uppercase tracking-[0.3em]">Handmade Art FAQs</h3>
+          <h3 className="text-xs font-bold text-primary uppercase tracking-[0.3em]">Resin Art FAQs</h3>
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`} className="border-none bg-white/50 backdrop-blur-sm rounded-3xl px-6 py-2 shadow-sm">
@@ -147,7 +147,7 @@ export default function ContactPage() {
               <div className="space-y-2">
                 <p className="text-white font-display font-black text-xl drop-shadow-md uppercase tracking-tight">Visit Our Studio</p>
                 <p className="text-white/90 text-[10px] font-bold uppercase tracking-widest max-w-[240px] drop-shadow-sm">
-                  Makronia, Sagar Madhya Pradesh 470002
+                  Hyderabad, India
                 </p>
               </div>
             </div>

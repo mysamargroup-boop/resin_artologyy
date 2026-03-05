@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -64,13 +65,13 @@ export function Footer() {
   ];
 
   const contactItems = [
-    { label: "EMAIL US", value: "hello@sumegha.com", icon: Mail },
+    { label: "EMAIL US", value: "hello@resinartologyy.com", icon: Mail },
     { label: "CALL US", value: "+91 98765 43210", icon: Phone },
-    { label: "OUR STUDIO", value: "Makronia, Sagar Madhya Pradesh 470002", icon: MapPin },
+    { label: "OUR STUDIO", value: "Hyderabad, India", icon: MapPin },
   ];
 
   return (
-    <footer className="bg-[#181113] text-white rounded-t-[3rem] lg:rounded-t-[4rem] pt-16 lg:pt-20 pb-12">
+    <footer className="bg-[#1a2c38] text-white rounded-t-[3rem] lg:rounded-t-[4rem] pt-16 lg:pt-20 pb-12">
       <div className="container-normal px-8 lg:px-12">
         <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12 lg:gap-16 mb-16 lg:mb-20">
           <div className="text-center lg:text-left space-y-6 lg:space-y-8 max-w-md w-full">
@@ -92,7 +93,7 @@ export function Footer() {
           
           <div className="flex flex-col items-center lg:items-end gap-10 w-full lg:w-auto">
             <div className="flex flex-wrap justify-center gap-6 lg:gap-8 items-center">
-              <Link href="https://instagram.com/sumegha_handmades" target="_blank" className="text-white/40 hover:text-primary transition-all hover:scale-110">
+              <Link href="https://instagram.com/resinartologyy" target="_blank" className="text-white/40 hover:text-primary transition-all hover:scale-110">
                 <Instagram className="h-6 w-6 lg:h-7 lg:w-7" />
               </Link>
               <Link href="#" className="text-white/40 hover:text-blue-500 transition-all hover:scale-110">
@@ -101,7 +102,7 @@ export function Footer() {
               <Link href="#" className="text-white/40 hover:text-sky-400 transition-all hover:scale-110">
                 <Twitter className="h-6 w-6 lg:h-7 lg:w-7" />
               </Link>
-              <Link href="https://youtube.com/@sumeghahandmades?si=7QC4EAYRar_qTx8j" target="_blank" className="text-white/40 hover:text-red-500 transition-all hover:scale-110">
+              <Link href="https://youtube.com/@resinartologyy" target="_blank" className="text-white/40 hover:text-red-500 transition-all hover:scale-110">
                 <Youtube className="h-6 w-6 lg:h-7 lg:w-7" />
               </Link>
               <Link href="#" className="text-white/40 hover:text-green-500 transition-all hover:scale-110">
@@ -168,14 +169,14 @@ export function Footer() {
 
         <div className="mt-10 pt-8 border-t border-white/5 flex flex-col items-center gap-4 text-center px-4">
           <p className="text-[9px] text-white uppercase tracking-[0.5em] font-medium leading-relaxed">
-            © 2026 Sumegha Handmades. Crafted with Precision.
+            © 2026 Resin Artologyy. Crafted with Precision.
           </p>
           <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/20">
             <span>•</span>
             <Link 
               href="https://instagram.com/shubham__nema" 
               target="_blank" 
-              className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-pink-400 hover:opacity-80 transition-opacity"
+              className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400 hover:opacity-80 transition-opacity"
             >
               Designed by Samar
             </Link>

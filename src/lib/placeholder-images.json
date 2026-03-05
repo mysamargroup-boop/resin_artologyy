@@ -2,25 +2,25 @@
   "placeholderImages": [
     {
       "id": "hero-pattern",
-      "description": "Elegant abstract pattern for hero backgrounds",
-      "imageUrl": "https://picsum.photos/seed/sumegha-pattern/1920/1080",
+      "description": "Elegant abstract resin art pattern",
+      "imageUrl": "https://picsum.photos/seed/resin-pattern/1920/1080",
       "imageHint": "abstract pattern"
     },
     {
       "id": "artist-main",
-      "description": "Sumegha - The lead artist in her studio",
-      "imageUrl": "https://picsum.photos/seed/sumegha-artist/800/800",
+      "description": "Artist working in their resin studio",
+      "imageUrl": "https://picsum.photos/seed/resin-artist/800/800",
       "imageHint": "artist studio"
     },
     {
       "id": "process-1",
-      "description": "Artist working on a Lippan art piece",
+      "description": "Artist pouring resin into a mold",
       "imageUrl": "https://picsum.photos/seed/process1/600/600",
-      "imageHint": "crafting process"
+      "imageHint": "resin crafting"
     },
     {
       "id": "process-2",
-      "description": "Intricate detail work on a name plate",
+      "description": "Intricate detail work on a resin piece",
       "imageUrl": "https://picsum.photos/seed/process2/600/600",
       "imageHint": "detailed craft"
     },
@@ -28,7 +28,7 @@
       "id": "insta-1",
       "description": "Instagram showcase 1",
       "imageUrl": "https://picsum.photos/seed/insta1/500/500",
-      "imageHint": "art display"
+      "imageHint": "resin art"
     },
     {
       "id": "insta-2",
@@ -40,30 +40,30 @@
       "id": "insta-3",
       "description": "Instagram showcase 3",
       "imageUrl": "https://picsum.photos/seed/insta3/500/500",
-      "imageHint": "handmade decor"
+      "imageHint": "resin decor"
     },
     {
       "id": "blog-1",
-      "description": "The soul of handmade art",
+      "description": "The soul of resin art",
       "imageUrl": "https://picsum.photos/seed/blog1/1200/600",
-      "imageHint": "handmade art"
+      "imageHint": "resin art"
     },
     {
       "id": "blog-2",
-      "description": "Traditional desert masterpiece",
+      "description": "Preserving memories in resin",
       "imageUrl": "https://picsum.photos/seed/blog2/1200/600",
-      "imageHint": "traditional art"
+      "imageHint": "flower preservation"
     },
     {
       "id": "blog-3",
-      "description": "Designing for serenity",
+      "description": "Designing with resin",
       "imageUrl": "https://picsum.photos/seed/blog3/1200/600",
       "imageHint": "interior design"
     },
     {
       "id": "studio-map",
-      "description": "Our studio location in Jaipur",
-      "imageUrl": "https://picsum.photos/seed/jaipur-map/800/400",
+      "description": "Our studio location in Hyderabad",
+      "imageUrl": "https://picsum.photos/seed/hyderabad-map/800/400",
       "imageHint": "map location"
     }
   ]

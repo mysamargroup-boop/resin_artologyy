@@ -75,20 +75,20 @@ export default function Home() {
   const testimonials = [
     {
       name: "Anjali Mehta",
-      role: "Home Stylist",
-      content: "The Lippan Art piece I bought is the soul of my living room. Every guest asks about it!",
+      role: "Newly Wed",
+      content: "The flower preservation frame is the soul of our living room. It beautifully captures our wedding day memories.",
       stars: 5
     },
     {
       name: "Rohan Sharma",
       role: "Gifting Enthusiast",
-      content: "The personalized nameplate exceeded my expectations. Sumegha's attention to detail is unmatched.",
+      content: "The hand casting kit exceeded my expectations. Resin Artologyy's attention to detail is unmatched.",
       stars: 5
     },
     {
       name: "Priya Das",
-      role: "Bridal Client",
-      content: "My bridal trunk box is a treasure. It's royal, elegant, and perfectly handcrafted.",
+      role: "Art Collector",
+      content: "My ocean resin art is a treasure. It's royal, elegant, and perfectly handcrafted.",
       stars: 5
     }
   ];
@@ -102,7 +102,7 @@ export default function Home() {
   ];
 
   const heroSlides = categoriesData.categories.map((cat, idx) => ({
-    badge: "COLLECTION HIGHLIGHT",
+    badge: "FEATURED COLLECTION",
     title: cat.name.split(' ')[0].toUpperCase(),
     highlight: cat.name.split(' ').slice(1).join(' ').toUpperCase(),
     categoryName: cat.name,
@@ -121,7 +121,7 @@ export default function Home() {
               href={`/products?category=${encodeURIComponent(cat.name)}`} 
               className="flex flex-col items-center shrink-0 space-y-2 group snap-center"
             >
-              <div className="relative p-[2px] bg-gradient-to-tr from-[#FFD700] via-[#FF69B4] to-[#cf1745] rounded-full shadow-sm">
+              <div className="relative p-[2px] bg-gradient-to-tr from-teal-300 via-blue-400 to-indigo-500 rounded-full shadow-sm">
                 <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-white">
                   <Image 
                     src={cat.imageUrl} 
@@ -151,7 +151,7 @@ export default function Home() {
           <CarouselContent className="ml-0">
             {heroSlides.map((slide, index) => (
               <CarouselItem key={index} className="relative pl-0">
-                <div className="relative h-[50vh] lg:h-[60vh] min-h-[400px] w-full bg-black/5">
+                <div className="relative h-[50vh] lg:h-[50vh] min-h-[400px] w-full bg-black/5">
                   <div className="absolute inset-0 z-0">
                     <Image 
                       src={slide.image}
@@ -164,34 +164,34 @@ export default function Home() {
                       )}
                       priority
                     />
-                    <div className="absolute inset-0 bg-black/20" />
+                    <div className="absolute inset-0 bg-black/30" />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/50" />
                   </div>
 
                   <div className={cn(
-                    "relative z-10 h-full flex items-center justify-center p-6 sm:p-12 pb-20 sm:pb-32 text-center transition-all duration-1000 ease-out",
+                    "relative z-10 h-full flex items-center justify-center p-6 sm:p-12 pb-12 sm:pb-24 text-center transition-all duration-1000 ease-out",
                     current === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
                   )}>
-                    <div className="max-w-4xl w-full flex flex-col items-center space-y-6">
+                    <div className="max-w-4xl w-full flex flex-col items-center space-y-4">
                       <div className="flex flex-col items-center gap-4">
                         <div className="inline-block px-5 py-2 rounded-full border border-white/30 text-[10px] font-black uppercase tracking-[0.4em] text-white bg-white/10 backdrop-blur-md">
                           {slide.badge}
                         </div>
                       </div>
                       <div className="space-y-1">
-                        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black leading-none uppercase tracking-tighter text-white drop-shadow-lg">
+                        <h1 className="text-xl sm:text-3xl lg:text-4xl font-black leading-none uppercase tracking-tighter text-white drop-shadow-lg">
                           {slide.title}
                         </h1>
-                        <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black leading-none uppercase tracking-tighter text-primary drop-shadow-lg">
+                        <h2 className="text-xl sm:text-3xl lg:text-4xl font-black leading-none uppercase tracking-tighter text-primary drop-shadow-lg">
                           {slide.highlight}
                         </h2>
                       </div>
                       <p className="text-[10px] sm:text-xs lg:text-sm text-white/90 font-light leading-relaxed max-w-2xl drop-shadow-md px-4">
                         {slide.desc}
                       </p>
-                      <div className="pt-4 lg:pt-8">
+                      <div className="pt-4 lg:pt-6">
                         <Link href={`/products?category=${encodeURIComponent(slide.categoryName)}`}>
-                          <Button className="h-12 lg:h-14 px-10 lg:px-14 rounded-2xl text-[10px] lg:text-[11px] font-black uppercase tracking-[0.3em] gradient-primary border-none shadow-none active:scale-95 transition-all hover:scale-105">
+                          <Button className="h-12 lg:h-14 px-8 lg:px-12 rounded-2xl text-[10px] lg:text-[11px] font-black uppercase tracking-[0.3em] gradient-primary border-none active:scale-95 transition-all hover:scale-105">
                             Shop {slide.categoryName}
                           </Button>
                         </Link>
@@ -241,7 +241,7 @@ export default function Home() {
                     className="object-cover" 
                   />
                 </div>
-                <span className="block text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-foreground/70 group-hover:text-primary leading-tight px-1 truncate sm:whitespace-normal">
+                <span className="block text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-foreground/70 group-hover:text-primary leading-tight px-1">
                   {cat.name}
                 </span>
               </Link>
@@ -270,7 +270,7 @@ export default function Home() {
                 <CarouselItem key={index} className="pl-4 sm:pl-8 basis-[80%] sm:basis-[60%] lg:basis-[45%]">
                   <div className={cn(
                     "relative aspect-square sm:aspect-video rounded-[2.5rem] overflow-hidden transition-all duration-700 ease-in-out border-4 border-white",
-                    isActive ? "scale-100 blur-0 opacity-100 shadow-none" : "scale-90 blur-md opacity-40 shadow-none"
+                    isActive ? "scale-100 blur-0 opacity-100" : "scale-90 blur-md opacity-40"
                   )}>
                     <Image src={slide.url} alt={slide.title} fill className="object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -322,20 +322,20 @@ export default function Home() {
         <div className="container-normal px-4">
           <div className="text-center mb-16 space-y-6">
             <Link 
-              href="https://instagram.com/sumegha_handmades" 
+              href="https://instagram.com/resinartologyy" 
               target="_blank" 
               className="inline-flex items-center gap-3 text-primary text-[11px] font-black uppercase tracking-[0.6em] hover:opacity-80 transition-opacity"
             >
               <Instagram className="h-5 w-5" />
-              @sumegha_handmades
+              @resinartologyy
             </Link>
             <h2 className="text-3xl lg:text-6xl font-black uppercase tracking-tight">On the Gram</h2>
-            <p className="text-foreground/50 text-base max-w-xl mx-auto leading-relaxed">Follow our creative journey and see how our art comes to life in homes around the world.</p>
+            <p className="text-foreground/50 text-base max-w-xl mx-auto leading-relaxed">Follow our creative journey and see how our art comes to life.</p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
             {instagramPosts.map((post, i) => (
-              <a key={i} href="https://instagram.com/sumegha_handmades" target="_blank" className="relative aspect-square group overflow-hidden rounded-2xl transition-all">
+              <a key={i} href="https://instagram.com/resinartologyy" target="_blank" className="relative aspect-square group overflow-hidden rounded-2xl transition-all">
                 <Image 
                   src={post.imageUrl} 
                   alt={`Instagram post ${i + 1}`} 
@@ -390,15 +390,15 @@ export default function Home() {
       <section className="py-24 bg-white/40 overflow-hidden">
         <div className="container-normal px-4 flex flex-col items-center text-center space-y-8">
            <h2 className="text-7xl lg:text-9xl font-cursive text-primary lowercase tracking-tight drop-shadow-sm select-none">
-             Sumegha
+             Resin Artologyy
            </h2>
            <div className="max-w-2xl space-y-4">
              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40">The Heart Behind the Art</p>
              <p className="text-xl lg:text-3xl font-light text-foreground/80 leading-relaxed italic">
-               "Every piece I craft carries a fragment of my soul and a whisper of tradition."
+               "Every piece we craft preserves a moment, a memory, a feeling."
              </p>
              <p className="text-sm lg:text-base text-foreground/60 leading-relaxed font-medium">
-               What started as a simple desire to preserve the warmth of human touch has evolved into a legacy of craftsmanship. Our work is a celebration of patience, precision, and the beautiful imperfections of the handmade process.
+              What started as a simple desire to preserve the warmth of human touch has evolved into a legacy of craftsmanship. Our work is a celebration of patience, precision, and the beautiful imperfections of the handmade process.
              </p>
            </div>
            <Link href="/about">
@@ -412,7 +412,7 @@ export default function Home() {
       {/* Discovery CTA */}
       <section className="py-24">
         <div className="container-normal px-4">
-          <div className="bg-[#181113] text-white p-12 lg:p-24 rounded-[3rem] lg:rounded-[5rem] text-center space-y-10 relative overflow-hidden shadow-2xl">
+          <div className="bg-[#1a2c38] text-white p-12 lg:p-24 rounded-[3rem] lg:rounded-[5rem] text-center space-y-10 relative overflow-hidden shadow-2xl">
             <div className="absolute inset-0 opacity-10 pointer-events-none">
               <Image src={placeholderData.placeholderImages.find(img => img.id === 'hero-pattern')?.imageUrl || ''} alt="pattern" fill className="object-cover" />
             </div>
@@ -422,7 +422,7 @@ export default function Home() {
               </div>
               <h3 className="text-3xl lg:text-7xl font-black uppercase tracking-tight text-white leading-tight">Your Personal Curator</h3>
               <p className="text-white/60 text-base lg:text-2xl font-light max-w-2xl mx-auto leading-relaxed">
-                Describe your vibe, and let our AI curate the perfect handmade selection for you.
+                Describe your vision, and let our AI curate the perfect resin piece for you.
               </p>
               <div className="pt-6">
                 <Link href="/discovery">

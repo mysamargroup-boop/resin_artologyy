@@ -67,15 +67,7 @@ export function Header() {
           {/* Center: Logo Image */}
           <div className="flex justify-center">
             <Link href="/" className="flex items-center group">
-              <div className="relative h-10 lg:h-12 w-72 lg:w-96">
-                <Image 
-                  src="/logo.png" 
-                  alt="Sumegha Handmades" 
-                  fill 
-                  className="object-contain transition-transform group-hover:scale-105"
-                  priority
-                />
-              </div>
+              <h1 className="text-xl lg:text-2xl font-black font-display uppercase tracking-widest text-foreground">Resin Artologyy</h1>
             </Link>
           </div>
 

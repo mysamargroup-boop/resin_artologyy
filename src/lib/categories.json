@@ -2,48 +2,37 @@
 {
   "categories": [
     {
-      "id": "cat-cnp",
-      "name": "Custom Name Plates",
-      "slug": "custom-name-plates",
-      "description": "Artisanal door decor personalized for your beautiful home. Experience contemporary design through bespoke handmade elegance.",
-      "imageUrl": "https://picsum.photos/seed/cat-cnp/800/1000",
+      "id": "cat-fp",
+      "name": "Flower Preservation",
+      "slug": "flower-preservation",
+      "description": "Immortalize your precious moments. From wedding bouquets to memorial flowers, preserved forever in crystal-clear resin.",
+      "imageUrl": "https://picsum.photos/seed/cat-flower/800/1000",
       "subCategories": [
-        { "name": "Home name plates", "imageUrl": "https://picsum.photos/seed/sub-home/500/500" },
-        { "name": "Couple name plates", "imageUrl": "https://picsum.photos/seed/sub-couple/500/500" },
-        { "name": "Resin name plates", "imageUrl": "https://picsum.photos/seed/sub-resin/500/500" },
-        { "name": "Personalized door name plates", "imageUrl": "https://picsum.photos/seed/sub-door/500/500" }
+        { "name": "Wedding Bouquets", "imageUrl": "https://picsum.photos/seed/sub-wedding/500/500" },
+        { "name": "Memorial Keepsakes", "imageUrl": "https://picsum.photos/seed/sub-memorial/500/500" },
+        { "name": "Decorative Frames", "imageUrl": "https://picsum.photos/seed/sub-frames/500/500" },
+        { "name": "Resin Coasters", "imageUrl": "https://picsum.photos/seed/sub-coasters/500/500" }
       ]
     },
     {
-      "id": "cat-ss",
-      "name": "Shubh Symbols",
-      "slug": "shubh-symbols",
-      "description": "Traditional auspicious motifs to bring positive energy. Each piece is meticulously handcrafted with love and devotion.",
-      "imageUrl": "https://picsum.photos/seed/cat-ss/800/1000",
+      "id": "cat-hc",
+      "name": "Hand Casting",
+      "slug": "hand-casting",
+      "description": "Create a timeless sculpture of your loved one's hands. A beautiful and intimate way to capture a special bond.",
+      "imageUrl": "https://picsum.photos/seed/cat-handcast/800/1000",
       "subCategories": []
     },
     {
-      "id": "cat-eep",
-      "name": "Evil Eye Protection Decor",
-      "slug": "evil-eye-protection",
-      "description": "Nazar Battu decor pieces that combine protection with art. Safeguard your home with our traditional talismans.",
-      "imageUrl": "https://picsum.photos/seed/cat-eep/800/1000",
+      "id": "cat-da",
+      "name": "Decorative Art",
+      "slug": "decorative-art",
+      "description": "Stunning resin art pieces for your home. From ocean-inspired wall art to shimmering geode coasters.",
+      "imageUrl": "https://picsum.photos/seed/cat-decor/800/1000",
       "subCategories": [
-        { "name": "Wall Protectors", "imageUrl": "https://picsum.photos/seed/sub-nazar-wall/500/500" },
-        { "name": "Hanging Talismans", "imageUrl": "https://picsum.photos/seed/sub-nazar-hanging/500/500" }
-      ]
-    },
-    {
-      "id": "cat-dh",
-      "name": "Decorative Hangings",
-      "slug": "decorative-hangings",
-      "description": "Bespoke ensembles and treasures for your vertical spaces. Celebrate traditions with our vibrant range of festive decor.",
-      "imageUrl": "https://picsum.photos/seed/cat-dh/800/1000",
-      "subCategories": [
-        { "name": "Wall Hangings", "imageUrl": "https://picsum.photos/seed/sub-wall/500/500" },
-        { "name": "Door Hangings", "imageUrl": "https://picsum.photos/seed/sub-door-h/500/500" },
-        { "name": "Resin Decor", "imageUrl": "https://picsum.photos/seed/sub-resin-d/500/500" },
-        { "name": "Handmade Art Pieces", "imageUrl": "https://picsum.photos/seed/sub-art/500/500" }
+        { "name": "Wall Art", "imageUrl": "https://picsum.photos/seed/sub-wallart/500/500" },
+        { "name": "Clocks & Trays", "imageUrl": "https://picsum.photos/seed/sub-clocks/500/500" },
+        { "name": "Lamps", "imageUrl": "https://picsum.photos/seed/sub-lamps/500/500" },
+        { "name": "Geode Art", "imageUrl": "https://picsum.photos/seed/sub-geode/500/500" }
       ]
     }
   ]
