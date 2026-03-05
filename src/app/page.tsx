@@ -153,8 +153,8 @@ export default function Home() {
                       fill
                       sizes="100vw"
                       className={cn(
-                        "object-cover transition-all duration-1000",
-                        current === index ? "opacity-80 blur-0 scale-100" : "opacity-0 blur-md scale-110"
+                        "object-cover transition-all duration-1000 ease-in-out",
+                        current === index ? "opacity-100 blur-0 scale-100" : "opacity-0 blur-md scale-110"
                       )}
                       priority
                     />
@@ -162,18 +162,17 @@ export default function Home() {
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/60" />
                   </div>
 
-                  {/* Added pb-12 sm:pb-24 to shift content up from the autoplay indicators on desktop */}
                   <div className={cn(
-                    "relative z-10 h-full flex items-center justify-center p-6 sm:p-12 pb-12 sm:pb-24 text-center transition-all duration-1000",
-                    current === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                    "relative z-10 h-full flex items-center justify-center p-6 sm:p-12 pb-12 sm:pb-24 text-center transition-all duration-1000 ease-out",
+                    current === index ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
                   )}>
-                    <div className="max-w-4xl w-full flex flex-col items-center space-y-6 sm:space-y-6">
+                    <div className="max-w-4xl w-full flex flex-col items-center space-y-6">
                       <div className="flex flex-col items-center gap-4">
                         <div className="inline-block px-5 py-2 rounded-full border border-white/30 text-[10px] font-black uppercase tracking-[0.4em] text-white bg-white/10 backdrop-blur-md">
                           {slide.badge}
                         </div>
                       </div>
-                      <div className="space-y-1 sm:space-y-1">
+                      <div className="space-y-1">
                         <h1 className="text-3xl sm:text-5xl font-black leading-none uppercase tracking-tighter text-white drop-shadow-lg">
                           {slide.title}
                         </h1>
@@ -184,7 +183,7 @@ export default function Home() {
                       <p className="text-xs sm:text-sm text-white/90 font-light leading-relaxed max-w-2xl drop-shadow-md px-4">
                         {slide.desc}
                       </p>
-                      <div className="pt-4 sm:pt-6">
+                      <div className="pt-4">
                         <Link href={`/products?category=${encodeURIComponent(slide.categoryName)}`}>
                           <Button className="h-12 sm:h-14 px-8 sm:px-12 rounded-2xl text-[10px] sm:text-[11px] font-black uppercase tracking-[0.3em] gradient-primary border-none shadow-none active:scale-95 transition-all hover:scale-105">
                             Shop {slide.categoryName}
@@ -253,7 +252,7 @@ export default function Home() {
         </div>
         
         <Carousel 
-          setApi={setApi}
+          setApi={setSpotlightApi}
           plugins={[spotlightPlugin.current]}
           opts={{ align: "center", loop: true }}
           className="w-full max-w-[1440px] mx-auto"
@@ -264,13 +263,13 @@ export default function Home() {
               return (
                 <CarouselItem key={index} className="pl-4 sm:pl-8 basis-[80%] sm:basis-[60%] lg:basis-[45%]">
                   <div className={cn(
-                    "relative aspect-square sm:aspect-video rounded-[2.5rem] overflow-hidden transition-all duration-700 border-4 border-white",
-                    isActive ? "scale-100 blur-0 opacity-100" : "scale-90 blur-md opacity-40"
+                    "relative aspect-square sm:aspect-video rounded-[2.5rem] overflow-hidden transition-all duration-700 ease-in-out border-4 border-white",
+                    isActive ? "scale-100 blur-0 opacity-100 shadow-xl" : "scale-90 blur-md opacity-40"
                   )}>
                     <Image src={slide.url} alt={slide.title} fill className="object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     <div className={cn(
-                      "absolute inset-0 flex flex-col items-center justify-center space-y-4 transition-all duration-500 delay-200",
+                      "absolute inset-0 flex flex-col items-center justify-center space-y-4 transition-all duration-700 delay-100 ease-out",
                       isActive ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                     )}>
                       <h3 className="text-2xl sm:text-4xl font-black uppercase tracking-tighter text-white drop-shadow-md">
